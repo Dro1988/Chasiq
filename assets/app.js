@@ -72,7 +72,7 @@ function seriesFor(brand){
 }
 function yearsFor(brand, series){
   const s=new Set();
-  catalog().forEach(c=>{ if((!brand||c.brand===brand)&&(!series||c.series===series)) s.add(c.year); });
+  catalog().forEach(c=>{ if((!brand||c.brand===brand)&&(!series||c.series===series) && c.year) s.add(c.year); });
   return [...s].sort((a,b)=>b-a);
 }
 function seriesGroups(){
@@ -120,7 +120,7 @@ function pickPhoto(cb){
 }
 
 /* ============================== tabs ============================== */
-const TABS = ['catalog','collection','wishlist','stats','more'];
+const TABS = ['catalog','collection','wishlist','stats','history','more'];
 function go(tab, arg){
   S.tab = tab;
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('active', b.dataset.tab===tab));
@@ -129,6 +129,8 @@ function go(tab, arg){
   else if(tab==='collection') renderCollection();
   else if(tab==='wishlist') renderWishlist();
   else if(tab==='stats') renderStats();
+  else if(tab==='history') renderHistory();
+  else if(tab==='histbrand') renderHistoryDetail(arg);
   else if(tab==='more') renderMore();
   else if(tab==='detail') renderDetail(arg);
 }
@@ -147,7 +149,7 @@ function renderCatalog(){
   const f = S.f, br = brands();
   const v = $('#view');
   v.innerHTML = `
-    <div class="notice">🧪 <b>Starter catalog</b> — ${catalog().length} verified castings across ${br.length} brands. The full master database is still being built; this grows every release.</div>
+    <div class="notice">📚 <b>${catalog().length.toLocaleString()} castings</b> across ${br.length} brands — sourced from collector wikis, growing every release. Tap 📚 History for the stories behind the brands.</div>
     <input id="f-q" class="search" placeholder="🔍 Search casting, series…" value="${esc(f.q)}">
     <div class="chips" id="f-brands">
       <button class="chip ${!f.brand?'on':''}" data-b="">All brands</button>
@@ -168,12 +170,15 @@ function renderCatalog(){
       (!f.series || c.series===f.series) &&
       (!f.year || String(c.year)===String(f.year)) &&
       (!q || (c.name+' '+c.series+' '+c.brand).toLowerCase().includes(q)));
-    $('#f-count').textContent = list.length + ' casting' + (list.length===1?'':'s');
-    $('#f-grid').innerHTML = list.map(c=>`
+    const CAP = 300;
+    const shown = list.slice(0, CAP);
+    $('#f-count').textContent = list.length.toLocaleString() + ' casting' + (list.length===1?'':'s')
+      + (list.length>CAP ? ` — showing first ${CAP}, refine your search` : '');
+    $('#f-grid').innerHTML = shown.map(c=>`
       <div class="card">
         <div class="cbrand">${esc(c.brand)}</div>
         <div class="cname">${esc(c.name)}</div>
-        <div class="cmeta">${esc(c.series)} · ${esc(c.year)}</div>
+        <div class="cmeta">${esc(c.series)} · ${esc(c.year)}${c.debut && c.debut!=c.year ? ' · debut '+esc(c.debut) : ''}</div>
         <div class="cscale">${esc(c.scale)}</div>
         <div class="crow">
           <button class="btn pri sm" data-add="${c.id}">+ Garage</button>
@@ -256,17 +261,19 @@ function gItemHTML(it){
     <div class="m mut">${esc(it.condition||'')}</div></div>
     <div class="g-qty">×${esc(it.qty||1)}</div></div>`;
 }
-function openCustomAdd(){
+function openCustomAdd(prefill){
   const br = brands();
-  const veil = modal(`<h3>＋ Custom car</h3>
+  prefill = prefill||{};
+  const veil = modal(`<h3>＋ ${prefill.ai?'Confirm identified car':'Custom car'}</h3>
+    ${prefill.ai?'<div class="small mut" style="margin-bottom:8px">✨ Pre-filled from the AI identification. Review everything before saving — the AI can be wrong.</div>':''}
     <div class="form">
-      <div class="frow"><label>Brand</label><select id="ca-brand">${br.map(b=>`<option>${esc(b)}</option>`).join('')}<option>Other</option></select></div>
-      <div class="frow"><label>Name *</label><input id="ca-name" placeholder="e.g. Custom '69 Camaro"></div>
+      <div class="frow"><label>Brand</label><select id="ca-brand">${br.map(b=>`<option ${prefill.brand===b?'selected':''}>${esc(b)}</option>`).join('')}<option ${!prefill.brand||prefill.brand==='Other'?'selected':''}>Other</option></select></div>
+      <div class="frow"><label>Name *</label><input id="ca-name" placeholder="e.g. Custom '69 Camaro" value="${esc(prefill.name||'')}"></div>
       <div class="f2">
-        <div class="frow"><label>Series</label><input id="ca-series" placeholder="e.g. Mainline"></div>
-        <div class="frow"><label>Year</label><input id="ca-year" inputmode="numeric" placeholder="2024"></div>
+        <div class="frow"><label>Series</label><input id="ca-series" placeholder="e.g. Mainline" value="${esc(prefill.series||'')}"></div>
+        <div class="frow"><label>Year</label><input id="ca-year" inputmode="numeric" placeholder="2024" value="${esc(prefill.year||'')}"></div>
       </div>
-      <div class="frow"><label>Scale</label><input id="ca-scale" value="1:64"></div>
+      <div class="frow"><label>Scale</label><input id="ca-scale" value="${esc(prefill.scale||'1:64')}"></div>
       <button class="btn pri block" id="ca-save">Add to garage</button>
       <button class="btn ghost block" id="ca-cancel">Cancel</button>
     </div>`);
@@ -275,13 +282,14 @@ function openCustomAdd(){
     const name = veil.querySelector('#ca-name').value.trim();
     if(!name){ toast('Give the car a name'); return; }
     await put('collection', {
-      cid:null,
+      cid:prefill.cid||null,
       brand:veil.querySelector('#ca-brand').value, name,
       series:veil.querySelector('#ca-series').value.trim()||'Custom',
       year:veil.querySelector('#ca-year').value.trim()||'—',
       scale:veil.querySelector('#ca-scale').value.trim()||'1:64',
-      qty:1, condition:'Loose – Mint', price:'', date:'', notes:'', upc:'', photos:[],
-      addedAt:new Date().toISOString(), custom:true
+      qty:1, condition:'Loose – Mint', price:'', date:'',
+      notes:prefill.notes||'', upc:'', photos:prefill.photo?[prefill.photo]:[],
+      addedAt:new Date().toISOString(), custom:!prefill.cid, aiIdentified:!!prefill.ai
     });
     closeModal(); toast('Added to your garage 🏠'); renderCollection();
   };
@@ -346,13 +354,7 @@ async function renderDetail(id){
     if(!confirm('Delete this photo?')) return;
     it.photos.splice(+im.dataset.ph,1); await put('collection', it); renderDetail(id);
   });
-  $('#d-identify').addEventListener('click', ()=>{
-    modal(`<h3>✨ Identify from photo</h3>
-      <div class="stub-box"><span class="big">🧠</span>
-      <b>Vision AI is not configured yet.</b><br><br>
-      Your photos are saved safely on this device. Automatic photo identification is coming soon — and we will never guess: until the AI is live, this button will always tell you so honestly.</div>
-      <button class="btn sec block" onclick="document.getElementById('modal-root').innerHTML=''">Got it</button>`);
-  });
+  $('#d-identify').addEventListener('click', ()=>identifyCarFlow(it));
   $('#d-save').addEventListener('click', async ()=>{
     it.qty = Math.max(1, +$('#d-qty').value||1);
     it.condition = $('#d-cond').value;
@@ -556,12 +558,21 @@ function renderMore(){
         <div class="row2"><button class="btn sec" id="m-keysave" style="flex:1">Save key</button>
         <button class="btn ghost" id="m-keydel" style="flex:1">Clear</button></div></div>
     </div>
+    <div class="sec-title">✨ AI visual ID</div>
+    <div class="form">
+      <div class="frow"><label>Google AI Studio key (stored only on this device)</label>
+        <input id="m-vkey" type="password" placeholder="paste your AI Studio key">
+        <div class="small mut" style="margin:6px 0">Free key: <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a>. The key lives in this browser's local storage only — it is sent to Google's API and nowhere else. Photos are processed in memory and never uploaded to Chasiq (there are no Chasiq servers).</div>
+        <div class="small mut" id="m-vstatus" style="margin:6px 0"></div>
+        <div class="row2"><button class="btn sec" id="m-vkeysave" style="flex:1">Save key</button>
+        <button class="btn ghost" id="m-vkeydel" style="flex:1">Clear</button></div></div>
+    </div>
     <div class="sec-title">ℹ️ About</div>
     <div class="form">
       <div class="sec-title" style="margin-top:0">Live today ✅</div>
-      ${['Multi-brand starter catalog ('+catalog().length+' verified castings, 8 brands)','Browse, search & filter by brand, series, year','My Garage: quantity, condition, price, dates, notes, photos','UPC barcode scanner for carded cars','Wishlist + series completion tracking','Stats dashboard','CSV import & JSON backup — everything stays on your device'].map(t=>`<div class="about-li"><span class="e">✅</span><span>${t}</span></div>`).join('')}
+      ${['Multi-brand starter catalog ('+catalog().length+' verified castings, 8 brands)','Browse, search & filter by brand, series, year','My Garage: quantity, condition, price, dates, notes, photos','UPC barcode scanner for carded cars','✨ AI photo ID for loose cars (needs your free Google AI Studio key — More → AI visual ID)','Wishlist + series completion tracking','Stats dashboard','CSV import & JSON backup — everything stays on your device'].map(t=>`<div class="about-li"><span class="e">✅</span><span>${t}</span></div>`).join('')}
       <div class="sec-title">Coming soon 🔜</div>
-      ${['AI photo identification — snap a loose car, get the casting (never guessed, always verified)','Live market values from sold listings','Trade matching with nearby collectors','Hunt mode: release calendar + sighting alerts','Cloud sync across devices'].map(t=>`<div class="about-li"><span class="e">🔜</span><span>${t}</span></div>`).join('')}
+      ${['Live market values from sold listings','Trade matching with nearby collectors','Hunt mode: release calendar + sighting alerts','Cloud sync across devices'].map(t=>`<div class="about-li"><span class="e">🔜</span><span>${t}</span></div>`).join('')}
       <div class="small mut" style="margin-top:8px">Chasiq MVP · 100% local-first · no account · no tracking. Your collection never leaves this device.</div>
     </div>`;
   $('#m-exp').addEventListener('click', async ()=>{
@@ -628,6 +639,212 @@ function renderMore(){
     toast(k?'Key saved locally 🔑':'Key cleared');
   });
   $('#m-keydel').addEventListener('click', async ()=>{ await del('kv','ebayKey'); $('#m-key').value=''; toast('Key cleared'); });
+  // AI visual ID key (localStorage only — never IndexedDB, never transmitted except to Google)
+  const vstat = $('#m-vstatus');
+  const vkey = visionKey();
+  if(vkey){ $('#m-vkey').value = vkey; vstat.innerHTML = '✅ Key saved on this device — photo ID is ready.'; }
+  else { vstat.innerHTML = '⚪ No key saved — photo ID will ask you to add one.'; }
+  $('#m-vkeysave').addEventListener('click', ()=>{
+    const k = $('#m-vkey').value.trim();
+    if(k){ setVisionKey(k); vstat.innerHTML = '✅ Key saved on this device — photo ID is ready.'; toast('Vision key saved 🔑'); }
+    else { clearVisionKey(); vstat.innerHTML = '⚪ No key saved — photo ID will ask you to add one.'; toast('Key cleared'); }
+  });
+  $('#m-vkeydel').addEventListener('click', ()=>{ clearVisionKey(); $('#m-vkey').value=''; vstat.innerHTML = '⚪ No key saved — photo ID will ask you to add one.'; toast('Key cleared'); });
+}
+
+/* ============================== history ============================== */
+const BRAND_EMOJI = { 'Hot Wheels':'🔥', 'Matchbox':'📦', 'Tomica':'🗾', 'M2 Machines':'🔧', 'GreenLight':'🚦', 'Mini GT':'🏁', 'Auto World':'🇺🇸', 'Kaido House':'🌊' };
+function renderHistory(){
+  const v = $('#view');
+  const hist = window.DC_HISTORY||[];
+  const counts = {}, yrMin = {}, yrMax = {};
+  catalog().forEach(c=>{
+    counts[c.brand]=(counts[c.brand]||0)+1;
+    const y = parseInt(c.year)||0;
+    if(y){ yrMin[c.brand]=Math.min(yrMin[c.brand]||9999,y); yrMax[c.brand]=Math.max(yrMax[c.brand]||0,y); }
+  });
+  v.innerHTML = `
+    <div class="sec-title">📚 Brand histories</div>
+    <div class="small mut" style="margin-bottom:10px">The stories behind the brands in your garage — researched from public sources. Tap a brand for the full story.</div>
+    ${hist.map((h,i)=>`
+      <div class="g-item" data-go="histbrand" data-arg="${i}">
+        <div class="g-thumb ph">${BRAND_EMOJI[h.brand]||'🏎️'}</div>
+        <div class="g-info"><div class="n">${esc(h.brand)}</div>
+        <div class="m">Est. ${h.founded} · ${esc(h.founder)}</div>
+        <div class="m mut">${(counts[h.brand]||0).toLocaleString()} castings in catalog${yrMin[h.brand]?` · ${yrMin[h.brand]}–${yrMax[h.brand]}`:''}</div></div>
+        <div class="mut">›</div></div>`).join('')}
+    <div class="sec-title">🔍 Data sources</div>
+    <div class="form small">${(window.DC_SOURCES||[]).map(s=>`<div class="about-li"><span class="e">📖</span><span><b>${esc(s.name)}</b> — ${esc(s.what)} (${esc(s.via)})</span></div>`).join('')}</div>
+    <div class="small mut" style="margin-top:8px">Catalog data comes from community-maintained collector wikis. Histories were researched Oct 2026 from Wikipedia, manufacturer sites, and hobby press.</div>`;
+}
+function renderHistoryDetail(ix){
+  const h = (window.DC_HISTORY||[])[+ix];
+  const v = $('#view');
+  if(!h){ go('history'); return; }
+  const items = catalog().filter(c=>c.brand===h.brand);
+  const years = items.map(c=>parseInt(c.year)||0).filter(y=>y>0).sort((a,b)=>a-b);
+  // castings per decade
+  const decades = {};
+  years.forEach(y=>{ const d = Math.floor(y/10)*10; decades[d]=(decades[d]||0)+1; });
+  const maxD = Math.max(1, ...Object.values(decades));
+  v.innerHTML = `
+    <button class="btn ghost sm" data-go="history">← Histories</button>
+    <div style="height:10px"></div>
+    <h2 style="font-size:20px">${BRAND_EMOJI[h.brand]||'🏎️'} ${esc(h.brand)}</h2>
+    <div class="small mut">Est. ${h.founded} · ${esc(h.founder)} · ${esc(h.hq)}</div>
+    <div class="form" style="margin-top:10px"><div class="small" style="line-height:1.55">${esc(h.story)}</div></div>
+    <div class="sec-title">Milestones</div>
+    <div class="form">${h.milestones.map(m=>`<div class="about-li"><span class="e"><b>${m.year}</b></span><span>${esc(m.text)}</span></div>`).join('')}</div>
+    <div class="sec-title">In the Chasiq catalog</div>
+    <div class="stat-tiles">
+      <div class="tile"><div class="tv">${items.length.toLocaleString()}</div><div class="tl">castings</div></div>
+      <div class="tile"><div class="tv">${years.length?years[0]:'—'}</div><div class="tl">earliest</div></div>
+      <div class="tile"><div class="tv">${years.length?years[years.length-1]:'—'}</div><div class="tl">latest</div></div>
+    </div>
+    ${Object.keys(decades).length?`<div class="form">${Object.keys(decades).sort().map(d=>`
+      <div class="small" style="display:flex;align-items:center;gap:8px;margin:4px 0">
+        <span style="width:44px" class="mut">${d}s</span>
+        <span style="flex:1;background:rgba(255,255,255,.06);border-radius:4px"><span style="display:block;height:10px;border-radius:4px;background:linear-gradient(90deg,var(--acc),var(--acc2));width:${Math.round(decades[d]/maxD*100)}%"></span></span>
+        <span style="width:52px;text-align:right" class="mut">${decades[d].toLocaleString()}</span>
+      </div>`).join('')}</div>`:''}
+    <div style="height:24px"></div>`;
+}
+
+/* ============================== AI visual ID ============================== */
+/* Local-first: the key lives in this browser's localStorage only. It is sent
+   to Google's Generative Language API and nowhere else. Photos are processed
+   in memory; Chasiq has no servers to upload to. */
+const VISION_LS_KEY = 'chasiq_vision_key';
+const VISION_ENDPOINT = 'https://generativelanguage.googleapis.com/v1beta/openai/chat/completions';
+const VISION_MODEL = 'gemini-3.8-flash';
+function visionKey(){ try{ return localStorage.getItem(VISION_LS_KEY)||''; }catch(e){ return ''; } }
+function setVisionKey(k){ try{ localStorage.setItem(VISION_LS_KEY, k); }catch(e){} }
+function clearVisionKey(){ try{ localStorage.removeItem(VISION_LS_KEY); }catch(e){} }
+
+const VISION_PROMPT = 'You are a die-cast model car expert. Look at this photo and identify the die-cast car. '
+  + 'Return STRICT JSON only — no markdown, no commentary, just the JSON object: '
+  + '{"casting":"<casting name as sold, e.g. \'Bone Shaker\'>","brand":"<one of: Hot Wheels, Matchbox, M2 Machines, GreenLight, Mini GT, Tomica, Auto World, Kaido House, Other>","series":"<series or line if visible, else empty string>","year":"<release year if you know it, else empty string>","confidence":<0-100>,"notes":"<what you actually see: color, tampos, wheels, carded or loose>"} '
+  + 'If you cannot identify it, set casting to "" and confidence to 0. Never invent a casting name.';
+
+async function callVisionIdentify(dataUrl, key){
+  const res = await fetch(VISION_ENDPOINT, {
+    method:'POST',
+    headers:{ 'Content-Type':'application/json', 'Authorization':'Bearer '+key },
+    body: JSON.stringify({
+      model: VISION_MODEL,
+      max_tokens: 600,
+      messages:[{ role:'user', content:[
+        { type:'text', text:VISION_PROMPT },
+        { type:'image_url', image_url:{ url:dataUrl } }
+      ]}]
+    })
+  });
+  if(!res.ok){
+    const t = await res.text().catch(()=>'');
+    throw new Error('vision-api-'+res.status+(t?': '+t.slice(0,160):''));
+  }
+  const j = await res.json();
+  const text = (j.choices && j.choices[0] && j.choices[0].message && j.choices[0].message.content) || '';
+  const m = text.match(/\{[\s\S]*\}/);
+  if(!m) throw new Error('vision-no-json');
+  return JSON.parse(m[0]);
+}
+
+function normTok(s){ return (s||'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim(); }
+function fuzzyCandidates(casting, brand){
+  const ct = normTok(casting).split(' ').filter(Boolean);
+  if(!ct.length) return [];
+  const bnorm = normTok(brand);
+  return catalog().map(c=>{
+    const nt = normTok(c.name).split(' ').filter(Boolean);
+    let hit = 0;
+    for(const t of ct){ if(nt.indexOf(t)>=0) hit++; }
+    let score = hit/ct.length;
+    if(normTok(c.name)===normTok(casting)) score += 1.5;      // exact name
+    if(bnorm && normTok(c.brand)===bnorm) score += 0.35;      // brand bonus
+    else if(bnorm && normTok(c.brand).indexOf(bnorm)>=0) score += 0.15;
+    return { c:c, score:score, hit:hit };
+  }).filter(x=>x.hit>0 && x.score>0.2).sort((a,b)=>b.score-a.score).slice(0,3);
+}
+
+async function identifyCarFlow(it){
+  const photos = it.photos||[];
+  if(!photos.length){ toast('Add a photo of the car first 📸'); return; }
+  const key = visionKey();
+  if(!key){
+    modal(`<h3>✨ Identify from photo</h3>
+      <div class="stub-box"><span class="big">🔑</span>
+      <b>Photo ID needs your free Google AI Studio key.</b><br><br>
+      Add it under <b>More → ✨ AI visual ID</b> (get one free at aistudio.google.com/apikey). The key stays on this device — it's only ever sent to Google's API.</div>
+      <button class="btn sec block" id="vi-goset">Open AI visual ID settings</button>
+      <button class="btn ghost block" onclick="document.getElementById('modal-root').innerHTML=''">Cancel</button>`);
+    document.getElementById('vi-goset').onclick = ()=>{ closeModal(); go('more'); };
+    return;
+  }
+  const veil = modal(`<h3>✨ Identify from photo</h3>
+    <div class="form">
+      <div class="frow"><label>Photo to identify</label>
+        <div class="photos" id="vi-pick">${photos.map((p,i)=>`<img src="${p}" data-vi="${i}" class="${i===0?'vi-sel':''}" alt="photo ${i+1}" style="${i===0?'outline:2px solid var(--acc)':''}">`).join('')}</div>
+        <div class="small mut">Tap a photo to choose it, then Identify.</div></div>
+      <div id="vi-result"></div>
+      <button class="btn pri block" id="vi-go">🔍 Identify this car</button>
+      <button class="btn ghost block" id="vi-cancel">Cancel</button>
+    </div>`);
+  let sel = 0;
+  veil.querySelector('#vi-pick').addEventListener('click', e=>{
+    const im = e.target.closest('[data-vi]'); if(!im) return;
+    sel = +im.dataset.vi;
+    veil.querySelectorAll('#vi-pick img').forEach(x=>x.style.outline='');
+    im.style.outline = '2px solid var(--acc)';
+  });
+  veil.querySelector('#vi-cancel').onclick = closeModal;
+  veil.querySelector('#vi-go').onclick = async ()=>{
+    const btn = veil.querySelector('#vi-go'), out = veil.querySelector('#vi-result');
+    btn.disabled = true; btn.textContent = '🧠 Asking the AI…';
+    out.innerHTML = '<div class="small mut" style="margin:8px 0">Sending the photo to Google\'s vision model…</div>';
+    try{
+      const r = await callVisionIdentify(photos[sel], key);
+      const conf = Math.max(0, Math.min(100, +r.confidence||0));
+      if(!r.casting || conf===0){
+        out.innerHTML = `<div class="stub-box"><span class="big">🤷</span><b>Couldn't identify it.</b><br><br>The AI couldn't confidently name this car.${r.notes?'<br><br>What it saw: '+esc(r.notes):''}<br><br>Try a clearer photo — front 3/4 angle, good light.</div>`;
+        btn.disabled = false; btn.textContent = '🔍 Try again';
+        return;
+      }
+      const cands = fuzzyCandidates(r.casting, r.brand);
+      out.innerHTML = `
+        <div class="vi-ai"><div class="small mut">AI identification <span class="badge">${conf}% confident</span></div>
+        <div style="font-weight:700;font-size:16px;margin:4px 0">${esc(r.casting)}</div>
+        <div class="small">${esc(r.brand||'')} ${r.series?'· '+esc(r.series):''} ${r.year?'· '+esc(r.year):''}</div>
+        ${r.notes?`<div class="small mut" style="margin-top:6px">👁 ${esc(r.notes)}</div>`:''}</div>
+        <div class="sec-title" style="margin-top:10px">Confirm against the catalog</div>
+        ${cands.length ? cands.map((x,i)=>`
+          <div class="g-item"><div class="g-thumb ph">🚗</div>
+            <div class="g-info"><div class="n">${esc(x.c.name)}</div>
+            <div class="m">${esc(x.c.brand)} · ${esc(x.c.series)} · ${esc(x.c.year)}</div></div>
+            <button class="btn pri sm" data-viadd="${i}">Review &amp; add</button></div>`).join('')
+        : '<div class="notice">No close catalog matches — you can still add it as a custom car with the AI details pre-filled.</div>'}
+        <button class="btn sec block" id="vi-custom" style="margin-top:8px">＋ Add as custom (AI details pre-filled)</button>
+        <div class="small mut" style="margin-top:8px">Nothing is added automatically — you confirm first. The AI can be wrong; check the notes.</div>`;
+      const prefillBase = { ai:true, name:r.casting, brand:r.brand||'', series:r.series||'', year:String(r.year||''), scale:'1:64', photo:photos[sel],
+        notes:'AI visual ID ('+conf+'%): '+(r.notes||'') };
+      out.querySelectorAll('[data-viadd]').forEach(b=>b.addEventListener('click', ()=>{
+        const x = cands[+b.dataset.viadd];
+        closeModal();
+        openCustomAdd(Object.assign({}, prefillBase, { cid:x.c.id, brand:x.c.brand, name:x.c.name, series:x.c.series, year:String(x.c.year), scale:x.c.scale }));
+      }));
+      out.querySelector('#vi-custom').addEventListener('click', ()=>{ closeModal(); openCustomAdd(prefillBase); });
+      btn.style.display = 'none';
+    }catch(err){
+      const msg = String(err.message||err);
+      let friendly = 'Something went wrong talking to the vision API.';
+      if(msg.indexOf('vision-api-401')===0||msg.indexOf('vision-api-400')===0) friendly = 'Google rejected the key ('+msg.split(':')[0].replace('vision-api-','HTTP ')+'). Check it under More → AI visual ID — it must be a valid AI Studio key.';
+      else if(msg.indexOf('vision-api-429')===0) friendly = 'Rate limited by Google (HTTP 429). Wait a minute and try again.';
+      else if(msg.indexOf('vision-no-json')===0) friendly = 'The AI answered but not in the expected format. Try again.';
+      else if(msg.indexOf('Failed to fetch')>=0||msg.indexOf('NetworkError')>=0) friendly = 'Network error — check your connection and try again.';
+      out.innerHTML = `<div class="stub-box"><span class="big">⚠️</span><b>Identification failed.</b><br><br>${esc(friendly)}</div>`;
+      btn.disabled = false; btn.textContent = '🔍 Try again';
+    }
+  };
 }
 
 })();
