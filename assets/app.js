@@ -4,7 +4,7 @@
 
 /* Bump on every user-facing release — shown in More → About so we can tell
    which version a phone is actually running. */
-const APP_BUILD = 'v7';
+const APP_BUILD = 'v8';
 
 /* Offline-first: cache the app shell so it loads with no connection. */
 if ('serviceWorker' in navigator) {
@@ -702,8 +702,10 @@ function renderMore(){
       ${['Live market values from sold listings','Trade matching with nearby collectors','Hunt mode: release calendar + sighting alerts','Cloud sync across devices'].map(t=>`<div class="about-li"><span class="e">🔜</span><span>${t}</span></div>`).join('')}
       <div class="small mut" style="margin-top:8px">Chasiq <b id="m-appbuild"></b> · 100% local-first · no account · no tracking. Your collection never leaves this device.</div>
       <div class="frow" style="margin-top:8px"><label>🖼 Photo diagnostics</label>
-        <div class="small mut" style="margin:6px 0" id="m-imgdiag">Tap the button to test whether catalog photos can load on this device.</div>
-        <button class="btn sec block" id="m-imgtest">Test photo loading</button></div>
+        <div class="small mut" style="margin:6px 0" id="m-imgdiag">Tap a button to test whether catalog photos can load on this device.</div>
+        <button class="btn sec block" id="m-imgtest">Test single photo</button>
+        <div style="height:8px"></div>
+        <button class="btn sec block" id="m-imgflood">Test 24 photos at once (like the catalog does)</button></div>
     </div>`;
   $('#m-exp').addEventListener('click', async ()=>{
     const [c,w] = await Promise.all([all('collection'), all('wishlist')]);
@@ -781,11 +783,18 @@ function renderMore(){
   });
   $('#m-vkeydel').addEventListener('click', ()=>{ clearVisionKey(); $('#m-vkey').value=''; vstat.innerHTML = '⚪ No key saved — photo ID will ask you to add one.'; toast('Key cleared'); });
   $('#m-appbuild').textContent = APP_BUILD;
+  const testOne = (url, ms)=>new Promise(res=>{
+    const im = new Image(); let done = false;
+    const fin = v=>{ if(!done){ done = true; res(v); } };
+    im.onload = ()=>fin(true); im.onerror = ()=>fin(false);
+    setTimeout(()=>fin(false), ms||15000); im.src = url;
+  });
+  const toProxy = u=>{ const m=(u||'').match(/^https?:\/\/([^\/]+)(\/[^?#]*)/); return m?('https://wsrv.nl/?url='+m[1]+m[2]+'&w=800&output=webp'):u; };
   $('#m-imgtest').addEventListener('click', ()=>{
     const out = $('#m-imgdiag');
     out.textContent = 'Testing…';
     const direct = 'https://static.wikia.nocookie.net/hotwheels/images/6/69/Dream1_orig.jpg/revision/latest/scale-to-width-down/800?cb=20260501141113';
-    const proxy = 'https://wsrv.nl/?url=static.wikia.nocookie.net/hotwheels/images/6/69/Dream1_orig.jpg&w=800&output=webp';
+    const proxy = toProxy(direct);
     const results = {};
     const done = ()=>{
       if(!('direct' in results) || !('proxy' in results)) return;
@@ -796,12 +805,24 @@ function renderMore(){
           : '<br>Both are blocked on this device/network (ad-blocker, VPN or private DNS can do this).');
     };
     [['direct',direct],['proxy',proxy]].forEach(([k,url])=>{
-      const im = new Image();
-      im.onload = ()=>{ results[k]=true; done(); };
-      im.onerror = ()=>{ results[k]=false; done(); };
-      setTimeout(()=>{ if(!(k in results)){ results[k]=false; done(); } }, 15000);
-      im.src = url;
+      testOne(url).then(v=>{ results[k]=v; done(); });
     });
+  });
+  $('#m-imgflood').addEventListener('click', async ()=>{
+    const out = $('#m-imgdiag');
+    out.textContent = 'Loading 24 photos at once, like the catalog does…';
+    const urls = catalog().filter(c=>c.img).slice(0,24).map(c=>c.img);
+    const t0 = Date.now();
+    const dRes = await Promise.all(urls.map(u=>testOne(u)));
+    const dOk = dRes.filter(Boolean).length;
+    out.innerHTML = 'Bulk direct: '+dOk+'/'+urls.length+' loaded… now the backup server…';
+    const pRes = await Promise.all(urls.map(u=>testOne(toProxy(u))));
+    const pOk = pRes.filter(Boolean).length;
+    const secs = ((Date.now()-t0)/1000).toFixed(0);
+    out.innerHTML = 'Bulk direct: <b>'+dOk+'/'+urls.length+'</b><br>Bulk backup: <b>'+pOk+'/'+urls.length+'</b> ('+secs+'s)'
+      + (dOk>=20 ? '<br>✅ Direct works in bulk — screenshot this for Milo.'
+        : pOk>=20 ? '<br>✅ Backup works in bulk — screenshot this for Milo.'
+        : '<br>❌ Both fail in bulk — screenshot this for Milo.');
   });
 }
 
