@@ -4,7 +4,7 @@
 
 /* Bump on every user-facing release — shown in More → About so we can tell
    which version a phone is actually running. */
-const APP_BUILD = 'v8';
+const APP_BUILD = 'v9';
 
 /* Offline-first: cache the app shell so it loads with no connection. */
 if ('serviceWorker' in navigator) {
@@ -143,6 +143,7 @@ function imgPump(){
 }
 function imgDone(){ imgActive = Math.max(0, imgActive-1); imgPump(); }
 function imgEnqueue(el){ imgQueue.push(el); imgPump(); }
+window.__chasiqDbg = ()=>({active:imgActive, queued:imgQueue.length, io:!!imgIO, mo:!!window.__chasiqMO});
 const imgIO = ('IntersectionObserver' in window) ? new IntersectionObserver(es=>{
   es.forEach(e=>{ if(e.isIntersecting){ imgIO.unobserve(e.target); imgEnqueue(e.target); } });
 },{rootMargin:'600px'}) : null;
@@ -171,7 +172,7 @@ window.__chasiqImgErr = function(el){
 };
 /* Catch images injected by any render path (views, modals, grid re-renders). */
 if('MutationObserver' in window){
-  new MutationObserver(muts=>{
+  window.__chasiqMO = new MutationObserver(muts=>{
     for(const m of muts) for(const n of m.addedNodes){
       if(n.nodeType!==1) continue;
       if(n.tagName==='IMG' && n.hasAttribute('data-src')) imgWatch(n);
@@ -705,7 +706,11 @@ function renderMore(){
         <div class="small mut" style="margin:6px 0" id="m-imgdiag">Tap a button to test whether catalog photos can load on this device.</div>
         <button class="btn sec block" id="m-imgtest">Test single photo</button>
         <div style="height:8px"></div>
-        <button class="btn sec block" id="m-imgflood">Test 24 photos at once (like the catalog does)</button></div>
+        <button class="btn sec block" id="m-imgflood">Test 24 photos at once (like the catalog does)</button>
+        <div style="height:8px"></div>
+        <button class="btn sec block" id="m-imgcarddiag">Diagnose card photos (uses the real card code)</button>
+        <div class="small mut" style="margin:6px 0" id="m-imgcarddiag-out"></div>
+        <div id="m-imgcarddiag-imgs"></div></div>
     </div>`;
   $('#m-exp').addEventListener('click', async ()=>{
     const [c,w] = await Promise.all([all('collection'), all('wishlist')]);
@@ -823,6 +828,23 @@ function renderMore(){
       + (dOk>=20 ? '<br>✅ Direct works in bulk — screenshot this for Milo.'
         : pOk>=20 ? '<br>✅ Backup works in bulk — screenshot this for Milo.'
         : '<br>❌ Both fail in bulk — screenshot this for Milo.');
+  });
+  $('#m-imgcarddiag').addEventListener('click', ()=>{
+    const out = $('#m-imgcarddiag-out');
+    const box = $('#m-imgcarddiag-imgs');
+    const dbg0 = window.__chasiqDbg ? window.__chasiqDbg() : {err:'no dbg fn'};
+    out.textContent = 'Queue before: ' + JSON.stringify(dbg0) + ' — injecting 3 card photos…';
+    // EXACT card markup path (same as catImgHTML): data-src + pixel + handlers.
+    const url = 'https://static.wikia.nocookie.net/hotwheels/images/6/69/Dream1_orig.jpg/revision/latest/scale-to-width-down/800?cb=20260501141113';
+    box.innerHTML = [0,1,2].map(()=>'<div class="cimg" style="height:120px;margin:6px 0"><img data-src="'+url+'" src="'+IMG_PIXEL+'" alt="t" data-ph="H" data-phcls="cimg-ph" onload="__chasiqImgOk()" onerror="__chasiqImgErr(this)"></div>').join('');
+    setTimeout(()=>{
+      const imgs = box.querySelectorAll('img');
+      let real=0, loaded=0, ph=0;
+      imgs.forEach(im=>{ if(/^https?:\/\//.test(im.src)) real++; if(im.naturalWidth>0 && im.naturalHeight>0) loaded++; });
+      ph = box.querySelectorAll('.cimg-ph').length;
+      const dbg1 = window.__chasiqDbg ? window.__chasiqDbg() : {};
+      out.innerHTML = 'Card-path test:<br>• got real URL: <b>'+real+'/3</b><br>• actually rendered: <b>'+loaded+'/3</b><br>• placeholders: <b>'+ph+'/3</b><br>• queue now: '+JSON.stringify(dbg1)+'<br>Screenshot this whole section for Milo.';
+    }, 12000);
   });
 }
 
