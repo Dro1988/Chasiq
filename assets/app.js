@@ -4,7 +4,7 @@
 
 /* Bump on every user-facing release — shown in More → About so we can tell
    which version a phone is actually running. */
-const APP_BUILD = 'v10';
+const APP_BUILD = 'v11';
 
 /* Offline-first: cache the app shell so it loads with no connection. */
 if ('serviceWorker' in navigator) {
@@ -702,6 +702,7 @@ function renderMore(){
       <div class="sec-title">Coming soon 🔜</div>
       ${['Live market values from sold listings','Trade matching with nearby collectors','Hunt mode: release calendar + sighting alerts','Cloud sync across devices'].map(t=>`<div class="about-li"><span class="e">🔜</span><span>${t}</span></div>`).join('')}
       <div class="small mut" style="margin-top:8px">Chasiq <b id="m-appbuild"></b> · 100% local-first · no account · no tracking. Your collection never leaves this device.</div>
+      <div class="small mut" style="margin-top:8px">📚 Catalog data &amp; photos: the collector wikis — <a href="https://hotwheels.fandom.com" target="_blank" rel="noopener">Hot Wheels Wiki</a>, <a href="https://matchbox.fandom.com" target="_blank" rel="noopener">Matchbox Wiki</a>, <a href="https://m2machines.fandom.com" target="_blank" rel="noopener">M2 Machines Wiki</a>, <a href="https://greenlight.fandom.com" target="_blank" rel="noopener">GreenLight Wiki</a>, <a href="https://minigt.fandom.com" target="_blank" rel="noopener">Mini GT Wiki</a>, <a href="https://tomica.fandom.com" target="_blank" rel="noopener">Tomica Wiki</a> — used under <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA</a>. Thanks to every contributor who photographed and documented these cars.</div>
       <div class="frow" style="margin-top:8px"><label>🖼 Photo diagnostics</label>
         <div class="small mut" style="margin:6px 0" id="m-imgdiag">Tap a button to test whether catalog photos can load on this device.</div>
         <button class="btn sec block" id="m-imgtest">Test single photo</button>
