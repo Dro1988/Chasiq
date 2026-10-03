@@ -2,6 +2,10 @@
 (function(){
 'use strict';
 
+/* Bump on every user-facing release — shown in More → About so we can tell
+   which version a phone is actually running. */
+const APP_BUILD = 'v6';
+
 /* Offline-first: cache the app shell so it loads with no connection. */
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
@@ -662,7 +666,10 @@ function renderMore(){
       ${['Multi-brand starter catalog ('+catalog().length+' verified castings, 8 brands)','Browse, search & filter by brand, series, year','My Garage: quantity, condition, price, dates, notes, photos','UPC barcode scanner for carded cars','✨ AI photo ID for loose cars (needs your free Google AI Studio key — More → AI visual ID)','Wishlist + series completion tracking','Stats dashboard','CSV import & JSON backup — everything stays on your device'].map(t=>`<div class="about-li"><span class="e">✅</span><span>${t}</span></div>`).join('')}
       <div class="sec-title">Coming soon 🔜</div>
       ${['Live market values from sold listings','Trade matching with nearby collectors','Hunt mode: release calendar + sighting alerts','Cloud sync across devices'].map(t=>`<div class="about-li"><span class="e">🔜</span><span>${t}</span></div>`).join('')}
-      <div class="small mut" style="margin-top:8px">Chasiq MVP · 100% local-first · no account · no tracking. Your collection never leaves this device.</div>
+      <div class="small mut" style="margin-top:8px">Chasiq <b id="m-appbuild"></b> · 100% local-first · no account · no tracking. Your collection never leaves this device.</div>
+      <div class="frow" style="margin-top:8px"><label>🖼 Photo diagnostics</label>
+        <div class="small mut" style="margin:6px 0" id="m-imgdiag">Tap the button to test whether catalog photos can load on this device.</div>
+        <button class="btn sec block" id="m-imgtest">Test photo loading</button></div>
     </div>`;
   $('#m-exp').addEventListener('click', async ()=>{
     const [c,w] = await Promise.all([all('collection'), all('wishlist')]);
@@ -739,6 +746,29 @@ function renderMore(){
     else { clearVisionKey(); vstat.innerHTML = '⚪ No key saved — photo ID will ask you to add one.'; toast('Key cleared'); }
   });
   $('#m-vkeydel').addEventListener('click', ()=>{ clearVisionKey(); $('#m-vkey').value=''; vstat.innerHTML = '⚪ No key saved — photo ID will ask you to add one.'; toast('Key cleared'); });
+  $('#m-appbuild').textContent = APP_BUILD;
+  $('#m-imgtest').addEventListener('click', ()=>{
+    const out = $('#m-imgdiag');
+    out.textContent = 'Testing…';
+    const direct = 'https://static.wikia.nocookie.net/hotwheels/images/6/69/Dream1_orig.jpg/revision/latest/scale-to-width-down/800?cb=20260501141113';
+    const proxy = 'https://wsrv.nl/?url=static.wikia.nocookie.net/hotwheels/images/6/69/Dream1_orig.jpg&w=800&output=webp';
+    const results = {};
+    const done = ()=>{
+      if(!('direct' in results) || !('proxy' in results)) return;
+      out.innerHTML = 'Direct wiki photo: ' + (results.direct?'✅ loads':'❌ blocked')
+        + '<br>Backup photo server: ' + (results.proxy?'✅ loads':'❌ blocked')
+        + (results.direct||results.proxy
+          ? '<br>Photos should work — fully close and reopen Chasiq if cards still show placeholders.'
+          : '<br>Both are blocked on this device/network (ad-blocker, VPN or private DNS can do this).');
+    };
+    [['direct',direct],['proxy',proxy]].forEach(([k,url])=>{
+      const im = new Image();
+      im.onload = ()=>{ results[k]=true; done(); };
+      im.onerror = ()=>{ results[k]=false; done(); };
+      setTimeout(()=>{ if(!(k in results)){ results[k]=false; done(); } }, 15000);
+      im.src = url;
+    });
+  });
 }
 
 /* ============================== history ============================== */
