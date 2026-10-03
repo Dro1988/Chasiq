@@ -1,5 +1,5 @@
 /* Chasiq — offline shell cache. Bump CACHE on each release. */
-const CACHE = 'chasiq-v2';
+const CACHE = 'chasiq-v3';
 const ASSETS = ['./', './index.html', './assets/styles.css', './assets/app.js', './assets/catalog.js', './assets/history.js', './assets/catalog-c1.js', './assets/catalog-c2.js', './assets/catalog-c3.js', './assets/catalog-c4.js', './assets/catalog-c5.js', './assets/catalog-c6.js', './assets/catalog-c7.js', './assets/catalog-c8.js', './assets/catalog-c9.js', './assets/catalog-c10.js', './assets/catalog-c11.js', './assets/catalog-c12.js', './assets/catalog-c13.js', './assets/catalog-c14.js', './assets/catalog-c15.js', './assets/catalog-c16.js', './assets/catalog-c17.js', './assets/catalog-c18.js', './assets/catalog-c19.js', './assets/catalog-c20.js', './assets/catalog-c21.js', './assets/catalog-c22.js', './assets/catalog-c23.js', './assets/catalog-c24.js', './assets/catalog-c25.js', './assets/catalog-c26.js', './assets/catalog-c27.js', './assets/catalog-c28.js', './assets/catalog-c29.js'];
 
 self.addEventListener('install', e => {
@@ -14,5 +14,19 @@ self.addEventListener('activate', e => {
 });
 self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET') return;
+  const url = new URL(e.request.url);
+  const isPage = e.request.mode === 'navigate' || url.pathname === '/' || url.pathname.endsWith('.html');
+  if (isPage) {
+    // Pages: network-first so the app shell never goes stale; fall back to cache offline.
+    e.respondWith(
+      fetch(e.request).then(resp => {
+        const copy = resp.clone();
+        caches.open(CACHE).then(c => c.put(e.request, copy));
+        return resp;
+      }).catch(() => caches.match(e.request).then(hit => hit || caches.match('./index.html')))
+    );
+    return;
+  }
+  // Versioned assets: cache-first.
   e.respondWith(caches.match(e.request).then(hit => hit || fetch(e.request)));
 });
