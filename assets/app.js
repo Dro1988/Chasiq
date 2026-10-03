@@ -123,6 +123,18 @@ function pickPhoto(cb){
 /* Wiki-sourced hotlinked images (c.img). Never a broken-image icon: onerror
    swaps in a styled placeholder tile. */
 window.__chasiqImgErr = function(el){
+  // Retry once through the wsrv.nl image proxy before giving up: wiki CDNs
+  // sometimes 403 hotlinked images (missing referer / rate limiting) while
+  // the same file loads fine through a server-side fetch. Query strings are
+  // dropped (they're only cache-busters; /revision/latest/ pins the file).
+  if(!el.dataset.px){
+    el.dataset.px = '1';
+    const m = (el.getAttribute('src')||'').match(/^https?:\/\/([^\/]+)(\/[^?#]*)/);
+    if(m){
+      el.src = 'https://wsrv.nl/?url=' + m[1] + m[2] + '&w=800&output=webp';
+      return;
+    }
+  }
   const d = document.createElement('div');
   d.className = el.dataset.phcls || 'cimg-ph';
   d.setAttribute('aria-hidden','true');
