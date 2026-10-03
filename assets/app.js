@@ -4,7 +4,7 @@
 
 /* Bump on every user-facing release — shown in More → About so we can tell
    which version a phone is actually running. */
-const APP_BUILD = 'v9';
+const APP_BUILD = 'v10';
 
 /* Offline-first: cache the app shell so it loads with no connection. */
 if ('serviceWorker' in navigator) {
@@ -124,12 +124,21 @@ function pickPhoto(cb){
 }
 
 /* ============================== catalog images ============================== */
-/* Wiki-sourced hotlinked images (c.img). The wiki CDN 403s floods of parallel
-   hotlinked requests, so images load through a small concurrency queue fed by
-   an IntersectionObserver — never all 300 cards at once. onerror retries once
-   through the wsrv.nl proxy, then swaps in a styled placeholder tile. Never a
-   broken-image icon. */
+/* PRIMARY image source: wsrv.nl proxy of the ORIGINAL wiki file.
+   Fandom's CDN intermittently answers hotlinked thumbnail URLs with a generic
+   placeholder IMAGE (HTTP 200!) instead of the photo — indistinguishable from
+   a real load except by looking at it. So we never hotlink Fandom directly.
+   Images load through a small concurrency queue fed by an IntersectionObserver
+   (never all 300 cards at once). onerror swaps in a styled placeholder tile.
+   Never a broken-image icon. */
 const IMG_PIXEL = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
+function imgProxy(u){
+  const m = (u||'').match(/^https?:\/\/([^\/]+)(\/[^?#]*)/);
+  if(!m) return u;
+  const path = m[2].replace(/\/revision\/latest.*$/, '');
+  return 'https://wsrv.nl/?url=' + m[1] + path + '&w=800&output=webp';
+}
+window.__chasiqImgProxy = imgProxy;
 const IMG_MAX = 6;
 let imgActive = 0;
 const imgQueue = [];
@@ -155,15 +164,6 @@ function imgWatch(el){
 window.__chasiqImgOk = function(){ imgDone(); };
 window.__chasiqImgErr = function(el){
   imgDone();
-  // Retry once through the wsrv.nl image proxy before giving up: wiki CDNs
-  // sometimes 403 hotlinked images (missing referer / rate limiting) while
-  // the same file loads fine through a server-side fetch. Query strings are
-  // dropped (they're only cache-busters; /revision/latest/ pins the file).
-  if(!el.dataset.px){
-    el.dataset.px = '1';
-    const m = (el.dataset.src||'').match(/^https?:\/\/([^\/]+)(\/[^?#]*)/);
-    if(m){ el.dataset.src = 'https://wsrv.nl/?url='+m[1]+m[2]+'&w=800&output=webp'; imgEnqueue(el); return; }
-  }
   const d = document.createElement('div');
   d.className = el.dataset.phcls || 'cimg-ph';
   d.setAttribute('aria-hidden','true');
@@ -186,12 +186,12 @@ function catImgHTML(c, big){
   const cls = big ? 'cimg big' : 'cimg';
   const phcls = big ? 'cimg-ph big' : 'cimg-ph';
   if(c.img){
-    return `<div class="${cls}"><img data-src="${c.img}" src="${IMG_PIXEL}" alt="${esc(c.name)}" data-ph="${initial}" data-phcls="${phcls}" onload="__chasiqImgOk()" onerror="__chasiqImgErr(this)"></div>`;
+    return `<div class="${cls}"><img data-src="${imgProxy(c.img)}" src="${IMG_PIXEL}" alt="${esc(c.name)}" data-ph="${initial}" data-phcls="${phcls}" onload="__chasiqImgOk()" onerror="__chasiqImgErr(this)"></div>`;
   }
   return `<div class="${cls}"><div class="${phcls}" aria-hidden="true">${initial}</div></div>`;
 }
 function thumbHTML(c, emoji){
-  if(c.img) return `<img class="g-thumb" data-src="${c.img}" src="${IMG_PIXEL}" alt="" data-ph="${emoji||'🚗'}" data-phcls="g-thumb ph" onload="__chasiqImgOk()" onerror="__chasiqImgErr(this)">`;
+  if(c.img) return `<img class="g-thumb" data-src="${imgProxy(c.img)}" src="${IMG_PIXEL}" alt="" data-ph="${emoji||'🚗'}" data-phcls="g-thumb ph" onload="__chasiqImgOk()" onerror="__chasiqImgErr(this)">`;
   return `<div class="g-thumb ph">${emoji||'🚗'}</div>`;
 }
 
@@ -799,35 +799,23 @@ function renderMore(){
     const out = $('#m-imgdiag');
     out.textContent = 'Testing…';
     const direct = 'https://static.wikia.nocookie.net/hotwheels/images/6/69/Dream1_orig.jpg/revision/latest/scale-to-width-down/800?cb=20260501141113';
-    const proxy = toProxy(direct);
-    const results = {};
-    const done = ()=>{
-      if(!('direct' in results) || !('proxy' in results)) return;
-      out.innerHTML = 'Direct wiki photo: ' + (results.direct?'✅ loads':'❌ blocked')
-        + '<br>Backup photo server: ' + (results.proxy?'✅ loads':'❌ blocked')
-        + (results.direct||results.proxy
-          ? '<br>Photos should work — fully close and reopen Chasiq if cards still show placeholders.'
-          : '<br>Both are blocked on this device/network (ad-blocker, VPN or private DNS can do this).');
-    };
-    [['direct',direct],['proxy',proxy]].forEach(([k,url])=>{
-      testOne(url).then(v=>{ results[k]=v; done(); });
+    const primary = imgProxy(direct);
+    testOne(primary).then(v=>{
+      out.innerHTML = 'Card photo URL (via image proxy): ' + (v?'✅ loads':'❌ blocked')
+        + '<br><span class="small">Direct wiki hotlinks are unreliable — the wiki sometimes answers with a placeholder image instead of the photo, so cards always use the proxy.</span>';
     });
   });
   $('#m-imgflood').addEventListener('click', async ()=>{
     const out = $('#m-imgdiag');
-    out.textContent = 'Loading 24 photos at once, like the catalog does…';
-    const urls = catalog().filter(c=>c.img).slice(0,24).map(c=>c.img);
+    out.textContent = 'Loading 24 card photos at once…';
+    const urls = catalog().filter(c=>c.img).slice(0,24).map(c=>imgProxy(c.img));
     const t0 = Date.now();
-    const dRes = await Promise.all(urls.map(u=>testOne(u)));
-    const dOk = dRes.filter(Boolean).length;
-    out.innerHTML = 'Bulk direct: '+dOk+'/'+urls.length+' loaded… now the backup server…';
-    const pRes = await Promise.all(urls.map(u=>testOne(toProxy(u))));
-    const pOk = pRes.filter(Boolean).length;
+    const res = await Promise.all(urls.map(u=>testOne(u)));
+    const ok = res.filter(Boolean).length;
     const secs = ((Date.now()-t0)/1000).toFixed(0);
-    out.innerHTML = 'Bulk direct: <b>'+dOk+'/'+urls.length+'</b><br>Bulk backup: <b>'+pOk+'/'+urls.length+'</b> ('+secs+'s)'
-      + (dOk>=20 ? '<br>✅ Direct works in bulk — screenshot this for Milo.'
-        : pOk>=20 ? '<br>✅ Backup works in bulk — screenshot this for Milo.'
-        : '<br>❌ Both fail in bulk — screenshot this for Milo.');
+    out.innerHTML = 'Card photos: <b>'+ok+'/'+urls.length+'</b> loaded ('+secs+'s)'
+      + (ok>=20 ? '<br>✅ Photo pipeline works — screenshot this for Milo.'
+        : '<br>❌ Still failing — screenshot this for Milo.');
   });
   $('#m-imgcarddiag').addEventListener('click', ()=>{
     const out = $('#m-imgcarddiag-out');
@@ -835,7 +823,7 @@ function renderMore(){
     const dbg0 = window.__chasiqDbg ? window.__chasiqDbg() : {err:'no dbg fn'};
     out.textContent = 'Queue before: ' + JSON.stringify(dbg0) + ' — injecting 3 card photos…';
     // EXACT card markup path (same as catImgHTML): data-src + pixel + handlers.
-    const url = 'https://static.wikia.nocookie.net/hotwheels/images/6/69/Dream1_orig.jpg/revision/latest/scale-to-width-down/800?cb=20260501141113';
+    const url = imgProxy('https://static.wikia.nocookie.net/hotwheels/images/6/69/Dream1_orig.jpg/revision/latest/scale-to-width-down/800?cb=20260501141113');
     box.innerHTML = [0,1,2].map(()=>'<div class="cimg" style="height:120px;margin:6px 0"><img data-src="'+url+'" src="'+IMG_PIXEL+'" alt="t" data-ph="H" data-phcls="cimg-ph" onload="__chasiqImgOk()" onerror="__chasiqImgErr(this)"></div>').join('');
     setTimeout(()=>{
       const imgs = box.querySelectorAll('img');
