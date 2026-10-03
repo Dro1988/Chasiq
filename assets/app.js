@@ -119,6 +119,31 @@ function pickPhoto(cb){
   inp.click();
 }
 
+/* ============================== catalog images ============================== */
+/* Wiki-sourced hotlinked images (c.img). Never a broken-image icon: onerror
+   swaps in a styled placeholder tile. */
+window.__chasiqImgErr = function(el){
+  const d = document.createElement('div');
+  d.className = el.dataset.phcls || 'cimg-ph';
+  d.setAttribute('aria-hidden','true');
+  d.textContent = el.dataset.ph || '🚗';
+  el.replaceWith(d);
+};
+function brandInitial(c){ return (((c.brand||'?').trim().charAt(0))||'🚗').toUpperCase(); }
+function catImgHTML(c, big){
+  const initial = esc(brandInitial(c));
+  const cls = big ? 'cimg big' : 'cimg';
+  const phcls = big ? 'cimg-ph big' : 'cimg-ph';
+  if(c.img){
+    return `<div class="${cls}"><img loading="lazy" src="${c.img}" alt="${esc(c.name)}" data-ph="${initial}" data-phcls="${phcls}" onerror="__chasiqImgErr(this)"></div>`;
+  }
+  return `<div class="${cls}"><div class="${phcls}" aria-hidden="true">${initial}</div></div>`;
+}
+function thumbHTML(c, emoji){
+  if(c.img) return `<img class="g-thumb" src="${c.img}" alt="" loading="lazy" data-ph="${emoji||'🚗'}" data-phcls="g-thumb ph" onerror="__chasiqImgErr(this)">`;
+  return `<div class="g-thumb ph">${emoji||'🚗'}</div>`;
+}
+
 /* ============================== tabs ============================== */
 const TABS = ['catalog','collection','wishlist','stats','history','more'];
 function go(tab, arg){
@@ -131,6 +156,7 @@ function go(tab, arg){
   else if(tab==='stats') renderStats();
   else if(tab==='history') renderHistory();
   else if(tab==='histbrand') renderHistoryDetail(arg);
+  else if(tab==='catdetail') renderCatDetail(arg);
   else if(tab==='more') renderMore();
   else if(tab==='detail') renderDetail(arg);
 }
@@ -175,8 +201,9 @@ function renderCatalog(){
     $('#f-count').textContent = list.length.toLocaleString() + ' casting' + (list.length===1?'':'s')
       + (list.length>CAP ? ` — showing first ${CAP}, refine your search` : '');
     $('#f-grid').innerHTML = shown.map(c=>`
-      <div class="card">
+      <div class="card" data-cat="${c.id}">
         <div class="cbrand">${esc(c.brand)}</div>
+        ${catImgHTML(c)}
         <div class="cname">${esc(c.name)}</div>
         <div class="cmeta">${esc(c.series)} · ${esc(c.year)}${c.debut && c.debut!=c.year ? ' · debut '+esc(c.debut) : ''}</div>
         <div class="cscale">${esc(c.scale)}</div>
@@ -208,6 +235,7 @@ function onCardButtons(e){
   const a = e.target.closest('[data-add]'), w = e.target.closest('[data-wish]');
   if(a){ addToCollection(a.dataset.add); }
   else if(w){ addToWishlist(w.dataset.wish); }
+  else if(!e.target.closest('.mate-strip')){ const card = e.target.closest('[data-cat]'); if(card) go('catdetail', card.dataset.cat); }
 }
 async function addToCollection(cid, extra){
   const c = catById(cid); if(!c) return;
@@ -225,6 +253,55 @@ async function addToWishlist(cid){
   if(have.some(x=>x.cid===cid)){ toast('Already on your wishlist'); return; }
   await put('wishlist', {cid, addedAt:new Date().toISOString()});
   toast('Added to wishlist ⭐');
+}
+
+/* ============================== catalog detail view ============================== */
+async function renderCatDetail(cid){
+  const c = catById(cid);
+  const v = $('#view');
+  if(!c){ v.innerHTML='<div class="notice">That casting is gone.</div><button class="btn sec" data-go="catalog">← Catalog</button>'; return; }
+  const [items, wish] = await Promise.all([all('collection'), all('wishlist')]);
+  const owned = items.filter(i=>i.cid===cid).reduce((n,i)=>n+(+i.qty||1),0);
+  const wished = wish.some(w=>w.cid===cid);
+  const hIx = (window.DC_HISTORY||[]).findIndex(h=>h.brand===c.brand);
+  const h = hIx>=0 ? window.DC_HISTORY[hIx] : null;
+  const matesAll = catalog().filter(x=>x.id!==cid && x.brand===c.brand && x.series===c.series);
+  const mates = matesAll.slice(0,24);
+  v.innerHTML = `
+    <button class="btn ghost sm" data-go="catalog">← Catalog</button>
+    <div style="height:10px"></div>
+    ${catImgHTML(c, true)}
+    <h2 style="font-size:20px;margin:10px 0 4px">${esc(c.name)}</h2>
+    <div><span class="badge brand">${esc(c.brand)}</span></div>
+    <div class="mut small" style="margin-top:6px">${esc(c.series)} · ${c.year||'—'} · ${esc(c.scale)}${c.debut && c.debut!=c.year ? ' · debut '+esc(c.debut) : ''}</div>
+    ${owned?`<div class="notice" style="margin-top:10px">🏠 In your garage × ${owned}</div>`:''}
+    <div class="row2" style="margin-top:10px">
+      <button class="btn pri" id="cd-add" style="flex:1">+ Garage</button>
+      <button class="btn sec" id="cd-wish" style="flex:1">${wished?'★ Wished':'☆ Wish'}</button>
+    </div>
+    <div class="sec-title">About this casting</div>
+    <div class="form small" style="line-height:1.55">
+      ${c.debut?`<div style="margin-bottom:8px">🎂 <b>Debut:</b> first released in ${esc(c.debut)}.</div>`:''}
+      ${h?`<div>${esc(h.story.split('. ').slice(0,3).join('. '))}.</div>
+      <div style="margin-top:8px"><button class="btn ghost sm" data-go="histbrand" data-arg="${hIx}">📚 Full ${esc(h.brand)} history →</button></div>`
+      :'<div class="mut">No history notes yet for this brand.</div>'}
+      <div class="small mut" style="margin-top:8px">Catalog photo: community wiki. Your own garage photos always take precedence in the Garage tab.</div>
+    </div>
+    ${mates.length?`<div class="sec-title">More from ${esc(c.series)} (${matesAll.length})</div>
+    <div class="mate-strip">${mates.map(m=>`
+      <div class="mate" data-cat="${m.id}">${catImgHTML(m)}<div class="mn">${esc(m.name)}</div></div>`).join('')}</div>`:''}
+    <div style="height:24px"></div>`;
+  $('#cd-add').addEventListener('click', async ()=>{ await addToCollection(cid); renderCatDetail(cid); });
+  $('#cd-wish').addEventListener('click', async ()=>{
+    const wl = await all('wishlist');
+    if(wl.some(w=>w.cid===cid)){ if(confirm('Remove from wishlist?')) await del('wishlist', cid); }
+    else await addToWishlist(cid);
+    renderCatDetail(cid);
+  });
+  const strip = v.querySelector('.mate-strip');
+  if(strip) strip.addEventListener('click', e=>{
+    const m = e.target.closest('[data-cat]'); if(m) go('catdetail', m.dataset.cat);
+  });
 }
 
 /* ============================== collection view ============================== */
@@ -430,7 +507,7 @@ async function openScanner(){
     const paint = q=>{
       const list = catalog().filter(c=>!q||(c.name+' '+c.series+' '+c.brand).toLowerCase().includes(q.toLowerCase())).slice(0,30);
       veil2.querySelector('#sc-list').innerHTML = list.map(c=>
-        `<div class="g-item" data-sc="${c.id}"><div class="g-info"><div class="n">${esc(c.name)}</div><div class="m">${esc(c.brand)} · ${esc(c.series)}</div></div></div>`).join('')
+        `<div class="g-item" data-sc="${c.id}">${thumbHTML(c)}<div class="g-info"><div class="n">${esc(c.name)}</div><div class="m">${esc(c.brand)} · ${esc(c.series)}</div></div></div>`).join('')
         || '<div class="notice">No matches.</div>';
     };
     veil2.querySelector('#sc-q').addEventListener('input', e=>paint(e.target.value));
@@ -471,7 +548,7 @@ async function renderWishlist(){
     <div class="sec-title">Wishlist (${wish.length})</div>
     <div id="w-list">${wish.map(w=>{
       const c = catById(w.cid); if(!c) return '';
-      return `<div class="g-item" data-w="${esc(w.cid)}"><div class="g-thumb ph">⭐</div>
+      return `<div class="g-item" data-w="${esc(w.cid)}">${thumbHTML(c,'⭐')}
         <div class="g-info"><div class="n">${esc(c.name)}</div><div class="m">${esc(c.brand)} · ${esc(c.series)} · ${esc(c.year)}</div></div>
         <button class="btn pri sm" data-wa="${esc(w.cid)}">+ Garage</button></div>`;
     }).join('') || '<div class="notice">Nothing on the wishlist yet. Tap ☆ on any catalog car.</div>'}</div>`;
@@ -818,7 +895,7 @@ async function identifyCarFlow(it){
         ${r.notes?`<div class="small mut" style="margin-top:6px">👁 ${esc(r.notes)}</div>`:''}</div>
         <div class="sec-title" style="margin-top:10px">Confirm against the catalog</div>
         ${cands.length ? cands.map((x,i)=>`
-          <div class="g-item"><div class="g-thumb ph">🚗</div>
+          <div class="g-item">${thumbHTML(x.c)}
             <div class="g-info"><div class="n">${esc(x.c.name)}</div>
             <div class="m">${esc(x.c.brand)} · ${esc(x.c.series)} · ${esc(x.c.year)}</div></div>
             <button class="btn pri sm" data-viadd="${i}">Review &amp; add</button></div>`).join('')
