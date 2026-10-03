@@ -4,7 +4,7 @@
 
 /* Bump on every user-facing release — shown in More → About so we can tell
    which version a phone is actually running. */
-const APP_BUILD = 'v6';
+const APP_BUILD = 'v7';
 
 /* Offline-first: cache the app shell so it loads with no connection. */
 if ('serviceWorker' in navigator) {
@@ -124,20 +124,44 @@ function pickPhoto(cb){
 }
 
 /* ============================== catalog images ============================== */
-/* Wiki-sourced hotlinked images (c.img). Never a broken-image icon: onerror
-   swaps in a styled placeholder tile. */
+/* Wiki-sourced hotlinked images (c.img). The wiki CDN 403s floods of parallel
+   hotlinked requests, so images load through a small concurrency queue fed by
+   an IntersectionObserver — never all 300 cards at once. onerror retries once
+   through the wsrv.nl proxy, then swaps in a styled placeholder tile. Never a
+   broken-image icon. */
+const IMG_PIXEL = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
+const IMG_MAX = 6;
+let imgActive = 0;
+const imgQueue = [];
+function imgPump(){
+  while(imgActive < IMG_MAX && imgQueue.length){
+    const el = imgQueue.shift();
+    if(!el.isConnected) continue;
+    imgActive++;
+    el.src = el.dataset.src;
+  }
+}
+function imgDone(){ imgActive = Math.max(0, imgActive-1); imgPump(); }
+function imgEnqueue(el){ imgQueue.push(el); imgPump(); }
+const imgIO = ('IntersectionObserver' in window) ? new IntersectionObserver(es=>{
+  es.forEach(e=>{ if(e.isIntersecting){ imgIO.unobserve(e.target); imgEnqueue(e.target); } });
+},{rootMargin:'600px'}) : null;
+function imgWatch(el){
+  if(el.dataset.obs) return;
+  el.dataset.obs = '1';
+  if(imgIO) imgIO.observe(el); else imgEnqueue(el);
+}
+window.__chasiqImgOk = function(){ imgDone(); };
 window.__chasiqImgErr = function(el){
+  imgDone();
   // Retry once through the wsrv.nl image proxy before giving up: wiki CDNs
   // sometimes 403 hotlinked images (missing referer / rate limiting) while
   // the same file loads fine through a server-side fetch. Query strings are
   // dropped (they're only cache-busters; /revision/latest/ pins the file).
   if(!el.dataset.px){
     el.dataset.px = '1';
-    const m = (el.getAttribute('src')||'').match(/^https?:\/\/([^\/]+)(\/[^?#]*)/);
-    if(m){
-      el.src = 'https://wsrv.nl/?url=' + m[1] + m[2] + '&w=800&output=webp';
-      return;
-    }
+    const m = (el.dataset.src||'').match(/^https?:\/\/([^\/]+)(\/[^?#]*)/);
+    if(m){ el.dataset.src = 'https://wsrv.nl/?url='+m[1]+m[2]+'&w=800&output=webp'; imgEnqueue(el); return; }
   }
   const d = document.createElement('div');
   d.className = el.dataset.phcls || 'cimg-ph';
@@ -145,18 +169,28 @@ window.__chasiqImgErr = function(el){
   d.textContent = el.dataset.ph || '🚗';
   el.replaceWith(d);
 };
+/* Catch images injected by any render path (views, modals, grid re-renders). */
+if('MutationObserver' in window){
+  new MutationObserver(muts=>{
+    for(const m of muts) for(const n of m.addedNodes){
+      if(n.nodeType!==1) continue;
+      if(n.tagName==='IMG' && n.hasAttribute('data-src')) imgWatch(n);
+      if(n.querySelectorAll) n.querySelectorAll('img[data-src]:not([data-obs])').forEach(imgWatch);
+    }
+  }).observe(document.documentElement, {childList:true, subtree:true});
+}
 function brandInitial(c){ return (((c.brand||'?').trim().charAt(0))||'🚗').toUpperCase(); }
 function catImgHTML(c, big){
   const initial = esc(brandInitial(c));
   const cls = big ? 'cimg big' : 'cimg';
   const phcls = big ? 'cimg-ph big' : 'cimg-ph';
   if(c.img){
-    return `<div class="${cls}"><img loading="lazy" src="${c.img}" alt="${esc(c.name)}" data-ph="${initial}" data-phcls="${phcls}" onerror="__chasiqImgErr(this)"></div>`;
+    return `<div class="${cls}"><img data-src="${c.img}" src="${IMG_PIXEL}" alt="${esc(c.name)}" data-ph="${initial}" data-phcls="${phcls}" onload="__chasiqImgOk()" onerror="__chasiqImgErr(this)"></div>`;
   }
   return `<div class="${cls}"><div class="${phcls}" aria-hidden="true">${initial}</div></div>`;
 }
 function thumbHTML(c, emoji){
-  if(c.img) return `<img class="g-thumb" src="${c.img}" alt="" loading="lazy" data-ph="${emoji||'🚗'}" data-phcls="g-thumb ph" onerror="__chasiqImgErr(this)">`;
+  if(c.img) return `<img class="g-thumb" data-src="${c.img}" src="${IMG_PIXEL}" alt="" data-ph="${emoji||'🚗'}" data-phcls="g-thumb ph" onload="__chasiqImgOk()" onerror="__chasiqImgErr(this)">`;
   return `<div class="g-thumb ph">${emoji||'🚗'}</div>`;
 }
 
