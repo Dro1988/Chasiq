@@ -6,7 +6,8 @@ window.DC_CATALOG = [
   "scale": "1:64",
   "series": "Legends of Speed",
   "year": 2018,
-  "id": "dc0000"
+  "id": "dc0000",
+  "img": "https://static.wikia.nocookie.net/hotwheels/images/e/e6/Bone_Shaker_Sketch_Larry_Wood.png/revision/latest/scale-to-width-down/800?cb=20260422191501"
  },
  {
   "brand": "Hot Wheels",
@@ -14,7 +15,8 @@ window.DC_CATALOG = [
   "scale": "1:64",
   "series": "Redline",
   "year": 1969,
-  "id": "dc0001"
+  "id": "dc0001",
+  "img": "https://static.wikia.nocookie.net/hotwheels/images/6/69/Dream1_orig.jpg/revision/latest/scale-to-width-down/800?cb=20260501141113"
  },
  {
   "brand": "Hot Wheels",
@@ -22,7 +24,8 @@ window.DC_CATALOG = [
   "scale": "1:64",
   "series": "Redline",
   "year": 1968,
-  "id": "dc0002"
+  "id": "dc0002",
+  "img": "https://static.wikia.nocookie.net/hotwheels/images/b/b4/%2768_Mustang_-_Avon_Park_N_Plates.jpg/revision/latest/scale-to-width-down/800?cb=20090103213942"
  },
  {
   "brand": "Hot Wheels",
@@ -30,7 +33,8 @@ window.DC_CATALOG = [
   "scale": "1:64",
   "series": "Redline",
   "year": 1968,
-  "id": "dc0003"
+  "id": "dc0003",
+  "img": "https://static.wikia.nocookie.net/hotwheels/images/b/b4/OriginalCustomCamaroSketchHarryBradley.png/revision/latest/scale-to-width-down/800?cb=20260704102204"
  },
  {
   "brand": "Hot Wheels",
@@ -38,7 +42,8 @@ window.DC_CATALOG = [
   "scale": "1:64",
   "series": "Redline",
   "year": 1968,
-  "id": "dc0004"
+  "id": "dc0004",
+  "img": "https://static.wikia.nocookie.net/hotwheels/images/2/23/35_Years_of_Speed_Randy_Leffingwell_Deora_%281%29.JPG/revision/latest/scale-to-width-down/800?cb=20240723020657"
  },
  {
   "brand": "Hot Wheels",
@@ -46,7 +51,8 @@ window.DC_CATALOG = [
   "scale": "1:64",
   "series": "Treasure Hunts",
   "year": 2001,
-  "id": "dc0005"
+  "id": "dc0005",
+  "img": "https://static.wikia.nocookie.net/hotwheels/images/3/30/Rodgerdodger.jpg/revision/latest?cb=20080413230905"
  },
  {
   "brand": "Hot Wheels",
@@ -54,7 +60,8 @@ window.DC_CATALOG = [
   "scale": "1:64",
   "series": "Treasure Hunts",
   "year": 2006,
-  "id": "dc0006"
+  "id": "dc0006",
+  "img": "https://static.wikia.nocookie.net/hotwheels/images/3/3f/69_Charger_AGENTAIR_5.jpg/revision/latest?cb=20080920020134"
  },
  {
   "brand": "Hot Wheels",
@@ -62,7 +69,8 @@ window.DC_CATALOG = [
   "scale": "1:64",
   "series": "Muscle Mania",
   "year": 2016,
-  "id": "dc0007"
+  "id": "dc0007",
+  "img": "https://static.wikia.nocookie.net/hotwheels/images/f/fa/69_dodge_charger_daytona_2013_HW_garage_new_model.JPG/revision/latest/scale-to-width-down/800?cb=20130701032102"
  },
  {
   "brand": "Hot Wheels",
@@ -70,7 +78,8 @@ window.DC_CATALOG = [
   "scale": "1:64",
   "series": "HW J-Imports",
   "year": 2026,
-  "id": "dc0008"
+  "id": "dc0008",
+  "img": "https://static.wikia.nocookie.net/hotwheels/images/5/5d/R34Sketch.png/revision/latest?cb=20200617035006"
  },
  {
   "brand": "Hot Wheels",
@@ -78,7 +87,8 @@ window.DC_CATALOG = [
   "scale": "1:64",
   "series": "Factory Fresh",
   "year": 2018,
-  "id": "dc0009"
+  "id": "dc0009",
+  "img": "https://static.wikia.nocookie.net/hotwheels/images/a/a4/82NissanSkylineR30Red.JPG/revision/latest/scale-to-width-down/800?cb=20180916030859"
  },
  {
   "brand": "Hot Wheels",
@@ -86,7 +96,8 @@ window.DC_CATALOG = [
   "scale": "1:64",
   "series": "Nightburnerz",
   "year": 2018,
-  "id": "dc0010"
+  "id": "dc0010",
+  "img": "https://static.wikia.nocookie.net/hotwheels/images/4/4e/2017NM48_%28Large%29.JPG/revision/latest/scale-to-width-down/800?cb=20190929015914"
  },
  {
   "brand": "Hot Wheels",
@@ -94,7 +105,8 @@ window.DC_CATALOG = [
   "scale": "1:64",
   "series": "Nightburnerz",
   "year": 2018,
-  "id": "dc0011"
+  "id": "dc0011",
+  "img": "https://static.wikia.nocookie.net/hotwheels/images/0/03/Custom_Datsun_240Z-2017_076.jpg/revision/latest/scale-to-width-down/800?cb=20161210124213"
  },
  {
   "brand": "Hot Wheels",
@@ -102,7 +114,8 @@ window.DC_CATALOG = [
   "scale": "1:64",
   "series": "Nightburnerz",
   "year": 2018,
-  "id": "dc0012"
+  "id": "dc0012",
+  "img": "https://static.wikia.nocookie.net/hotwheels/images/9/9f/IMG_20160214_193507.jpg/revision/latest/scale-to-width-down/800?cb=20160214193811"
  },
  {
   "brand": "Hot Wheels",
@@ -110,15 +123,17 @@ window.DC_CATALOG = [
   "scale": "1:64",
   "series": "Factory Fresh",
   "year": 2018,
-  "id": "dc0013"
+  "id": "dc0013",
+  "img": "https://static.wikia.nocookie.net/hotwheels/images/c/ce/AcuraNSXWhite.JPG/revision/latest?cb=20080316170552"
  },
  {
   "brand": "Hot Wheels",
-  "name": "Volkswagen K\u00e4fer Racer",
+  "name": "Volkswagen Käfer Racer",
   "scale": "1:64",
   "series": "Legends of Speed",
   "year": 2018,
-  "id": "dc0014"
+  "id": "dc0014",
+  "img": "https://static.wikia.nocookie.net/hotwheels/images/6/68/BeetleOA.png/revision/latest/scale-to-width-down/800?cb=20251028235100"
  },
  {
   "brand": "Hot Wheels",
@@ -126,7 +141,8 @@ window.DC_CATALOG = [
   "scale": "1:64",
   "series": "Batman",
   "year": 2018,
-  "id": "dc0015"
+  "id": "dc0015",
+  "img": "https://static.wikia.nocookie.net/hotwheels/images/e/ed/Batman2018JL.JPG/revision/latest/scale-to-width-down/800?cb=20180218063922"
  },
  {
   "brand": "Hot Wheels",
@@ -134,7 +150,8 @@ window.DC_CATALOG = [
   "scale": "1:64",
   "series": "HW Fan Driven",
   "year": 2025,
-  "id": "dc0016"
+  "id": "dc0016",
+  "img": "https://static.wikia.nocookie.net/hotwheels/images/c/c1/35_Years_of_Speed_Randy_Leffingwell_Deora_%282%29.JPG/revision/latest/scale-to-width-down/800?cb=20240723020711"
  },
  {
   "brand": "Hot Wheels",
@@ -142,7 +159,8 @@ window.DC_CATALOG = [
   "scale": "1:64",
   "series": "Hot Wheels Boulevard",
   "year": 2020,
-  "id": "dc0017"
+  "id": "dc0017",
+  "img": "https://static.wikia.nocookie.net/hotwheels/images/8/88/17FordGT_%282%29.JPG/revision/latest/scale-to-width-down/800?cb=20180624032131"
  },
  {
   "brand": "Matchbox",
@@ -150,7 +168,8 @@ window.DC_CATALOG = [
   "scale": "1:64",
   "series": "MBX City",
   "year": 2021,
-  "id": "dc0018"
+  "id": "dc0018",
+  "img": "https://static.wikia.nocookie.net/matchbox/images/1/1c/MB363-37270_-_1999_MBX_Metal_48_Boxed.jpeg/revision/latest?cb=20190505161430"
  },
  {
   "brand": "Matchbox",
@@ -158,7 +177,8 @@ window.DC_CATALOG = [
   "scale": "1:64",
   "series": "MBX Off-Road",
   "year": 2022,
-  "id": "dc0019"
+  "id": "dc0019",
+  "img": "https://static.wikia.nocookie.net/matchbox/images/e/e5/MB_84-100_2022r.jpg/revision/latest/scale-to-width-down/800?cb=20260705172934"
  },
  {
   "brand": "Matchbox",
@@ -166,7 +186,8 @@ window.DC_CATALOG = [
   "scale": "1:64",
   "series": "Collectors",
   "year": 2023,
-  "id": "dc0020"
+  "id": "dc0020",
+  "img": "https://static.wikia.nocookie.net/matchbox/images/6/6a/115.JPG/revision/latest/scale-to-width-down/800?cb=20190706085040"
  },
  {
   "brand": "Matchbox",
@@ -174,7 +195,8 @@ window.DC_CATALOG = [
   "scale": "1:64",
   "series": "Collectors",
   "year": 2023,
-  "id": "dc0021"
+  "id": "dc0021",
+  "img": "https://static.wikia.nocookie.net/matchbox/images/6/68/143.JPG/revision/latest/scale-to-width-down/800?cb=20180106183113"
  },
  {
   "brand": "Matchbox",
@@ -182,7 +204,8 @@ window.DC_CATALOG = [
   "scale": "1:64",
   "series": "Collectors",
   "year": 2023,
-  "id": "dc0022"
+  "id": "dc0022",
+  "img": "https://static.wikia.nocookie.net/matchbox/images/d/df/MBX_2012_Lexus_LFA_Front.jpg/revision/latest/scale-to-width-down/800?cb=20231002201013"
  },
  {
   "brand": "Matchbox",
@@ -190,7 +213,8 @@ window.DC_CATALOG = [
   "scale": "1:64",
   "series": "Collectors",
   "year": 2023,
-  "id": "dc0023"
+  "id": "dc0023",
+  "img": "https://static.wikia.nocookie.net/matchbox/images/c/c9/2008-mcch_6th_GoF_Bus_Green_box_top.jpg/revision/latest/scale-to-width-down/800?cb=20240727000038"
  },
  {
   "brand": "Matchbox",
@@ -198,7 +222,8 @@ window.DC_CATALOG = [
   "scale": "1:64",
   "series": "Collectors",
   "year": 2023,
-  "id": "dc0024"
+  "id": "dc0024",
+  "img": "https://static.wikia.nocookie.net/matchbox/images/3/3e/Chevrolet_Camaro_%2716_Moving_Parts_2020.jpg/revision/latest/scale-to-width-down/499?cb=20231113145503"
  },
  {
   "brand": "Matchbox",
@@ -206,7 +231,8 @@ window.DC_CATALOG = [
   "scale": "1:64",
   "series": "Collectors",
   "year": 2023,
-  "id": "dc0025"
+  "id": "dc0025",
+  "img": "https://static.wikia.nocookie.net/matchbox/images/e/e4/2020Chevy_Corvette_back_Matchbox.jpeg/revision/latest/scale-to-width-down/800?cb=20220227160806"
  },
  {
   "brand": "Matchbox",
@@ -214,7 +240,8 @@ window.DC_CATALOG = [
   "scale": "1:64",
   "series": "Collectors",
   "year": 2023,
-  "id": "dc0026"
+  "id": "dc0026",
+  "img": "https://static.wikia.nocookie.net/matchbox/images/3/36/20190221_015141.jpg/revision/latest/scale-to-width-down/800?cb=20190221095500"
  },
  {
   "brand": "Matchbox",
@@ -222,7 +249,8 @@ window.DC_CATALOG = [
   "scale": "1:64",
   "series": "Collectors",
   "year": 2023,
-  "id": "dc0027"
+  "id": "dc0027",
+  "img": "https://static.wikia.nocookie.net/matchbox/images/7/7a/1988_Chevy_Monte_Carlo_LS_-_1.jpg/revision/latest/scale-to-width-down/800?cb=20260212021251"
  },
  {
   "brand": "Matchbox",
@@ -230,7 +258,8 @@ window.DC_CATALOG = [
   "scale": "1:64",
   "series": "Collectors",
   "year": 2023,
-  "id": "dc0028"
+  "id": "dc0028",
+  "img": "https://static.wikia.nocookie.net/matchbox/images/3/36/80W123cardfront.jpg/revision/latest/scale-to-width-down/648?cb=20190515210900"
  },
  {
   "brand": "Matchbox",
@@ -238,7 +267,8 @@ window.DC_CATALOG = [
   "scale": "1:64",
   "series": "Collectors",
   "year": 2023,
-  "id": "dc0029"
+  "id": "dc0029",
+  "img": "https://static.wikia.nocookie.net/matchbox/images/a/a9/2022Matchbox%2718Toyota4Runner.png/revision/latest/scale-to-width-down/800?cb=20240922055510"
  },
  {
   "brand": "Matchbox",
@@ -246,7 +276,8 @@ window.DC_CATALOG = [
   "scale": "1:64",
   "series": "Sky Busters",
   "year": 2026,
-  "id": "dc0030"
+  "id": "dc0030",
+  "img": "https://static.wikia.nocookie.net/matchbox/images/f/f5/Boeing_747_Cathay_Pacific_1990_card_.jpg/revision/latest/scale-to-width-down/639?cb=20240309160429"
  },
  {
   "brand": "Matchbox",
@@ -254,7 +285,8 @@ window.DC_CATALOG = [
   "scale": "1:64",
   "series": "MBX Construction",
   "year": 2015,
-  "id": "dc0031"
+  "id": "dc0031",
+  "img": "https://static.wikia.nocookie.net/matchbox/images/8/83/0324.JPG/revision/latest/scale-to-width-down/800?cb=20200117155602"
  },
  {
   "brand": "Matchbox",
@@ -262,7 +294,8 @@ window.DC_CATALOG = [
   "scale": "1:64",
   "series": "1-125",
   "year": 2025,
-  "id": "dc0032"
+  "id": "dc0032",
+  "img": "https://static.wikia.nocookie.net/matchbox/images/7/7f/1968_Ford_Mustang_Fastback.jpg/revision/latest/scale-to-width-down/800?cb=20260222020914"
  },
  {
   "brand": "Matchbox",
@@ -278,7 +311,8 @@ window.DC_CATALOG = [
   "scale": "1:64",
   "series": "Porsche Heroes",
   "year": 2025,
-  "id": "dc0034"
+  "id": "dc0034",
+  "img": "https://static.wikia.nocookie.net/matchbox/images/b/b3/Stars_of_Cars_MBX_Metal_Porsche_Carrera.jpg/revision/latest/scale-to-width-down/800?cb=20100913145508"
  },
  {
   "brand": "M2 Machines",
@@ -286,7 +320,8 @@ window.DC_CATALOG = [
   "series": "Auto-Drivers",
   "year": 2020,
   "scale": "1:64",
-  "id": "dc0035"
+  "id": "dc0035",
+  "img": "https://static.wikia.nocookie.net/m2machines/images/f/fc/Auto-Club_01.jpg/revision/latest/scale-to-width-down/800?cb=20210219092928"
  },
  {
   "brand": "M2 Machines",
@@ -294,7 +329,8 @@ window.DC_CATALOG = [
   "series": "Detroit Muscle",
   "year": 2025,
   "scale": "1:64",
-  "id": "dc0036"
+  "id": "dc0036",
+  "img": "https://static.wikia.nocookie.net/m2machines/images/2/29/Auto-Drags_09-06.jpg/revision/latest/scale-to-width-down/800?cb=20210220043747"
  },
  {
   "brand": "M2 Machines",
@@ -302,7 +338,8 @@ window.DC_CATALOG = [
   "series": "Ground Pounders",
   "year": 2015,
   "scale": "1:64",
-  "id": "dc0037"
+  "id": "dc0037",
+  "img": "https://static.wikia.nocookie.net/m2machines/images/f/f2/82161-S01.jpg/revision/latest/scale-to-width-down/800?cb=20220804011312"
  },
  {
   "brand": "M2 Machines",
@@ -310,7 +347,8 @@ window.DC_CATALOG = [
   "series": "Detroit Muscle",
   "year": 2017,
   "scale": "1:64",
-  "id": "dc0038"
+  "id": "dc0038",
+  "img": "https://static.wikia.nocookie.net/m2machines/images/1/1d/Auto-Drivers_10-34.jpg/revision/latest/scale-to-width-down/800?cb=20210331065835"
  },
  {
   "brand": "M2 Machines",
@@ -318,7 +356,8 @@ window.DC_CATALOG = [
   "series": "Auto-Thentics",
   "year": 2024,
   "scale": "1:64",
-  "id": "dc0039"
+  "id": "dc0039",
+  "img": "https://static.wikia.nocookie.net/m2machines/images/b/b6/Auto-Lift_10-04.jpg/revision/latest/scale-to-width-down/800?cb=20210613131916"
  },
  {
   "brand": "M2 Machines",
@@ -326,7 +365,8 @@ window.DC_CATALOG = [
   "series": "Detroit Muscle",
   "year": 2025,
   "scale": "1:64",
-  "id": "dc0040"
+  "id": "dc0040",
+  "img": "https://static.wikia.nocookie.net/m2machines/images/d/d4/Auto-Drivers_10-33.jpg/revision/latest/scale-to-width-down/800?cb=20210331065829"
  },
  {
   "brand": "M2 Machines",
@@ -334,7 +374,8 @@ window.DC_CATALOG = [
   "series": "Auto-Drivers",
   "year": 2019,
   "scale": "1:64",
-  "id": "dc0041"
+  "id": "dc0041",
+  "img": "https://static.wikia.nocookie.net/m2machines/images/9/9c/Coca-Cola_124th_18-01.jpg/revision/latest/scale-to-width-down/800?cb=20210317124917"
  },
  {
   "brand": "M2 Machines",
@@ -342,7 +383,8 @@ window.DC_CATALOG = [
   "series": "Auto-Drivers",
   "year": 2019,
   "scale": "1:64",
-  "id": "dc0042"
+  "id": "dc0042",
+  "img": "https://static.wikia.nocookie.net/m2machines/images/a/ad/Auto-Drivers_10-19.jpg/revision/latest/scale-to-width-down/800?cb=20210329194511"
  },
  {
   "brand": "M2 Machines",
@@ -350,7 +392,8 @@ window.DC_CATALOG = [
   "series": "Detroit Muscle",
   "year": 2017,
   "scale": "1:64",
-  "id": "dc0043"
+  "id": "dc0043",
+  "img": "https://static.wikia.nocookie.net/m2machines/images/7/78/Auto-Drivers_17-63.jpg/revision/latest/scale-to-width-down/800?cb=20210427044956"
  },
  {
   "brand": "M2 Machines",
@@ -358,7 +401,8 @@ window.DC_CATALOG = [
   "series": "Auto-Trucks",
   "year": 2019,
   "scale": "1:64",
-  "id": "dc0044"
+  "id": "dc0044",
+  "img": "https://static.wikia.nocookie.net/m2machines/images/5/54/Auto-Trucks_12-10.jpg/revision/latest/scale-to-width-down/800?cb=20220215023826"
  },
  {
   "brand": "M2 Machines",
@@ -366,7 +410,8 @@ window.DC_CATALOG = [
   "series": "Ground Pounders",
   "year": 2016,
   "scale": "1:64",
-  "id": "dc0045"
+  "id": "dc0045",
+  "img": "https://static.wikia.nocookie.net/m2machines/images/c/c9/Ground_Pounders_17-06.jpg/revision/latest/scale-to-width-down/800?cb=20210822230524"
  },
  {
   "brand": "M2 Machines",
@@ -374,7 +419,8 @@ window.DC_CATALOG = [
   "series": "Detroit Muscle",
   "year": 2018,
   "scale": "1:64",
-  "id": "dc0046"
+  "id": "dc0046",
+  "img": "https://static.wikia.nocookie.net/m2machines/images/b/b5/Auto-Drivers_09-21.jpg/revision/latest/scale-to-width-down/800?cb=20210325011352"
  },
  {
   "brand": "M2 Machines",
@@ -382,7 +428,8 @@ window.DC_CATALOG = [
   "series": "Auto-Drivers",
   "year": 2018,
   "scale": "1:64",
-  "id": "dc0047"
+  "id": "dc0047",
+  "img": "https://static.wikia.nocookie.net/m2machines/images/3/34/Auto-Drivers_18-06.jpg/revision/latest/scale-to-width-down/800?cb=20210525192338"
  },
  {
   "brand": "M2 Machines",
@@ -390,7 +437,8 @@ window.DC_CATALOG = [
   "series": "Ground Pounders",
   "year": 2018,
   "scale": "1:64",
-  "id": "dc0048"
+  "id": "dc0048",
+  "img": "https://static.wikia.nocookie.net/m2machines/images/9/95/Ground_Pounders_14-08.jpg/revision/latest/scale-to-width-down/800?cb=20210822012538"
  },
  {
   "brand": "M2 Machines",
@@ -398,7 +446,8 @@ window.DC_CATALOG = [
   "series": "Auto-Trucks",
   "year": 2014,
   "scale": "1:64",
-  "id": "dc0049"
+  "id": "dc0049",
+  "img": "https://static.wikia.nocookie.net/m2machines/images/5/5f/Auto-DreamsMP1_12-14.jpg/revision/latest/scale-to-width-down/800?cb=20210323025038"
  },
  {
   "brand": "M2 Machines",
@@ -406,7 +455,8 @@ window.DC_CATALOG = [
   "series": "Auto-Drivers",
   "year": 2019,
   "scale": "1:64",
-  "id": "dc0050"
+  "id": "dc0050",
+  "img": "https://static.wikia.nocookie.net/m2machines/images/3/38/Auto-Drivers_17-53.jpg/revision/latest/scale-to-width-down/800?cb=20210425193733"
  },
  {
   "brand": "GreenLight",
@@ -530,7 +580,7 @@ window.DC_CATALOG = [
  },
  {
   "brand": "Mini GT",
-  "name": "LB\u2605WORKS Nissan GT-R (R35) Matte Grey (MGT00003)",
+  "name": "LB★WORKS Nissan GT-R (R35) Matte Grey (MGT00003)",
   "series": "Mini GT 1:64",
   "year": 2018,
   "scale": "1:64",
@@ -542,7 +592,8 @@ window.DC_CATALOG = [
   "series": "Mini GT 1:64",
   "year": 2019,
   "scale": "1:64",
-  "id": "dc0067"
+  "id": "dc0067",
+  "img": "https://static.wikia.nocookie.net/minigt/images/7/78/MGT00046.jpg/revision/latest/scale-to-width-down/800?cb=20201004064428"
  },
  {
   "brand": "Mini GT",
@@ -550,7 +601,8 @@ window.DC_CATALOG = [
   "series": "Mini GT 1:64",
   "year": 2019,
   "scale": "1:64",
-  "id": "dc0068"
+  "id": "dc0068",
+  "img": "https://static.wikia.nocookie.net/minigt/images/d/d4/MGT00051.jpg/revision/latest/scale-to-width-down/800?cb=20201004055825"
  },
  {
   "brand": "Mini GT",
@@ -590,7 +642,8 @@ window.DC_CATALOG = [
   "series": "Mini GT 1:64",
   "year": 2021,
   "scale": "1:64",
-  "id": "dc0073"
+  "id": "dc0073",
+  "img": "https://static.wikia.nocookie.net/minigt/images/9/9a/MGT00249.jpg/revision/latest/scale-to-width-down/800?cb=20211012055400"
  },
  {
   "brand": "Mini GT",
@@ -642,11 +695,12 @@ window.DC_CATALOG = [
  },
  {
   "brand": "Mini GT",
-  "name": "Nissan Skyline GT-R (R34) V-Spec II N\u00fcr Millenium Jade (MGT01003)",
+  "name": "Nissan Skyline GT-R (R34) V-Spec II Nür Millenium Jade (MGT01003)",
   "series": "Mini GT 1:64",
   "year": 2025,
   "scale": "1:64",
-  "id": "dc0080"
+  "id": "dc0080",
+  "img": "https://static.wikia.nocookie.net/minigt/images/5/5c/MGT1003_A.jpg/revision/latest?cb=20260826073242"
  },
  {
   "brand": "Mini GT",
@@ -678,7 +732,8 @@ window.DC_CATALOG = [
   "series": "Tomica",
   "year": 2021,
   "scale": "1:64",
-  "id": "dc0084"
+  "id": "dc0084",
+  "img": "https://static.wikia.nocookie.net/tomica6057/images/9/95/40hondacivictyper.jpg/revision/latest?cb=20201211123334"
  },
  {
   "brand": "Tomica",
@@ -686,7 +741,8 @@ window.DC_CATALOG = [
   "series": "Tomica",
   "year": 2023,
   "scale": "1:62",
-  "id": "dc0085"
+  "id": "dc0085",
+  "img": "https://static.wikia.nocookie.net/tomica6057/images/0/03/23nissangtr.jpg/revision/latest/scale-to-width-down/800?cb=20190315130312"
  },
  {
   "brand": "Tomica",
@@ -694,7 +750,8 @@ window.DC_CATALOG = [
   "series": "Tomica",
   "year": 2021,
   "scale": "1:60",
-  "id": "dc0086"
+  "id": "dc0086",
+  "img": "https://static.wikia.nocookie.net/tomica6057/images/2/2e/86toyotagr86.jpg/revision/latest?cb=20210910020501"
  },
  {
   "brand": "Tomica",
@@ -702,7 +759,8 @@ window.DC_CATALOG = [
   "series": "Tomica",
   "year": 2022,
   "scale": "1:64",
-  "id": "dc0087"
+  "id": "dc0087",
+  "img": "https://static.wikia.nocookie.net/tomica6057/images/8/8a/78HondaCivicTypeRspecial.jpeg/revision/latest/scale-to-width-down/800?cb=20221225185856"
  },
  {
   "brand": "Tomica",
@@ -710,7 +768,8 @@ window.DC_CATALOG = [
   "series": "Tomica",
   "year": 2016,
   "scale": "1:62",
-  "id": "dc0088"
+  "id": "dc0088",
+  "img": "https://static.wikia.nocookie.net/tomica6057/images/c/c0/43hondansx.jpg/revision/latest/scale-to-width-down/800?cb=20190321150750"
  },
  {
   "brand": "Tomica",
@@ -718,7 +777,8 @@ window.DC_CATALOG = [
   "series": "Tomica Limited Vintage Neo",
   "year": 2022,
   "scale": "1:64",
-  "id": "dc0089"
+  "id": "dc0089",
+  "img": "https://static.wikia.nocookie.net/tomica6057/images/5/54/LVN151bbox.jpg/revision/latest/scale-to-width-down/800?cb=20210812133718"
  },
  {
   "brand": "Tomica",
@@ -726,7 +786,8 @@ window.DC_CATALOG = [
   "series": "Tomica Limited Vintage Neo",
   "year": 2022,
   "scale": "1:64",
-  "id": "dc0090"
+  "id": "dc0090",
+  "img": "https://static.wikia.nocookie.net/tomica6057/images/9/92/LVN151abox.jpg/revision/latest/scale-to-width-down/800?cb=20211109162457"
  },
  {
   "brand": "Tomica",
@@ -734,7 +795,8 @@ window.DC_CATALOG = [
   "series": "Tomica Limited Vintage Neo",
   "year": 2024,
   "scale": "1:64",
-  "id": "dc0091"
+  "id": "dc0091",
+  "img": "https://static.wikia.nocookie.net/tomica6057/images/4/47/LVN308a.jpeg/revision/latest?cb=20230914080850"
  },
  {
   "brand": "Tomica",
@@ -742,7 +804,8 @@ window.DC_CATALOG = [
   "series": "Tomica Limited Vintage Neo",
   "year": 2024,
   "scale": "1:64",
-  "id": "dc0092"
+  "id": "dc0092",
+  "img": "https://static.wikia.nocookie.net/tomica6057/images/4/4d/LVN316c.jpeg/revision/latest?cb=20240912070537"
  },
  {
   "brand": "Tomica",
@@ -750,7 +813,8 @@ window.DC_CATALOG = [
   "series": "Tomica Premium Unlimited",
   "year": 2023,
   "scale": "1:64",
-  "id": "dc0093"
+  "id": "dc0093",
+  "img": "https://static.wikia.nocookie.net/tomica6057/images/7/7d/Unl_Supra_1.png/revision/latest?cb=20250927151135"
  },
  {
   "brand": "Tomica",
@@ -758,7 +822,8 @@ window.DC_CATALOG = [
   "series": "Tomica Premium Unlimited",
   "year": 2022,
   "scale": "1:64",
-  "id": "dc0094"
+  "id": "dc0094",
+  "img": "https://static.wikia.nocookie.net/tomica6057/images/a/ab/Unlimited_08_GTR_1.png/revision/latest/scale-to-width-down/800?cb=20250927031314"
  },
  {
   "brand": "Tomica",
@@ -766,7 +831,8 @@ window.DC_CATALOG = [
   "series": "Tomica Premium Unlimited",
   "year": 2021,
   "scale": "1:64",
-  "id": "dc0095"
+  "id": "dc0095",
+  "img": "https://static.wikia.nocookie.net/tomica6057/images/1/15/TPU01WildSpeedRX7.jpg/revision/latest/scale-to-width-down/800?cb=20210929151400"
  },
  {
   "brand": "Tomica",
@@ -774,7 +840,8 @@ window.DC_CATALOG = [
   "series": "Tomica Premium",
   "year": 2022,
   "scale": "1:60",
-  "id": "dc0096"
+  "id": "dc0096",
+  "img": "https://static.wikia.nocookie.net/tomica6057/images/5/5c/36hondansxr.jpg/revision/latest?cb=20220210231013"
  },
  {
   "brand": "Tomica",
@@ -782,7 +849,8 @@ window.DC_CATALOG = [
   "series": "Tomica Premium",
   "year": 2015,
   "scale": "1:64",
-  "id": "dc0097"
+  "id": "dc0097",
+  "img": "https://static.wikia.nocookie.net/tomica6057/images/0/0e/Premiummazdarx7fd35reamemiyaspecification.jpg/revision/latest?cb=20190925014039"
  },
  {
   "brand": "Tomica",
@@ -790,7 +858,8 @@ window.DC_CATALOG = [
   "series": "Tomica",
   "year": 2008,
   "scale": "1:61",
-  "id": "dc0098"
+  "id": "dc0098",
+  "img": "https://static.wikia.nocookie.net/tomica6057/images/e/e7/43rdmitsubishilancerevolutionbox.jpg/revision/latest/scale-to-width-down/800?cb=20190525111357"
  },
  {
   "brand": "Auto World",
@@ -934,7 +1003,8 @@ window.DC_CATALOG = [
   "series": "Kaido House KHMG001",
   "year": 2021,
   "scale": "1:64",
-  "id": "dc0116"
+  "id": "dc0116",
+  "img": "https://static.wikia.nocookie.net/minigt/images/c/c1/KHMG001.jpg/revision/latest?cb=20211109012430"
  },
  {
   "brand": "Kaido House",
@@ -942,7 +1012,8 @@ window.DC_CATALOG = [
   "series": "Kaido House KHMG011",
   "year": 2022,
   "scale": "1:64",
-  "id": "dc0117"
+  "id": "dc0117",
+  "img": "https://static.wikia.nocookie.net/minigt/images/e/e4/KHMG011_a.jpg/revision/latest/scale-to-width-down/800?cb=20211227225351"
  },
  {
   "brand": "Kaido House",
@@ -982,7 +1053,8 @@ window.DC_CATALOG = [
   "series": "Kaido House KHMG029",
   "year": 2023,
   "scale": "1:64",
-  "id": "dc0122"
+  "id": "dc0122",
+  "img": "https://static.wikia.nocookie.net/minigt/images/4/4c/Kaido_House_Wave1.jpg/revision/latest/scale-to-width-down/800?cb=20210406072807"
  },
  {
   "brand": "Kaido House",
@@ -1006,7 +1078,8 @@ window.DC_CATALOG = [
   "series": "Kaido House KHMG066",
   "year": 2023,
   "scale": "1:64",
-  "id": "dc0125"
+  "id": "dc0125",
+  "img": "https://static.wikia.nocookie.net/minigt/images/4/4c/Kaido_House_Wave1.jpg/revision/latest/scale-to-width-down/800?cb=20210406072807"
  },
  {
   "brand": "Kaido House",
@@ -1022,7 +1095,8 @@ window.DC_CATALOG = [
   "series": "Kaido House KHMG094",
   "year": 2024,
   "scale": "1:64",
-  "id": "dc0127"
+  "id": "dc0127",
+  "img": "https://static.wikia.nocookie.net/minigt/images/4/40/MGT992_A.jpg/revision/latest?cb=20260824192340"
  },
  {
   "brand": "Kaido House",
@@ -1030,7 +1104,8 @@ window.DC_CATALOG = [
   "series": "Kaido House KHMG108",
   "year": 2024,
   "scale": "1:64",
-  "id": "dc0128"
+  "id": "dc0128",
+  "img": "https://static.wikia.nocookie.net/minigt/images/4/40/MGT992_A.jpg/revision/latest?cb=20260824192340"
  },
  {
   "brand": "Kaido House",
@@ -1054,7 +1129,8 @@ window.DC_CATALOG = [
   "series": "Kaido House KHMG119",
   "year": 2024,
   "scale": "1:64",
-  "id": "dc0131"
+  "id": "dc0131",
+  "img": "https://static.wikia.nocookie.net/minigt/images/4/40/MGT992_A.jpg/revision/latest?cb=20260824192340"
  },
  {
   "brand": "Kaido House",
