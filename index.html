@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Chasiq — Multi-Brand Die-Cast Collection Tracker</title>
+<meta name="description" content="Chasiq (cha-seek): track your die-cast collection across Hot Wheels, Matchbox, M2, GreenLight, Mini GT, Tomica, Auto World and Kaido House. 100% on-device, no account needed.">
+<meta name="theme-color" content="#0d1117">
+<link rel="stylesheet" href="./assets/styles.css">
+</head>
+<body>
+<header class="app-header">
+  <div class="brand-mark">🏎️</div>
+  <div class="brand-text">
+    <h1>Chasiq</h1>
+    <p class="tagline">every brand. one garage.</p>
+  </div>
+  <button id="hdr-scan" class="icon-btn" title="Scan barcode" aria-label="Scan barcode">📷</button>
+</header>
+
+<main id="view" class="view"></main>
+
+<nav class="bottom-nav" id="bottom-nav">
+  <button data-tab="catalog" class="nav-btn active"><span class="nav-ico">🚗</span><span>Catalog</span></button>
+  <button data-tab="collection" class="nav-btn"><span class="nav-ico">🏠</span><span>Garage</span></button>
+  <button data-tab="wishlist" class="nav-btn"><span class="nav-ico">⭐</span><span>Wishlist</span></button>
+  <button data-tab="stats" class="nav-btn"><span class="nav-ico">📊</span><span>Stats</span></button>
+  <button data-tab="more" class="nav-btn"><span class="nav-ico">⚙️</span><span>More</span></button>
+</nav>
+
+<div id="modal-root"></div>
+<div id="toast-root"></div>
+
+<script src="./assets/catalog.js"></script>
+<script src="./assets/app.js"></script>
+</body>
+</html>
