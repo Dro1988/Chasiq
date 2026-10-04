@@ -4,7 +4,7 @@
 
 /* Bump on every user-facing release — shown in More → About so we can tell
    which version a phone is actually running. */
-const APP_BUILD = 'v11';
+const APP_BUILD = 'v12';
 
 /* Offline-first: cache the app shell so it loads with no connection. */
 if ('serviceWorker' in navigator) {
@@ -246,7 +246,7 @@ function renderCatalog(){
       (!f.brand || c.brand===f.brand) &&
       (!f.series || c.series===f.series) &&
       (!f.year || String(c.year)===String(f.year)) &&
-      (!q || (c.name+' '+c.series+' '+c.brand).toLowerCase().includes(q)));
+      (!q || (c.name+' '+c.series+' '+c.brand+' '+(c.sku||'')).toLowerCase().includes(q)));
     const CAP = 300;
     const shown = list.slice(0, CAP);
     $('#f-count').textContent = list.length.toLocaleString() + ' casting' + (list.length===1?'':'s')
@@ -256,7 +256,7 @@ function renderCatalog(){
         <div class="cbrand">${esc(c.brand)}</div>
         ${catImgHTML(c)}
         <div class="cname">${esc(c.name)}</div>
-        <div class="cmeta">${esc(c.series)} · ${esc(c.year)}${c.debut && c.debut!=c.year ? ' · debut '+esc(c.debut) : ''}</div>
+        <div class="cmeta">${esc(c.series)} · ${esc(c.year)}${c.sku?` · <b>${esc(c.sku)}</b>`:''}${c.debut && c.debut!=c.year ? ' · debut '+esc(c.debut) : ''}</div>
         <div class="cscale">${esc(c.scale)}</div>
         <div class="crow">
           <button class="btn pri sm" data-add="${c.id}">+ Garage</button>
@@ -325,6 +325,16 @@ async function renderCatDetail(cid){
     <h2 style="font-size:20px;margin:10px 0 4px">${esc(c.name)}</h2>
     <div><span class="badge brand">${esc(c.brand)}</span></div>
     <div class="mut small" style="margin-top:6px">${esc(c.series)} · ${c.year||'—'} · ${esc(c.scale)}${c.debut && c.debut!=c.year ? ' · debut '+esc(c.debut) : ''}</div>
+    ${(c.sku||c.col_no||c.color||c.base||c.wheels||c.tampo)?`
+    <div class="spec-grid">
+      ${c.sku?`<div class="spec"><span>SKU</span><b>${esc(c.sku)}</b></div>`:''}
+      ${c.col_no?`<div class="spec"><span>Series #</span><b>${esc(c.col_no)}</b></div>`:''}
+      ${c.wiki_series?`<div class="spec"><span>Series</span><b>${esc(c.wiki_series)}</b></div>`:''}
+      ${c.color?`<div class="spec"><span>Color</span><b>${esc(c.color)}</b></div>`:''}
+      ${c.base?`<div class="spec"><span>Base</span><b>${esc(c.base)}</b></div>`:''}
+      ${c.wheels?`<div class="spec"><span>Wheels</span><b>${esc(c.wheels)}</b></div>`:''}
+      ${c.tampo?`<div class="spec wide"><span>Tampo</span><b>${esc(c.tampo)}</b></div>`:''}
+    </div>`:''}
     ${owned?`<div class="notice" style="margin-top:10px">🏠 In your garage × ${owned}</div>`:''}
     <div class="row2" style="margin-top:10px">
       <button class="btn pri" id="cd-add" style="flex:1">+ Garage</button>
@@ -556,7 +566,7 @@ async function openScanner(){
       <button class="btn ghost block" id="sc-custom">＋ Add as custom car with this UPC</button>
       <button class="btn sec block" id="sc-cancel">Cancel</button>`);
     const paint = q=>{
-      const list = catalog().filter(c=>!q||(c.name+' '+c.series+' '+c.brand).toLowerCase().includes(q.toLowerCase())).slice(0,30);
+      const list = catalog().filter(c=>!q||(c.name+' '+c.series+' '+c.brand+' '+(c.sku||'')).toLowerCase().includes(q.toLowerCase())).slice(0,30);
       veil2.querySelector('#sc-list').innerHTML = list.map(c=>
         `<div class="g-item" data-sc="${c.id}">${thumbHTML(c)}<div class="g-info"><div class="n">${esc(c.name)}</div><div class="m">${esc(c.brand)} · ${esc(c.series)}</div></div></div>`).join('')
         || '<div class="notice">No matches.</div>';
