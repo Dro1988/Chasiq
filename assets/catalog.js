@@ -1,41 +1,9 @@
 /* Chasiq starter catalog — real, verified castings. Grows every release. */
 window.DC_CATALOG = [
- {
-  "brand": "Hot Wheels",
-  "name": "Bone Shaker",
-  "scale": "1:64",
-  "series": "Legends of Speed",
-  "year": 2018,
-  "id": "dc0000",
-  "img": "https://static.wikia.nocookie.net/hotwheels/images/e/e6/Bone_Shaker_Sketch_Larry_Wood.png/revision/latest/scale-to-width-down/800?cb=20260422191501"
- },
- {
-  "brand": "Hot Wheels",
-  "name": "Twin Mill",
-  "scale": "1:64",
-  "series": "Redline",
-  "year": 1969,
-  "id": "dc0001",
-  "img": "https://static.wikia.nocookie.net/hotwheels/images/6/69/Dream1_orig.jpg/revision/latest/scale-to-width-down/800?cb=20260501141113"
- },
- {
-  "brand": "Hot Wheels",
-  "name": "Custom '67 Mustang",
-  "scale": "1:64",
-  "series": "Redline",
-  "year": 1968,
-  "id": "dc0002",
-  "img": "https://static.wikia.nocookie.net/hotwheels/images/b/b4/%2768_Mustang_-_Avon_Park_N_Plates.jpg/revision/latest/scale-to-width-down/800?cb=20090103213942"
- },
- {
-  "brand": "Hot Wheels",
-  "name": "Custom Camaro",
-  "scale": "1:64",
-  "series": "Redline",
-  "year": 1968,
-  "id": "dc0003",
-  "img": "https://static.wikia.nocookie.net/hotwheels/images/b/b4/OriginalCustomCamaroSketchHarryBradley.png/revision/latest/scale-to-width-down/800?cb=20260704102204"
- },
+ {"brand":"Hot Wheels","name":"Bone Shaker","scale":"1:64","series":"Legends of Speed","year":2018,"id":"dc0000","img":"https://static.wikia.nocookie.net/hotwheels/images/e/e6/Bone_Shaker_Sketch_Larry_Wood.png/revision/latest/scale-to-width-down/800?cb=20260422191501","sku":"J3247"},
+ {"brand":"Hot Wheels","name":"Twin Mill","scale":"1:64","series":"Redline","year":1969,"id":"dc0001","img":"https://static.wikia.nocookie.net/hotwheels/images/6/69/Dream1_orig.jpg/revision/latest/scale-to-width-down/800?cb=20260501141113","sku":"6258"},
+ {"brand":"Hot Wheels","name":"Custom '67 Mustang","scale":"1:64","series":"Redline","year":1968,"id":"dc0002","img":"https://static.wikia.nocookie.net/hotwheels/images/b/b4/%2768_Mustang_-_Avon_Park_N_Plates.jpg/revision/latest/scale-to-width-down/800?cb=20090103213942","sku":"10496"},
+ {"brand":"Hot Wheels","name":"Custom Camaro","scale":"1:64","series":"Redline","year":1968,"id":"dc0003","img":"https://static.wikia.nocookie.net/hotwheels/images/b/b4/OriginalCustomCamaroSketchHarryBradley.png/revision/latest/scale-to-width-down/800?cb=20260704102204","sku":"6208"},
  {
   "brand": "Hot Wheels",
   "name": "Deora",
@@ -54,24 +22,8 @@ window.DC_CATALOG = [
   "id": "dc0005",
   "img": "https://static.wikia.nocookie.net/hotwheels/images/3/30/Rodgerdodger.jpg/revision/latest?cb=20080413230905"
  },
- {
-  "brand": "Hot Wheels",
-  "name": "'69 Dodge Charger",
-  "scale": "1:64",
-  "series": "Treasure Hunts",
-  "year": 2006,
-  "id": "dc0006",
-  "img": "https://static.wikia.nocookie.net/hotwheels/images/3/3f/69_Charger_AGENTAIR_5.jpg/revision/latest?cb=20080920020134"
- },
- {
-  "brand": "Hot Wheels",
-  "name": "'69 Dodge Charger Daytona",
-  "scale": "1:64",
-  "series": "Muscle Mania",
-  "year": 2016,
-  "id": "dc0007",
-  "img": "https://static.wikia.nocookie.net/hotwheels/images/f/fa/69_dodge_charger_daytona_2013_HW_garage_new_model.JPG/revision/latest/scale-to-width-down/800?cb=20130701032102"
- },
+ {"brand":"Hot Wheels","name":"'69 Dodge Charger","scale":"1:64","series":"Treasure Hunts","year":2006,"id":"dc0006","img":"https://static.wikia.nocookie.net/hotwheels/images/e/eb/69_Charger_-_06TH.jpg/revision/latest?cb=20150629232546","sku":"J3287","col_no":"045","color":"Orange","wheels":"Chrome Deep Dish RR","wiki_series":"Treasure Hunts 7/12","tampo":"\"TREASURE HUNT\", \"06\", Silver Charger on Rear Side Panels, \"TH\""},
+ {"brand":"Hot Wheels","name":"'69 Dodge Charger Daytona","scale":"1:64","series":"Muscle Mania","year":2016,"id":"dc0007","img":"https://static.wikia.nocookie.net/hotwheels/images/6/60/69_Dodge_Charger_Daytona_-_16_Muscle_Mania_Reg_600pxDM.jpg/revision/latest?cb=20160331070018","sku":"DHR35","col_no":"124/250","color":"Metalflake Light Green","wheels":"PR5","wiki_series":"Muscle Mania 4/10","tampo":"Black graphics with 'Dodge' and 'Daytona' logos on sides"},
  {
   "brand": "Hot Wheels",
   "name": "Nissan Skyline GT-R (R34)",
@@ -81,42 +33,10 @@ window.DC_CATALOG = [
   "id": "dc0008",
   "img": "https://static.wikia.nocookie.net/hotwheels/images/5/5d/R34Sketch.png/revision/latest?cb=20200617035006"
  },
- {
-  "brand": "Hot Wheels",
-  "name": "'82 Nissan Skyline R30",
-  "scale": "1:64",
-  "series": "Factory Fresh",
-  "year": 2018,
-  "id": "dc0009",
-  "img": "https://static.wikia.nocookie.net/hotwheels/images/a/a4/82NissanSkylineR30Red.JPG/revision/latest/scale-to-width-down/800?cb=20180916030859"
- },
- {
-  "brand": "Hot Wheels",
-  "name": "'95 Mazda RX-7",
-  "scale": "1:64",
-  "series": "Nightburnerz",
-  "year": 2018,
-  "id": "dc0010",
-  "img": "https://static.wikia.nocookie.net/hotwheels/images/4/4e/2017NM48_%28Large%29.JPG/revision/latest/scale-to-width-down/800?cb=20190929015914"
- },
- {
-  "brand": "Hot Wheels",
-  "name": "Custom Datsun 240Z",
-  "scale": "1:64",
-  "series": "Nightburnerz",
-  "year": 2018,
-  "id": "dc0011",
-  "img": "https://static.wikia.nocookie.net/hotwheels/images/0/03/Custom_Datsun_240Z-2017_076.jpg/revision/latest/scale-to-width-down/800?cb=20161210124213"
- },
- {
-  "brand": "Hot Wheels",
-  "name": "Custom '01 Acura Integra",
-  "scale": "1:64",
-  "series": "Nightburnerz",
-  "year": 2018,
-  "id": "dc0012",
-  "img": "https://static.wikia.nocookie.net/hotwheels/images/9/9f/IMG_20160214_193507.jpg/revision/latest/scale-to-width-down/800?cb=20160214193811"
- },
+ {"brand":"Hot Wheels","name":"'82 Nissan Skyline R30","scale":"1:64","series":"Factory Fresh","year":2018,"id":"dc0009","img":"https://static.wikia.nocookie.net/hotwheels/images/a/a4/82NissanSkylineR30Red.JPG/revision/latest/scale-to-width-down/800?cb=20180916030859","sku":"FJV44","col_no":"006/365","color":"Red","wheels":"Gold 5SP","wiki_series":"Factory Fresh 10/10","tampo":"Black stripe, gold \"4 VALVE DOHC RS-TURBO\" & \"RS\" badge on sides, red Hot Wheels logo on white rear license plate, rear "},
+ {"brand":"Hot Wheels","name":"'95 Mazda RX-7","scale":"1:64","series":"Nightburnerz","year":2018,"id":"dc0010","img":"https://static.wikia.nocookie.net/hotwheels/images/d/dc/95MazdaRX7Yellow.JPG/revision/latest/scale-to-width-down/800?cb=20171111231621","sku":"FJX67","col_no":"016/365","color":"Yellow","wheels":"Grey 10SP","wiki_series":"Nightburnerz 4/10","tampo":"Black hood, Japanese katakana \"\u30db\u30c3\u30c8\u30db\u30a4\u30fc\u30eb\" meaning Hot Wheels on sides, Mazda logo on front"},
+ {"brand":"Hot Wheels","name":"Custom Datsun 240Z","scale":"1:64","series":"Nightburnerz","year":2018,"id":"dc0011","img":"https://static.wikia.nocookie.net/hotwheels/images/f/fc/FJX64-01.jpg/revision/latest/scale-to-width-down/800?cb=20200502120325","sku":"FJX64","col_no":"015/365","color":"Dark Blue","wheels":"DD8","wiki_series":"Nightburnerz 1/10","tampo":"Neon green Pinstriping & \"Neo-Kaido\", 'Kaidohouse' on sides, \"Hot Wheels\" \"Borla\" \"GReddy\" & black accents on hood"},
+ {"brand":"Hot Wheels","name":"Custom '01 Acura Integra","scale":"1:64","series":"Nightburnerz","year":2018,"id":"dc0012","img":"https://static.wikia.nocookie.net/hotwheels/images/5/58/Custom_%2701_Acura_Integra_GSR_-_FJX69_Loose.jpg/revision/latest/scale-to-width-down/800?cb=20180918132324","sku":"FJX69","col_no":"017/365","color":"Black","wheels":"PR5","wiki_series":"Nightburnerz 6/10","tampo":"Camouflage w/ \"BOOST BRIGADE\" on sides & hood, skull on roof"},
  {
   "brand": "Hot Wheels",
   "name": "Acura NSX",
@@ -126,42 +46,10 @@ window.DC_CATALOG = [
   "id": "dc0013",
   "img": "https://static.wikia.nocookie.net/hotwheels/images/c/ce/AcuraNSXWhite.JPG/revision/latest?cb=20080316170552"
  },
- {
-  "brand": "Hot Wheels",
-  "name": "Volkswagen Käfer Racer",
-  "scale": "1:64",
-  "series": "Legends of Speed",
-  "year": 2018,
-  "id": "dc0014",
-  "img": "https://static.wikia.nocookie.net/hotwheels/images/6/68/BeetleOA.png/revision/latest/scale-to-width-down/800?cb=20251028235100"
- },
- {
-  "brand": "Hot Wheels",
-  "name": "Justice League Batmobile",
-  "scale": "1:64",
-  "series": "Batman",
-  "year": 2018,
-  "id": "dc0015",
-  "img": "https://static.wikia.nocookie.net/hotwheels/images/e/ed/Batman2018JL.JPG/revision/latest/scale-to-width-down/800?cb=20180218063922"
- },
- {
-  "brand": "Hot Wheels",
-  "name": "Deora II",
-  "scale": "1:64",
-  "series": "HW Fan Driven",
-  "year": 2025,
-  "id": "dc0016",
-  "img": "https://static.wikia.nocookie.net/hotwheels/images/c/c1/35_Years_of_Speed_Randy_Leffingwell_Deora_%282%29.JPG/revision/latest/scale-to-width-down/800?cb=20240723020711"
- },
- {
-  "brand": "Hot Wheels",
-  "name": "'17 Ford GT",
-  "scale": "1:64",
-  "series": "Hot Wheels Boulevard",
-  "year": 2020,
-  "id": "dc0017",
-  "img": "https://static.wikia.nocookie.net/hotwheels/images/8/88/17FordGT_%282%29.JPG/revision/latest/scale-to-width-down/800?cb=20180624032131"
- },
+ {"brand":"Hot Wheels","name":"Volkswagen K\u00e4fer Racer","scale":"1:64","series":"Legends of Speed","year":2018,"id":"dc0014","img":"https://static.wikia.nocookie.net/hotwheels/images/7/7a/Volkswagen_K%C3%A4fer_Racer_-_Blue_Loose.jpg/revision/latest/scale-to-width-down/800?cb=20180513231115","sku":"FJW06","col_no":"002/365","color":"Metalflake Dark Blue","wheels":"Grey 5SP","wiki_series":"Legends of Speed 2/10","tampo":"White stripes & Urban Outlaw logo on sides"},
+ {"brand":"Hot Wheels","name":"Justice League Batmobile","scale":"1:64","series":"Batman","year":2018,"id":"dc0015","img":"https://static.wikia.nocookie.net/hotwheels/images/e/ed/Batman2018JL.JPG/revision/latest/scale-to-width-down/800?cb=20180218063922","sku":"FJV39","col_no":"001/365","color":"Flat Black","wheels":"Black 5SP","wiki_series":"Batman 1/5","tampo":"None"},
+ {"brand":"Hot Wheels","name":"Deora II","scale":"1:64","series":"HW Fan Driven","year":2025,"id":"dc0016","img":"https://static.wikia.nocookie.net/hotwheels/images/a/ab/JBY78-deora.jpg/revision/latest/scale-to-width-down/800?cb=20250621123114","sku":"JBY78","color":"Red","wheels":"MM5","wiki_series":"Hot Wheels Legends Tour Themed Multipack","tampo":"Black, White, Orange lines & white hw logo on sides, Chrome rear motor, Write hot wheels on tray."},
+ {"brand":"Hot Wheels","name":"'17 Ford GT","scale":"1:64","series":"Hot Wheels Boulevard","year":2020,"id":"dc0017","img":"https://static.wikia.nocookie.net/hotwheels/images/f/f2/2020_M_17_Ford_GT_orange.JPG/revision/latest/scale-to-width-down/800?cb=20191230053120","sku":"X6999","color":"Orange","wheels":"Chrome Orange PR5","wiki_series":"Multipack Exclusive","tampo":"Detailed headlights, Black stripes on top"},
  {
   "brand": "Matchbox",
   "name": "'62 Volkswagen Beetle",

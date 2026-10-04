@@ -75,6 +75,13 @@ button{font-family:inherit}
 .card .cmeta{font-size:12px; color:var(--mut)}
 .card .cscale{font-size:11px; color:var(--mut2)}
 .card .crow{margin-top:auto; display:flex; gap:6px}
+.card .cmeta b{color:var(--txt); font-weight:700}
+/* uniform per-release spec grid (catalog detail) */
+.spec-grid{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:12px}
+.spec{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:8px 10px; display:flex; flex-direction:column; gap:2px}
+.spec.wide{grid-column:1 / -1}
+.spec span{font-size:10px; text-transform:uppercase; letter-spacing:.8px; color:var(--mut)}
+.spec b{font-size:14px; font-weight:700}
 .btn{
   border:none; border-radius:10px; padding:10px 12px; font-size:13px; font-weight:700; cursor:pointer;
 }
