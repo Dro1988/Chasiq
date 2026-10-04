@@ -1,1079 +1,130 @@
 /* Chasiq starter catalog — real, verified castings. Grows every release. */
 window.DC_CATALOG = [
- {"brand":"Hot Wheels","name":"Bone Shaker","scale":"1:64","series":"Legends of Speed","year":2018,"id":"dc0000","img":"https://static.wikia.nocookie.net/hotwheels/images/e/e6/Bone_Shaker_Sketch_Larry_Wood.png/revision/latest/scale-to-width-down/800?cb=20260422191501","sku":"J3247"},
- {"brand":"Hot Wheels","name":"Twin Mill","scale":"1:64","series":"Redline","year":1969,"id":"dc0001","img":"https://static.wikia.nocookie.net/hotwheels/images/6/69/Dream1_orig.jpg/revision/latest/scale-to-width-down/800?cb=20260501141113","sku":"6258"},
- {"brand":"Hot Wheels","name":"Custom '67 Mustang","scale":"1:64","series":"Redline","year":1968,"id":"dc0002","img":"https://static.wikia.nocookie.net/hotwheels/images/b/b4/%2768_Mustang_-_Avon_Park_N_Plates.jpg/revision/latest/scale-to-width-down/800?cb=20090103213942","sku":"10496"},
- {"brand":"Hot Wheels","name":"Custom Camaro","scale":"1:64","series":"Redline","year":1968,"id":"dc0003","img":"https://static.wikia.nocookie.net/hotwheels/images/b/b4/OriginalCustomCamaroSketchHarryBradley.png/revision/latest/scale-to-width-down/800?cb=20260704102204","sku":"6208"},
- {
-  "brand": "Hot Wheels",
-  "name": "Deora",
-  "scale": "1:64",
-  "series": "Redline",
-  "year": 1968,
-  "id": "dc0004",
-  "img": "https://static.wikia.nocookie.net/hotwheels/images/2/23/35_Years_of_Speed_Randy_Leffingwell_Deora_%281%29.JPG/revision/latest/scale-to-width-down/800?cb=20240723020657"
- },
- {
-  "brand": "Hot Wheels",
-  "name": "Rodger Dodger",
-  "scale": "1:64",
-  "series": "Treasure Hunts",
-  "year": 2001,
-  "id": "dc0005",
-  "img": "https://static.wikia.nocookie.net/hotwheels/images/3/30/Rodgerdodger.jpg/revision/latest?cb=20080413230905"
- },
- {"brand":"Hot Wheels","name":"'69 Dodge Charger","scale":"1:64","series":"Treasure Hunts","year":2006,"id":"dc0006","img":"https://static.wikia.nocookie.net/hotwheels/images/e/eb/69_Charger_-_06TH.jpg/revision/latest?cb=20150629232546","sku":"J3287","col_no":"045","color":"Orange","wheels":"Chrome Deep Dish RR","wiki_series":"Treasure Hunts 7/12","tampo":"\"TREASURE HUNT\", \"06\", Silver Charger on Rear Side Panels, \"TH\""},
- {"brand":"Hot Wheels","name":"'69 Dodge Charger Daytona","scale":"1:64","series":"Muscle Mania","year":2016,"id":"dc0007","img":"https://static.wikia.nocookie.net/hotwheels/images/6/60/69_Dodge_Charger_Daytona_-_16_Muscle_Mania_Reg_600pxDM.jpg/revision/latest?cb=20160331070018","sku":"DHR35","col_no":"124/250","color":"Metalflake Light Green","wheels":"PR5","wiki_series":"Muscle Mania 4/10","tampo":"Black graphics with 'Dodge' and 'Daytona' logos on sides"},
- {
-  "brand": "Hot Wheels",
-  "name": "Nissan Skyline GT-R (R34)",
-  "scale": "1:64",
-  "series": "HW J-Imports",
-  "year": 2026,
-  "id": "dc0008",
-  "img": "https://static.wikia.nocookie.net/hotwheels/images/5/5d/R34Sketch.png/revision/latest?cb=20200617035006"
- },
- {"brand":"Hot Wheels","name":"'82 Nissan Skyline R30","scale":"1:64","series":"Factory Fresh","year":2018,"id":"dc0009","img":"https://static.wikia.nocookie.net/hotwheels/images/a/a4/82NissanSkylineR30Red.JPG/revision/latest/scale-to-width-down/800?cb=20180916030859","sku":"FJV44","col_no":"006/365","color":"Red","wheels":"Gold 5SP","wiki_series":"Factory Fresh 10/10","tampo":"Black stripe, gold \"4 VALVE DOHC RS-TURBO\" & \"RS\" badge on sides, red Hot Wheels logo on white rear license plate, rear "},
- {"brand":"Hot Wheels","name":"'95 Mazda RX-7","scale":"1:64","series":"Nightburnerz","year":2018,"id":"dc0010","img":"https://static.wikia.nocookie.net/hotwheels/images/d/dc/95MazdaRX7Yellow.JPG/revision/latest/scale-to-width-down/800?cb=20171111231621","sku":"FJX67","col_no":"016/365","color":"Yellow","wheels":"Grey 10SP","wiki_series":"Nightburnerz 4/10","tampo":"Black hood, Japanese katakana \"\u30db\u30c3\u30c8\u30db\u30a4\u30fc\u30eb\" meaning Hot Wheels on sides, Mazda logo on front"},
- {"brand":"Hot Wheels","name":"Custom Datsun 240Z","scale":"1:64","series":"Nightburnerz","year":2018,"id":"dc0011","img":"https://static.wikia.nocookie.net/hotwheels/images/f/fc/FJX64-01.jpg/revision/latest/scale-to-width-down/800?cb=20200502120325","sku":"FJX64","col_no":"015/365","color":"Dark Blue","wheels":"DD8","wiki_series":"Nightburnerz 1/10","tampo":"Neon green Pinstriping & \"Neo-Kaido\", 'Kaidohouse' on sides, \"Hot Wheels\" \"Borla\" \"GReddy\" & black accents on hood"},
- {"brand":"Hot Wheels","name":"Custom '01 Acura Integra","scale":"1:64","series":"Nightburnerz","year":2018,"id":"dc0012","img":"https://static.wikia.nocookie.net/hotwheels/images/5/58/Custom_%2701_Acura_Integra_GSR_-_FJX69_Loose.jpg/revision/latest/scale-to-width-down/800?cb=20180918132324","sku":"FJX69","col_no":"017/365","color":"Black","wheels":"PR5","wiki_series":"Nightburnerz 6/10","tampo":"Camouflage w/ \"BOOST BRIGADE\" on sides & hood, skull on roof"},
- {
-  "brand": "Hot Wheels",
-  "name": "Acura NSX",
-  "scale": "1:64",
-  "series": "Factory Fresh",
-  "year": 2018,
-  "id": "dc0013",
-  "img": "https://static.wikia.nocookie.net/hotwheels/images/c/ce/AcuraNSXWhite.JPG/revision/latest?cb=20080316170552"
- },
- {"brand":"Hot Wheels","name":"Volkswagen K\u00e4fer Racer","scale":"1:64","series":"Legends of Speed","year":2018,"id":"dc0014","img":"https://static.wikia.nocookie.net/hotwheels/images/7/7a/Volkswagen_K%C3%A4fer_Racer_-_Blue_Loose.jpg/revision/latest/scale-to-width-down/800?cb=20180513231115","sku":"FJW06","col_no":"002/365","color":"Metalflake Dark Blue","wheels":"Grey 5SP","wiki_series":"Legends of Speed 2/10","tampo":"White stripes & Urban Outlaw logo on sides"},
- {"brand":"Hot Wheels","name":"Justice League Batmobile","scale":"1:64","series":"Batman","year":2018,"id":"dc0015","img":"https://static.wikia.nocookie.net/hotwheels/images/e/ed/Batman2018JL.JPG/revision/latest/scale-to-width-down/800?cb=20180218063922","sku":"FJV39","col_no":"001/365","color":"Flat Black","wheels":"Black 5SP","wiki_series":"Batman 1/5","tampo":"None"},
- {"brand":"Hot Wheels","name":"Deora II","scale":"1:64","series":"HW Fan Driven","year":2025,"id":"dc0016","img":"https://static.wikia.nocookie.net/hotwheels/images/a/ab/JBY78-deora.jpg/revision/latest/scale-to-width-down/800?cb=20250621123114","sku":"JBY78","color":"Red","wheels":"MM5","wiki_series":"Hot Wheels Legends Tour Themed Multipack","tampo":"Black, White, Orange lines & white hw logo on sides, Chrome rear motor, Write hot wheels on tray."},
- {"brand":"Hot Wheels","name":"'17 Ford GT","scale":"1:64","series":"Hot Wheels Boulevard","year":2020,"id":"dc0017","img":"https://static.wikia.nocookie.net/hotwheels/images/f/f2/2020_M_17_Ford_GT_orange.JPG/revision/latest/scale-to-width-down/800?cb=20191230053120","sku":"X6999","color":"Orange","wheels":"Chrome Orange PR5","wiki_series":"Multipack Exclusive","tampo":"Detailed headlights, Black stripes on top"},
- {
-  "brand": "Matchbox",
-  "name": "'62 Volkswagen Beetle",
-  "scale": "1:64",
-  "series": "MBX City",
-  "year": 2021,
-  "id": "dc0018",
-  "img": "https://static.wikia.nocookie.net/matchbox/images/1/1c/MB363-37270_-_1999_MBX_Metal_48_Boxed.jpeg/revision/latest?cb=20190505161430"
- },
- {
-  "brand": "Matchbox",
-  "name": "2022 Ford F-150 Lightning",
-  "scale": "1:64",
-  "series": "MBX Off-Road",
-  "year": 2022,
-  "id": "dc0019",
-  "img": "https://static.wikia.nocookie.net/matchbox/images/e/e5/MB_84-100_2022r.jpg/revision/latest/scale-to-width-down/800?cb=20260705172934"
- },
- {
-  "brand": "Matchbox",
-  "name": "'70 Datsun 510 Rally",
-  "scale": "1:64",
-  "series": "Collectors",
-  "year": 2023,
-  "id": "dc0020",
-  "img": "https://static.wikia.nocookie.net/matchbox/images/6/6a/115.JPG/revision/latest/scale-to-width-down/800?cb=20190706085040"
- },
- {
-  "brand": "Matchbox",
-  "name": "1993 Ford Mustang LX SSP",
-  "scale": "1:64",
-  "series": "Collectors",
-  "year": 2023,
-  "id": "dc0021",
-  "img": "https://static.wikia.nocookie.net/matchbox/images/6/68/143.JPG/revision/latest/scale-to-width-down/800?cb=20180106183113"
- },
- {
-  "brand": "Matchbox",
-  "name": "2012 Lexus LFA",
-  "scale": "1:64",
-  "series": "Collectors",
-  "year": 2023,
-  "id": "dc0022",
-  "img": "https://static.wikia.nocookie.net/matchbox/images/d/df/MBX_2012_Lexus_LFA_Front.jpg/revision/latest/scale-to-width-down/800?cb=20231002201013"
- },
- {
-  "brand": "Matchbox",
-  "name": "Volkswagen T2 Bus",
-  "scale": "1:64",
-  "series": "Collectors",
-  "year": 2023,
-  "id": "dc0023",
-  "img": "https://static.wikia.nocookie.net/matchbox/images/c/c9/2008-mcch_6th_GoF_Bus_Green_box_top.jpg/revision/latest/scale-to-width-down/800?cb=20240727000038"
- },
- {
-  "brand": "Matchbox",
-  "name": "'16 Chevy Camaro",
-  "scale": "1:64",
-  "series": "Collectors",
-  "year": 2023,
-  "id": "dc0024",
-  "img": "https://static.wikia.nocookie.net/matchbox/images/3/3e/Chevrolet_Camaro_%2716_Moving_Parts_2020.jpg/revision/latest/scale-to-width-down/499?cb=20231113145503"
- },
- {
-  "brand": "Matchbox",
-  "name": "2020 Chevrolet Corvette",
-  "scale": "1:64",
-  "series": "Collectors",
-  "year": 2023,
-  "id": "dc0025",
-  "img": "https://static.wikia.nocookie.net/matchbox/images/e/e4/2020Chevy_Corvette_back_Matchbox.jpeg/revision/latest/scale-to-width-down/800?cb=20220227160806"
- },
- {
-  "brand": "Matchbox",
-  "name": "1965 Volkswagen Type 3 Fastback",
-  "scale": "1:64",
-  "series": "Collectors",
-  "year": 2023,
-  "id": "dc0026",
-  "img": "https://static.wikia.nocookie.net/matchbox/images/3/36/20190221_015141.jpg/revision/latest/scale-to-width-down/800?cb=20190221095500"
- },
- {
-  "brand": "Matchbox",
-  "name": "1988 Chevy Monte Carlo LS",
-  "scale": "1:64",
-  "series": "Collectors",
-  "year": 2023,
-  "id": "dc0027",
-  "img": "https://static.wikia.nocookie.net/matchbox/images/7/7a/1988_Chevy_Monte_Carlo_LS_-_1.jpg/revision/latest/scale-to-width-down/800?cb=20260212021251"
- },
- {
-  "brand": "Matchbox",
-  "name": "1980 Mercedes-Benz W123 Wagon",
-  "scale": "1:64",
-  "series": "Collectors",
-  "year": 2023,
-  "id": "dc0028",
-  "img": "https://static.wikia.nocookie.net/matchbox/images/3/36/80W123cardfront.jpg/revision/latest/scale-to-width-down/648?cb=20190515210900"
- },
- {
-  "brand": "Matchbox",
-  "name": "Toyota 4Runner",
-  "scale": "1:64",
-  "series": "Collectors",
-  "year": 2023,
-  "id": "dc0029",
-  "img": "https://static.wikia.nocookie.net/matchbox/images/a/a9/2022Matchbox%2718Toyota4Runner.png/revision/latest/scale-to-width-down/800?cb=20240922055510"
- },
- {
-  "brand": "Matchbox",
-  "name": "Boeing 747-400",
-  "scale": "1:64",
-  "series": "Sky Busters",
-  "year": 2026,
-  "id": "dc0030",
-  "img": "https://static.wikia.nocookie.net/matchbox/images/f/f5/Boeing_747_Cathay_Pacific_1990_card_.jpg/revision/latest/scale-to-width-down/639?cb=20240309160429"
- },
- {
-  "brand": "Matchbox",
-  "name": "2015 Ford F-150 Contractor Truck",
-  "scale": "1:64",
-  "series": "MBX Construction",
-  "year": 2015,
-  "id": "dc0031",
-  "img": "https://static.wikia.nocookie.net/matchbox/images/8/83/0324.JPG/revision/latest/scale-to-width-down/800?cb=20200117155602"
- },
- {
-  "brand": "Matchbox",
-  "name": "1968 Ford Mustang Fastback",
-  "scale": "1:64",
-  "series": "1-125",
-  "year": 2025,
-  "id": "dc0032",
-  "img": "https://static.wikia.nocookie.net/matchbox/images/7/7f/1968_Ford_Mustang_Fastback.jpg/revision/latest/scale-to-width-down/800?cb=20260222020914"
- },
- {
-  "brand": "Matchbox",
-  "name": "1963 Chevrolet C10 Pickup",
-  "scale": "1:64",
-  "series": "Moving Parts",
-  "year": 2020,
-  "id": "dc0033"
- },
- {
-  "brand": "Matchbox",
-  "name": "Porsche 911 Carrera Cabriolet",
-  "scale": "1:64",
-  "series": "Porsche Heroes",
-  "year": 2025,
-  "id": "dc0034",
-  "img": "https://static.wikia.nocookie.net/matchbox/images/b/b3/Stars_of_Cars_MBX_Metal_Porsche_Carrera.jpg/revision/latest/scale-to-width-down/800?cb=20100913145508"
- },
- {
-  "brand": "M2 Machines",
-  "name": "1957 Chevrolet Bel Air",
-  "series": "Auto-Drivers",
-  "year": 2020,
-  "scale": "1:64",
-  "id": "dc0035",
-  "img": "https://static.wikia.nocookie.net/m2machines/images/f/fc/Auto-Club_01.jpg/revision/latest/scale-to-width-down/800?cb=20210219092928"
- },
- {
-  "brand": "M2 Machines",
-  "name": "1970 Dodge Super Bee",
-  "series": "Detroit Muscle",
-  "year": 2025,
-  "scale": "1:64",
-  "id": "dc0036",
-  "img": "https://static.wikia.nocookie.net/m2machines/images/2/29/Auto-Drags_09-06.jpg/revision/latest/scale-to-width-down/800?cb=20210220043747"
- },
- {
-  "brand": "M2 Machines",
-  "name": "1969 Ford Mustang Boss 429",
-  "series": "Ground Pounders",
-  "year": 2015,
-  "scale": "1:64",
-  "id": "dc0037",
-  "img": "https://static.wikia.nocookie.net/m2machines/images/f/f2/82161-S01.jpg/revision/latest/scale-to-width-down/800?cb=20220804011312"
- },
- {
-  "brand": "M2 Machines",
-  "name": "1969 Dodge Charger Daytona HEMI",
-  "series": "Detroit Muscle",
-  "year": 2017,
-  "scale": "1:64",
-  "id": "dc0038",
-  "img": "https://static.wikia.nocookie.net/m2machines/images/1/1d/Auto-Drivers_10-34.jpg/revision/latest/scale-to-width-down/800?cb=20210331065835"
- },
- {
-  "brand": "M2 Machines",
-  "name": "1959 Cadillac Series 62",
-  "series": "Auto-Thentics",
-  "year": 2024,
-  "scale": "1:64",
-  "id": "dc0039",
-  "img": "https://static.wikia.nocookie.net/m2machines/images/b/b6/Auto-Lift_10-04.jpg/revision/latest/scale-to-width-down/800?cb=20210613131916"
- },
- {
-  "brand": "M2 Machines",
-  "name": "1969 Plymouth Road Runner 440 6-Pack",
-  "series": "Detroit Muscle",
-  "year": 2025,
-  "scale": "1:64",
-  "id": "dc0040",
-  "img": "https://static.wikia.nocookie.net/m2machines/images/d/d4/Auto-Drivers_10-33.jpg/revision/latest/scale-to-width-down/800?cb=20210331065829"
- },
- {
-  "brand": "M2 Machines",
-  "name": "1958 Chevrolet Apache Stepside",
-  "series": "Auto-Drivers",
-  "year": 2019,
-  "scale": "1:64",
-  "id": "dc0041",
-  "img": "https://static.wikia.nocookie.net/m2machines/images/9/9c/Coca-Cola_124th_18-01.jpg/revision/latest/scale-to-width-down/800?cb=20210317124917"
- },
- {
-  "brand": "M2 Machines",
-  "name": "1966 Chevrolet Corvette 427",
-  "series": "Auto-Drivers",
-  "year": 2019,
-  "scale": "1:64",
-  "id": "dc0042",
-  "img": "https://static.wikia.nocookie.net/m2machines/images/a/ad/Auto-Drivers_10-19.jpg/revision/latest/scale-to-width-down/800?cb=20210329194511"
- },
- {
-  "brand": "M2 Machines",
-  "name": "1967 Chevrolet Camaro SS/RS 396",
-  "series": "Detroit Muscle",
-  "year": 2017,
-  "scale": "1:64",
-  "id": "dc0043",
-  "img": "https://static.wikia.nocookie.net/m2machines/images/7/78/Auto-Drivers_17-63.jpg/revision/latest/scale-to-width-down/800?cb=20210427044956"
- },
- {
-  "brand": "M2 Machines",
-  "name": "1958 Chevrolet Apache Tow Truck",
-  "series": "Auto-Trucks",
-  "year": 2019,
-  "scale": "1:64",
-  "id": "dc0044",
-  "img": "https://static.wikia.nocookie.net/m2machines/images/5/54/Auto-Trucks_12-10.jpg/revision/latest/scale-to-width-down/800?cb=20220215023826"
- },
- {
-  "brand": "M2 Machines",
-  "name": "1953 Chevrolet 3100 Truck",
-  "series": "Ground Pounders",
-  "year": 2016,
-  "scale": "1:64",
-  "id": "dc0045",
-  "img": "https://static.wikia.nocookie.net/m2machines/images/c/c9/Ground_Pounders_17-06.jpg/revision/latest/scale-to-width-down/800?cb=20210822230524"
- },
- {
-  "brand": "M2 Machines",
-  "name": "1967 Chevrolet Nova SS",
-  "series": "Detroit Muscle",
-  "year": 2018,
-  "scale": "1:64",
-  "id": "dc0046",
-  "img": "https://static.wikia.nocookie.net/m2machines/images/b/b5/Auto-Drivers_09-21.jpg/revision/latest/scale-to-width-down/800?cb=20210325011352"
- },
- {
-  "brand": "M2 Machines",
-  "name": "1968 Chevrolet Camaro Z/28",
-  "series": "Auto-Drivers",
-  "year": 2018,
-  "scale": "1:64",
-  "id": "dc0047",
-  "img": "https://static.wikia.nocookie.net/m2machines/images/3/34/Auto-Drivers_18-06.jpg/revision/latest/scale-to-width-down/800?cb=20210525192338"
- },
- {
-  "brand": "M2 Machines",
-  "name": "1970 Mercury Cougar Eliminator",
-  "series": "Ground Pounders",
-  "year": 2018,
-  "scale": "1:64",
-  "id": "dc0048",
-  "img": "https://static.wikia.nocookie.net/m2machines/images/9/95/Ground_Pounders_14-08.jpg/revision/latest/scale-to-width-down/800?cb=20210822012538"
- },
- {
-  "brand": "M2 Machines",
-  "name": "1957 Dodge COE",
-  "series": "Auto-Trucks",
-  "year": 2014,
-  "scale": "1:64",
-  "id": "dc0049",
-  "img": "https://static.wikia.nocookie.net/m2machines/images/5/5f/Auto-DreamsMP1_12-14.jpg/revision/latest/scale-to-width-down/800?cb=20210323025038"
- },
- {
-  "brand": "M2 Machines",
-  "name": "1968 Chevrolet Camaro SS 350",
-  "series": "Auto-Drivers",
-  "year": 2019,
-  "scale": "1:64",
-  "id": "dc0050",
-  "img": "https://static.wikia.nocookie.net/m2machines/images/3/38/Auto-Drivers_17-53.jpg/revision/latest/scale-to-width-down/800?cb=20210425193733"
- },
- {
-  "brand": "GreenLight",
-  "name": "1968 Ford Mustang GT \"Bullitt\"",
-  "series": "Hollywood",
-  "year": 2018,
-  "scale": "1:64",
-  "id": "dc0051"
- },
- {
-  "brand": "GreenLight",
-  "name": "1968 Dodge Charger R/T \"Bullitt\"",
-  "series": "Hollywood",
-  "year": 2016,
-  "scale": "1:64",
-  "id": "dc0052"
- },
- {
-  "brand": "GreenLight",
-  "name": "1967 Ford Mustang Eleanor \"Gone in 60 Seconds\"",
-  "series": "Hollywood",
-  "year": 2014,
-  "scale": "1:64",
-  "id": "dc0053"
- },
- {
-  "brand": "GreenLight",
-  "name": "1976 Ford F-150 Ranger XLT Trailer Special",
-  "series": "Hitch & Tow",
-  "year": 2023,
-  "scale": "1:64",
-  "id": "dc0054"
- },
- {
-  "brand": "GreenLight",
-  "name": "1995 Ford Crown Victoria Police Interceptor (Chicago PD)",
-  "series": "Hot Pursuit",
-  "year": 2020,
-  "scale": "1:64",
-  "id": "dc0055"
- },
- {
-  "brand": "GreenLight",
-  "name": "1946 Volkswagen Beetle with Roof Rack",
-  "series": "Club V-Dub",
-  "year": 2015,
-  "scale": "1:64",
-  "id": "dc0056"
- },
- {
-  "brand": "GreenLight",
-  "name": "1969 Chevrolet Camaro Z/28",
-  "series": "Black Bandit",
-  "year": 2021,
-  "scale": "1:64",
-  "id": "dc0057"
- },
- {
-  "brand": "GreenLight",
-  "name": "1968 Chevrolet C-10 Pickup",
-  "series": "Hitch & Tow",
-  "year": 2024,
-  "scale": "1:64",
-  "id": "dc0058"
- },
- {
-  "brand": "GreenLight",
-  "name": "1968 Chevrolet Camaro SS 396",
-  "series": "Green Machine",
-  "year": 2023,
-  "scale": "1:64",
-  "id": "dc0059"
- },
- {
-  "brand": "GreenLight",
-  "name": "1983 GMC Vandura (The A-Team)",
-  "series": "Hollywood",
-  "year": 2021,
-  "scale": "1:43",
-  "id": "dc0060"
- },
- {
-  "brand": "GreenLight",
-  "name": "1990 Chevrolet K5 Blazer (NYPD)",
-  "series": "Hitch & Tow",
-  "year": 2023,
-  "scale": "1:64",
-  "id": "dc0061"
- },
- {
-  "brand": "GreenLight",
-  "name": "1969 Volkswagen Type 2 Panel Van",
-  "series": "Club V-Dub",
-  "year": 2021,
-  "scale": "1:64",
-  "id": "dc0062"
- },
- {
-  "brand": "GreenLight",
-  "name": "1972 Volkswagen Type 2 Panel Van",
-  "series": "Club V-Dub",
-  "year": 2019,
-  "scale": "1:64",
-  "id": "dc0063"
- },
- {
-  "brand": "GreenLight",
-  "name": "1967 Ford Custom \"Sunshine Cabs\" Taxi (Bullitt)",
-  "series": "Hollywood",
-  "year": 2016,
-  "scale": "1:64",
-  "id": "dc0064"
- },
- {
-  "brand": "GreenLight",
-  "name": "1987 Chevrolet M1008",
-  "series": "Hitch & Tow",
-  "year": 2023,
-  "scale": "1:64",
-  "id": "dc0065"
- },
- {
-  "brand": "Mini GT",
-  "name": "LB★WORKS Nissan GT-R (R35) Matte Grey (MGT00003)",
-  "series": "Mini GT 1:64",
-  "year": 2018,
-  "scale": "1:64",
-  "id": "dc0066"
- },
- {
-  "brand": "Mini GT",
-  "name": "Toyota Supra (JZA80) Renaissance Red (MGT00046)",
-  "series": "Mini GT 1:64",
-  "year": 2019,
-  "scale": "1:64",
-  "id": "dc0067",
-  "img": "https://static.wikia.nocookie.net/minigt/images/7/78/MGT00046.jpg/revision/latest/scale-to-width-down/800?cb=20201004064428"
- },
- {
-  "brand": "Mini GT",
-  "name": "Honda NSX GT3 #30 2018 24 Hours of Spa (MGT00051)",
-  "series": "Mini GT 1:64",
-  "year": 2019,
-  "scale": "1:64",
-  "id": "dc0068",
-  "img": "https://static.wikia.nocookie.net/minigt/images/d/d4/MGT00051.jpg/revision/latest/scale-to-width-down/800?cb=20201004055825"
- },
- {
-  "brand": "Mini GT",
-  "name": "Honda Civic Type R (FK8) Aegean Blue Modulo Edition (MGT00017)",
-  "series": "Mini GT 1:64",
-  "year": 2018,
-  "scale": "1:64",
-  "id": "dc0069"
- },
- {
-  "brand": "Mini GT",
-  "name": "Land Rover Defender 110 1989 Camel Trophy Winner (MGT00108-R)",
-  "series": "Mini GT 1:64",
-  "year": 2020,
-  "scale": "1:64",
-  "id": "dc0070"
- },
- {
-  "brand": "Mini GT",
-  "name": "Pandem Toyota GR Supra V1.0 Silver (MGT00175)",
-  "series": "Mini GT 1:64",
-  "year": 2021,
-  "scale": "1:64",
-  "id": "dc0071"
- },
- {
-  "brand": "Mini GT",
-  "name": "HKS Toyota GR Supra (A90) 2020 Tokyo Auto Salon (MGT00350)",
-  "series": "Mini GT 1:64",
-  "year": 2021,
-  "scale": "1:64",
-  "id": "dc0072"
- },
- {
-  "brand": "Mini GT",
-  "name": "Ford GT Liquid Blue (MGT00249)",
-  "series": "Mini GT 1:64",
-  "year": 2021,
-  "scale": "1:64",
-  "id": "dc0073",
-  "img": "https://static.wikia.nocookie.net/minigt/images/9/9a/MGT00249.jpg/revision/latest/scale-to-width-down/800?cb=20211012055400"
- },
- {
-  "brand": "Mini GT",
-  "name": "Honda NSX GT3 EVO22 #55 ARTA 2022 Super GT Series (MGT00485)",
-  "series": "Mini GT 1:64",
-  "year": 2023,
-  "scale": "1:64",
-  "id": "dc0074"
- },
- {
-  "brand": "Mini GT",
-  "name": "Land Rover Defender 110 1991 Safari Rally Martini Racing Support Vehicle (MGT00558)",
-  "series": "Mini GT 1:64",
-  "year": 2023,
-  "scale": "1:64",
-  "id": "dc0075"
- },
- {
-  "brand": "Mini GT",
-  "name": "Honda Civic Type R Championship White 2023 (MGT00530)",
-  "series": "Mini GT 1:64",
-  "year": 2023,
-  "scale": "1:64",
-  "id": "dc0076"
- },
- {
-  "brand": "Mini GT",
-  "name": "Honda Civic Type R 2023 Honda Thanks Day Vietnam (MGT00626)",
-  "series": "Mini GT 1:64",
-  "year": 2023,
-  "scale": "1:64",
-  "id": "dc0077"
- },
- {
-  "brand": "Mini GT",
-  "name": "BMW M4 GT3 #96 2022 IMSA Daytona 24 Hrs (MGT00462)",
-  "series": "Mini GT 1:64",
-  "year": 2023,
-  "scale": "1:64",
-  "id": "dc0078"
- },
- {
-  "brand": "Mini GT",
-  "name": "Porsche 911(992) GT3 RS Weissach RingTaxi.com (MGT01178)",
-  "series": "Mini GT 1:64",
-  "year": 2025,
-  "scale": "1:64",
-  "id": "dc0079"
- },
- {
-  "brand": "Mini GT",
-  "name": "Nissan Skyline GT-R (R34) V-Spec II Nür Millenium Jade (MGT01003)",
-  "series": "Mini GT 1:64",
-  "year": 2025,
-  "scale": "1:64",
-  "id": "dc0080",
-  "img": "https://static.wikia.nocookie.net/minigt/images/5/5c/MGT1003_A.jpg/revision/latest?cb=20260826073242"
- },
- {
-  "brand": "Mini GT",
-  "name": "Nissan GT-R Nismo 2024 Brilliant White Pearl (MGT01045)",
-  "series": "Mini GT 1:64",
-  "year": 2025,
-  "scale": "1:64",
-  "id": "dc0081"
- },
- {
-  "brand": "Mini GT",
-  "name": "BMW M4 Competition (G82) Portimao Blue (MGT00845)",
-  "series": "Mini GT 1:64",
-  "year": 2024,
-  "scale": "1:64",
-  "id": "dc0082"
- },
- {
-  "brand": "Mini GT",
-  "name": "Porsche 911 GT3 R #27 HubAuto Racing 2023 FIA GT World Cup 70th Macau Grand Prix (MGT00793)",
-  "series": "Mini GT 1:64",
-  "year": 2024,
-  "scale": "1:64",
-  "id": "dc0083"
- },
- {
-  "brand": "Tomica",
-  "name": "No.40 Honda Civic Type R",
-  "series": "Tomica",
-  "year": 2021,
-  "scale": "1:64",
-  "id": "dc0084",
-  "img": "https://static.wikia.nocookie.net/tomica6057/images/9/95/40hondacivictyper.jpg/revision/latest?cb=20201211123334"
- },
- {
-  "brand": "Tomica",
-  "name": "No.23 Nissan GT-R",
-  "series": "Tomica",
-  "year": 2023,
-  "scale": "1:62",
-  "id": "dc0085",
-  "img": "https://static.wikia.nocookie.net/tomica6057/images/0/03/23nissangtr.jpg/revision/latest/scale-to-width-down/800?cb=20190315130312"
- },
- {
-  "brand": "Tomica",
-  "name": "No.86 Toyota GR 86",
-  "series": "Tomica",
-  "year": 2021,
-  "scale": "1:60",
-  "id": "dc0086",
-  "img": "https://static.wikia.nocookie.net/tomica6057/images/2/2e/86toyotagr86.jpg/revision/latest?cb=20210910020501"
- },
- {
-  "brand": "Tomica",
-  "name": "No.78 Honda Civic Type R (FL5)",
-  "series": "Tomica",
-  "year": 2022,
-  "scale": "1:64",
-  "id": "dc0087",
-  "img": "https://static.wikia.nocookie.net/tomica6057/images/8/8a/78HondaCivicTypeRspecial.jpeg/revision/latest/scale-to-width-down/800?cb=20221225185856"
- },
- {
-  "brand": "Tomica",
-  "name": "No.43 Honda NSX",
-  "series": "Tomica",
-  "year": 2016,
-  "scale": "1:62",
-  "id": "dc0088",
-  "img": "https://static.wikia.nocookie.net/tomica6057/images/c/c0/43hondansx.jpg/revision/latest/scale-to-width-down/800?cb=20190321150750"
- },
- {
-  "brand": "Tomica",
-  "name": "LV-N151b Nissan Skyline GT-R Autech Version 40th Anniversary 1998",
-  "series": "Tomica Limited Vintage Neo",
-  "year": 2022,
-  "scale": "1:64",
-  "id": "dc0089",
-  "img": "https://static.wikia.nocookie.net/tomica6057/images/5/54/LVN151bbox.jpg/revision/latest/scale-to-width-down/800?cb=20210812133718"
- },
- {
-  "brand": "Tomica",
-  "name": "LV-N151c Nissan Skyline GT-R Otec Version 40th Anniversary (White) 1998",
-  "series": "Tomica Limited Vintage Neo",
-  "year": 2022,
-  "scale": "1:64",
-  "id": "dc0090",
-  "img": "https://static.wikia.nocookie.net/tomica6057/images/9/92/LVN151abox.jpg/revision/latest/scale-to-width-down/800?cb=20211109162457"
- },
- {
-  "brand": "Tomica",
-  "name": "LV-N308a Nissan Skyline GT-R V-Spec Purple 1995",
-  "series": "Tomica Limited Vintage Neo",
-  "year": 2024,
-  "scale": "1:64",
-  "id": "dc0091",
-  "img": "https://static.wikia.nocookie.net/tomica6057/images/4/47/LVN308a.jpeg/revision/latest?cb=20230914080850"
- },
- {
-  "brand": "Tomica",
-  "name": "LV-N316c Nissan GT-R Premium Edition T-Spec 2024 (White)",
-  "series": "Tomica Limited Vintage Neo",
-  "year": 2024,
-  "scale": "1:64",
-  "id": "dc0092",
-  "img": "https://static.wikia.nocookie.net/tomica6057/images/4/4d/LVN316c.jpeg/revision/latest?cb=20240912070537"
- },
- {
-  "brand": "Tomica",
-  "name": "No.03 The Fast and the Furious Supra",
-  "series": "Tomica Premium Unlimited",
-  "year": 2023,
-  "scale": "1:64",
-  "id": "dc0093",
-  "img": "https://static.wikia.nocookie.net/tomica6057/images/7/7d/Unl_Supra_1.png/revision/latest?cb=20250927151135"
- },
- {
-  "brand": "Tomica",
-  "name": "No.08 The Fast and the Furious BNR34 Skyline GT-R",
-  "series": "Tomica Premium Unlimited",
-  "year": 2022,
-  "scale": "1:64",
-  "id": "dc0094",
-  "img": "https://static.wikia.nocookie.net/tomica6057/images/a/ab/Unlimited_08_GTR_1.png/revision/latest/scale-to-width-down/800?cb=20250927031314"
- },
- {
-  "brand": "Tomica",
-  "name": "No.01 The Fast and the Furious RX-7",
-  "series": "Tomica Premium Unlimited",
-  "year": 2021,
-  "scale": "1:64",
-  "id": "dc0095",
-  "img": "https://static.wikia.nocookie.net/tomica6057/images/1/15/TPU01WildSpeedRX7.jpg/revision/latest/scale-to-width-down/800?cb=20210929151400"
- },
- {
-  "brand": "Tomica",
-  "name": "No.36 Honda NSX-R",
-  "series": "Tomica Premium",
-  "year": 2022,
-  "scale": "1:60",
-  "id": "dc0096",
-  "img": "https://static.wikia.nocookie.net/tomica6057/images/5/5c/36hondansxr.jpg/revision/latest?cb=20220210231013"
- },
- {
-  "brand": "Tomica",
-  "name": "No.04 Mazda RX-7 FD3S RE Amemiya Specification",
-  "series": "Tomica Premium",
-  "year": 2015,
-  "scale": "1:64",
-  "id": "dc0097",
-  "img": "https://static.wikia.nocookie.net/tomica6057/images/0/0e/Premiummazdarx7fd35reamemiyaspecification.jpg/revision/latest?cb=20190925014039"
- },
- {
-  "brand": "Tomica",
-  "name": "No.67 Mitsubishi Lancer Evolution X",
-  "series": "Tomica",
-  "year": 2008,
-  "scale": "1:61",
-  "id": "dc0098",
-  "img": "https://static.wikia.nocookie.net/tomica6057/images/e/e7/43rdmitsubishilancerevolutionbox.jpg/revision/latest/scale-to-width-down/800?cb=20190525111357"
- },
- {
-  "brand": "Auto World",
-  "name": "1969 Mercury Cougar Eliminator",
-  "series": "Auto World Pony Power",
-  "year": 2025,
-  "scale": "1:64",
-  "id": "dc0099"
- },
- {
-  "brand": "Auto World",
-  "name": "1983 Chevrolet Camaro Z28",
-  "series": "Auto World Pony Power",
-  "year": 2025,
-  "scale": "1:64",
-  "id": "dc0100"
- },
- {
-  "brand": "Auto World",
-  "name": "1963 Chevrolet II Nova 400 Wagon",
-  "series": "Auto World Vintage Muscle",
-  "year": 2025,
-  "scale": "1:64",
-  "id": "dc0101"
- },
- {
-  "brand": "Auto World",
-  "name": "1965 Ford GT40",
-  "series": "Auto World Vintage Muscle",
-  "year": 2025,
-  "scale": "1:64",
-  "id": "dc0102"
- },
- {
-  "brand": "Auto World",
-  "name": "1967 Chevrolet Chevelle SS",
-  "series": "Auto World Vintage Muscle",
-  "year": 2025,
-  "scale": "1:64",
-  "id": "dc0103"
- },
- {
-  "brand": "Auto World",
-  "name": "1965 Chevrolet Impala SS 396",
-  "series": "Auto World Vintage Muscle",
-  "year": 2025,
-  "scale": "1:64",
-  "id": "dc0104"
- },
- {
-  "brand": "Auto World",
-  "name": "1961 Dodge Dart Phoenix",
-  "series": "Auto World Vintage Muscle",
-  "year": 2025,
-  "scale": "1:64",
-  "id": "dc0105"
- },
- {
-  "brand": "Auto World",
-  "name": "1991 Eagle Talon TSi",
-  "series": "Auto World Modern Muscle",
-  "year": 2025,
-  "scale": "1:64",
-  "id": "dc0106"
- },
- {
-  "brand": "Auto World",
-  "name": "1971 Ford Mustang Boss 351",
-  "series": "Auto World 1:64",
-  "year": 2024,
-  "scale": "1:64",
-  "id": "dc0107"
- },
- {
-  "brand": "Auto World",
-  "name": "2010 Chevrolet Camaro RS",
-  "series": "Auto World Modern Muscle",
-  "year": 2023,
-  "scale": "1:64",
-  "id": "dc0108"
- },
- {
-  "brand": "Auto World",
-  "name": "1965 Ford Mustang",
-  "series": "Thunderjet Ultra-G (slot car)",
-  "year": 2021,
-  "scale": "1:64 (HO slot car)",
-  "id": "dc0109"
- },
- {
-  "brand": "Auto World",
-  "name": "1970 Ford Mustang Boss 429",
-  "series": "Thunderjet Ultra-G (slot car)",
-  "year": 2026,
-  "scale": "1:64 (HO slot car)",
-  "id": "dc0110"
- },
- {
-  "brand": "Auto World",
-  "name": "1963 Buick Riviera",
-  "series": "Thunderjet Ultra-G (slot car)",
-  "year": 2025,
-  "scale": "1:64 (HO slot car)",
-  "id": "dc0111"
- },
- {
-  "brand": "Auto World",
-  "name": "1967 Chevrolet Corvette",
-  "series": "Thunderjet Ultra-G (slot car)",
-  "year": 2025,
-  "scale": "1:64 (HO slot car)",
-  "id": "dc0112"
- },
- {
-  "brand": "Auto World",
-  "name": "1964 Dodge 330",
-  "series": "Thunderjet Ultra-G iWheels (slot car)",
-  "year": 2025,
-  "scale": "1:64 (HO slot car)",
-  "id": "dc0113"
- },
- {
-  "brand": "Auto World",
-  "name": "1969 Chevrolet Camaro",
-  "series": "Xtraction Ultra-G (slot car)",
-  "year": 2025,
-  "scale": "1:64 (HO slot car)",
-  "id": "dc0114"
- },
- {
-  "brand": "Auto World",
-  "name": "1970 Dodge Challenger",
-  "series": "Xtraction Ultra-G (slot car)",
-  "year": 2022,
-  "scale": "1:64 (HO slot car)",
-  "id": "dc0115"
- },
- {
-  "brand": "Kaido House",
-  "name": "Datsun 510 Pro Street OG Green",
-  "series": "Kaido House KHMG001",
-  "year": 2021,
-  "scale": "1:64",
-  "id": "dc0116",
-  "img": "https://static.wikia.nocookie.net/minigt/images/c/c1/KHMG001.jpg/revision/latest?cb=20211109012430"
- },
- {
-  "brand": "Kaido House",
-  "name": "Datsun KAIDO 510 Wagon Blue",
-  "series": "Kaido House KHMG011",
-  "year": 2022,
-  "scale": "1:64",
-  "id": "dc0117",
-  "img": "https://static.wikia.nocookie.net/minigt/images/e/e4/KHMG011_a.jpg/revision/latest/scale-to-width-down/800?cb=20211227225351"
- },
- {
-  "brand": "Kaido House",
-  "name": "Datsun KAIDO 510 Wagon Hanami V1",
-  "series": "Kaido House KHMG012",
-  "year": 2022,
-  "scale": "1:64",
-  "id": "dc0118"
- },
- {
-  "brand": "Kaido House",
-  "name": "Datsun KAIDO 510 Wagon Fire V1",
-  "series": "Kaido House KHMG020",
-  "year": 2023,
-  "scale": "1:64",
-  "id": "dc0119"
- },
- {
-  "brand": "Kaido House",
-  "name": "Datsun KAIDO Fairlady Z Dark Red",
-  "series": "Kaido House KHMG023",
-  "year": 2022,
-  "scale": "1:64",
-  "id": "dc0120"
- },
- {
-  "brand": "Kaido House",
-  "name": "Datsun KAIDO 510 Wagon BRE V1",
-  "series": "Kaido House KHMG026",
-  "year": 2022,
-  "scale": "1:64",
-  "id": "dc0121"
- },
- {
-  "brand": "Kaido House",
-  "name": "Datsun KAIDO Fairlady Z Kaido GT V1",
-  "series": "Kaido House KHMG029",
-  "year": 2023,
-  "scale": "1:64",
-  "id": "dc0122",
-  "img": "https://static.wikia.nocookie.net/minigt/images/4/4c/Kaido_House_Wave1.jpg/revision/latest/scale-to-width-down/800?cb=20210406072807"
- },
- {
-  "brand": "Kaido House",
-  "name": "Datsun 510 Pro Street ADVAN",
-  "series": "Kaido House KHMG032",
-  "year": 2022,
-  "scale": "1:64",
-  "id": "dc0123"
- },
- {
-  "brand": "Kaido House",
-  "name": "Nissan Skyline GT-R (R34) Kaido Works Purple",
-  "series": "Kaido House KHMG048",
-  "year": 2023,
-  "scale": "1:64",
-  "id": "dc0124"
- },
- {
-  "brand": "Kaido House",
-  "name": "Chevrolet Silverado KAIDO V1",
-  "series": "Kaido House KHMG066",
-  "year": 2023,
-  "scale": "1:64",
-  "id": "dc0125",
-  "img": "https://static.wikia.nocookie.net/minigt/images/4/4c/Kaido_House_Wave1.jpg/revision/latest/scale-to-width-down/800?cb=20210406072807"
- },
- {
-  "brand": "Kaido House",
-  "name": "Nissan Skyline GT-R (R33) Kaido Works V1",
-  "series": "Kaido House KHMG072",
-  "year": 2023,
-  "scale": "1:64",
-  "id": "dc0126"
- },
- {
-  "brand": "Kaido House",
-  "name": "Honda NSX Evasive V1",
-  "series": "Kaido House KHMG094",
-  "year": 2024,
-  "scale": "1:64",
-  "id": "dc0127",
-  "img": "https://static.wikia.nocookie.net/minigt/images/4/40/MGT992_A.jpg/revision/latest?cb=20260824192340"
- },
- {
-  "brand": "Kaido House",
-  "name": "Honda NSX Kaido Works V1",
-  "series": "Kaido House KHMG108",
-  "year": 2024,
-  "scale": "1:64",
-  "id": "dc0128",
-  "img": "https://static.wikia.nocookie.net/minigt/images/4/40/MGT992_A.jpg/revision/latest?cb=20260824192340"
- },
- {
-  "brand": "Kaido House",
-  "name": "Nissan Skyline GT-R (R33) Greddy V1",
-  "series": "Kaido House KHMG113",
-  "year": 2024,
-  "scale": "1:64",
-  "id": "dc0129"
- },
- {
-  "brand": "Kaido House",
-  "name": "Datsun KAIDO 510 Wagon Hanami V3",
-  "series": "Kaido House KHMG114",
-  "year": 2024,
-  "scale": "1:64",
-  "id": "dc0130"
- },
- {
-  "brand": "Kaido House",
-  "name": "Honda NSX Kaido Racing V1",
-  "series": "Kaido House KHMG119",
-  "year": 2024,
-  "scale": "1:64",
-  "id": "dc0131",
-  "img": "https://static.wikia.nocookie.net/minigt/images/4/40/MGT992_A.jpg/revision/latest?cb=20260824192340"
- },
- {
-  "brand": "Kaido House",
-  "name": "Datsun 510 4X4 Wagon Kaido Offroad V1",
-  "series": "Kaido House KHMG121",
-  "year": 2024,
-  "scale": "1:64",
-  "id": "dc0132"
- },
- {
-  "brand": "Kaido House",
-  "name": "Honda Civic (EF) Kaido Works V1",
-  "series": "Kaido House KHMG126",
-  "year": 2024,
-  "scale": "1:64",
-  "id": "dc0133"
- },
- {
-  "brand": "Kaido House",
-  "name": "Nissan Skyline GT-R (R34) Kaido Works Shinjuku V1",
-  "series": "Kaido House KHMG143",
-  "year": 2025,
-  "scale": "1:64",
-  "id": "dc0134"
- },
- {
-  "brand": "Kaido House",
-  "name": "Nissan Skyline 2000GT-R (KPGC10) Kaido Works V1",
-  "series": "Kaido House KHMG165",
-  "year": 2025,
-  "scale": "1:64",
-  "id": "dc0135"
- },
- {
-  "brand": "Kaido House",
-  "name": "Nissan Skyline 2000GT-R (KPGC10) Kaido Street V1",
-  "series": "Kaido House KHMG175",
-  "year": 2025,
-  "scale": "1:64",
-  "id": "dc0136"
- },
- {
-  "brand": "Kaido House",
-  "name": "Toyota AE86 Sprinter Trueno Kaido Street V1",
-  "series": "Kaido House KHMG180",
-  "year": 2025,
-  "scale": "1:64",
-  "id": "dc0137"
- },
- {
-  "brand": "Kaido House",
-  "name": "Datsun KAIDO 510 Wagon Kaido OG Flo Yellow",
-  "series": "Kaido House KHMG164",
-  "year": 2025,
-  "scale": "1:64",
-  "id": "dc0138"
- }
+{"brand":"Hot Wheels","name":"Bone Shaker","scale":"1:64","series":"Legends of Speed","year":2018,"id":"dc0000","img":"https://static.wikia.nocookie.net/hotwheels/images/e/e6/Bone_Shaker_Sketch_Larry_Wood.png/revision/latest/scale-to-width-down/800?cb=20260422191501","sku":"J3247"},
+{"brand":"Hot Wheels","name":"Twin Mill","scale":"1:64","series":"Redline","year":1969,"id":"dc0001","img":"https://static.wikia.nocookie.net/hotwheels/images/6/69/Dream1_orig.jpg/revision/latest/scale-to-width-down/800?cb=20260501141113","sku":"6258"},
+{"brand":"Hot Wheels","name":"Custom '67 Mustang","scale":"1:64","series":"Redline","year":1968,"id":"dc0002","img":"https://static.wikia.nocookie.net/hotwheels/images/b/b4/%2768_Mustang_-_Avon_Park_N_Plates.jpg/revision/latest/scale-to-width-down/800?cb=20090103213942","sku":"10496"},
+{"brand":"Hot Wheels","name":"Custom Camaro","scale":"1:64","series":"Redline","year":1968,"id":"dc0003","img":"https://static.wikia.nocookie.net/hotwheels/images/b/b4/OriginalCustomCamaroSketchHarryBradley.png/revision/latest/scale-to-width-down/800?cb=20260704102204","sku":"6208"},
+{"brand":"Hot Wheels","name":"Deora","scale":"1:64","series":"Redline","year":1968,"id":"dc0004","img":"https://static.wikia.nocookie.net/hotwheels/images/2/23/35_Years_of_Speed_Randy_Leffingwell_Deora_%281%29.JPG/revision/latest/scale-to-width-down/800?cb=20240723020657"},
+{"brand":"Hot Wheels","name":"Rodger Dodger","scale":"1:64","series":"Treasure Hunts","year":2001,"id":"dc0005","img":"https://static.wikia.nocookie.net/hotwheels/images/3/30/Rodgerdodger.jpg/revision/latest?cb=20080413230905"},
+{"brand":"Matchbox","name":"'62 Volkswagen Beetle","scale":"1:64","series":"MBX City","year":2021,"id":"dc0018","img":"https://static.wikia.nocookie.net/matchbox/images/1/1c/MB363-37270_-_1999_MBX_Metal_48_Boxed.jpeg/revision/latest?cb=20190505161430"},
+{"brand":"Matchbox","name":"2022 Ford F-150 Lightning","scale":"1:64","series":"MBX Off-Road","year":2022,"id":"dc0019","img":"https://static.wikia.nocookie.net/matchbox/images/e/e5/MB_84-100_2022r.jpg/revision/latest/scale-to-width-down/800?cb=20260705172934"},
+{"brand":"Matchbox","name":"'70 Datsun 510 Rally","scale":"1:64","series":"Collectors","year":2023,"id":"dc0020","img":"https://static.wikia.nocookie.net/matchbox/images/6/6a/115.JPG/revision/latest/scale-to-width-down/800?cb=20190706085040"},
+{"brand":"Matchbox","name":"1993 Ford Mustang LX SSP","scale":"1:64","series":"Collectors","year":2023,"id":"dc0021","img":"https://static.wikia.nocookie.net/matchbox/images/6/68/143.JPG/revision/latest/scale-to-width-down/800?cb=20180106183113"},
+{"brand":"Matchbox","name":"2012 Lexus LFA","scale":"1:64","series":"Collectors","year":2023,"id":"dc0022","img":"https://static.wikia.nocookie.net/matchbox/images/d/df/MBX_2012_Lexus_LFA_Front.jpg/revision/latest/scale-to-width-down/800?cb=20231002201013"},
+{"brand":"Matchbox","name":"Volkswagen T2 Bus","scale":"1:64","series":"Collectors","year":2023,"id":"dc0023","img":"https://static.wikia.nocookie.net/matchbox/images/c/c9/2008-mcch_6th_GoF_Bus_Green_box_top.jpg/revision/latest/scale-to-width-down/800?cb=20240727000038"},
+{"brand":"Matchbox","name":"'16 Chevy Camaro","scale":"1:64","series":"Collectors","year":2023,"id":"dc0024","img":"https://static.wikia.nocookie.net/matchbox/images/3/3e/Chevrolet_Camaro_%2716_Moving_Parts_2020.jpg/revision/latest/scale-to-width-down/499?cb=20231113145503"},
+{"brand":"Matchbox","name":"2020 Chevrolet Corvette","scale":"1:64","series":"Collectors","year":2023,"id":"dc0025","img":"https://static.wikia.nocookie.net/matchbox/images/e/e4/2020Chevy_Corvette_back_Matchbox.jpeg/revision/latest/scale-to-width-down/800?cb=20220227160806"},
+{"brand":"Matchbox","name":"1965 Volkswagen Type 3 Fastback","scale":"1:64","series":"Collectors","year":2023,"id":"dc0026","img":"https://static.wikia.nocookie.net/matchbox/images/3/36/20190221_015141.jpg/revision/latest/scale-to-width-down/800?cb=20190221095500"},
+{"brand":"Matchbox","name":"1988 Chevy Monte Carlo LS","scale":"1:64","series":"Collectors","year":2023,"id":"dc0027","img":"https://static.wikia.nocookie.net/matchbox/images/7/7a/1988_Chevy_Monte_Carlo_LS_-_1.jpg/revision/latest/scale-to-width-down/800?cb=20260212021251"},
+{"brand":"Matchbox","name":"1980 Mercedes-Benz W123 Wagon","scale":"1:64","series":"Collectors","year":2023,"id":"dc0028","img":"https://static.wikia.nocookie.net/matchbox/images/3/36/80W123cardfront.jpg/revision/latest/scale-to-width-down/648?cb=20190515210900"},
+{"brand":"Matchbox","name":"Toyota 4Runner","scale":"1:64","series":"Collectors","year":2023,"id":"dc0029","img":"https://static.wikia.nocookie.net/matchbox/images/a/a9/2022Matchbox%2718Toyota4Runner.png/revision/latest/scale-to-width-down/800?cb=20240922055510"},
+{"brand":"Matchbox","name":"Boeing 747-400","scale":"1:64","series":"Sky Busters","year":2026,"id":"dc0030","img":"https://static.wikia.nocookie.net/matchbox/images/f/f5/Boeing_747_Cathay_Pacific_1990_card_.jpg/revision/latest/scale-to-width-down/639?cb=20240309160429"},
+{"brand":"Matchbox","name":"2015 Ford F-150 Contractor Truck","scale":"1:64","series":"MBX Construction","year":2015,"id":"dc0031","img":"https://static.wikia.nocookie.net/matchbox/images/8/83/0324.JPG/revision/latest/scale-to-width-down/800?cb=20200117155602"},
+{"brand":"Matchbox","name":"1968 Ford Mustang Fastback","scale":"1:64","series":"1-125","year":2025,"id":"dc0032","img":"https://static.wikia.nocookie.net/matchbox/images/7/7f/1968_Ford_Mustang_Fastback.jpg/revision/latest/scale-to-width-down/800?cb=20260222020914"},
+{"brand":"Matchbox","name":"1963 Chevrolet C10 Pickup","scale":"1:64","series":"Moving Parts","year":2020,"id":"dc0033"},
+{"brand":"Matchbox","name":"Porsche 911 Carrera Cabriolet","scale":"1:64","series":"Porsche Heroes","year":2025,"id":"dc0034","img":"https://static.wikia.nocookie.net/matchbox/images/b/b3/Stars_of_Cars_MBX_Metal_Porsche_Carrera.jpg/revision/latest/scale-to-width-down/800?cb=20100913145508"},
+{"brand":"M2 Machines","name":"1957 Chevrolet Bel Air","series":"Auto-Drivers","year":2020,"scale":"1:64","id":"dc0035","img":"https://static.wikia.nocookie.net/m2machines/images/f/fc/Auto-Club_01.jpg/revision/latest/scale-to-width-down/800?cb=20210219092928"},
+{"brand":"M2 Machines","name":"1970 Dodge Super Bee","series":"Detroit Muscle","year":2025,"scale":"1:64","id":"dc0036","img":"https://static.wikia.nocookie.net/m2machines/images/2/29/Auto-Drags_09-06.jpg/revision/latest/scale-to-width-down/800?cb=20210220043747"},
+{"brand":"M2 Machines","name":"1969 Ford Mustang Boss 429","series":"Ground Pounders","year":2015,"scale":"1:64","id":"dc0037","img":"https://static.wikia.nocookie.net/m2machines/images/f/f2/82161-S01.jpg/revision/latest/scale-to-width-down/800?cb=20220804011312"},
+{"brand":"M2 Machines","name":"1969 Dodge Charger Daytona HEMI","series":"Detroit Muscle","year":2017,"scale":"1:64","id":"dc0038","img":"https://static.wikia.nocookie.net/m2machines/images/1/1d/Auto-Drivers_10-34.jpg/revision/latest/scale-to-width-down/800?cb=20210331065835"},
+{"brand":"M2 Machines","name":"1959 Cadillac Series 62","series":"Auto-Thentics","year":2024,"scale":"1:64","id":"dc0039","img":"https://static.wikia.nocookie.net/m2machines/images/b/b6/Auto-Lift_10-04.jpg/revision/latest/scale-to-width-down/800?cb=20210613131916"},
+{"brand":"M2 Machines","name":"1969 Plymouth Road Runner 440 6-Pack","series":"Detroit Muscle","year":2025,"scale":"1:64","id":"dc0040","img":"https://static.wikia.nocookie.net/m2machines/images/d/d4/Auto-Drivers_10-33.jpg/revision/latest/scale-to-width-down/800?cb=20210331065829"},
+{"brand":"M2 Machines","name":"1958 Chevrolet Apache Stepside","series":"Auto-Drivers","year":2019,"scale":"1:64","id":"dc0041","img":"https://static.wikia.nocookie.net/m2machines/images/9/9c/Coca-Cola_124th_18-01.jpg/revision/latest/scale-to-width-down/800?cb=20210317124917"},
+{"brand":"M2 Machines","name":"1966 Chevrolet Corvette 427","series":"Auto-Drivers","year":2019,"scale":"1:64","id":"dc0042","img":"https://static.wikia.nocookie.net/m2machines/images/a/ad/Auto-Drivers_10-19.jpg/revision/latest/scale-to-width-down/800?cb=20210329194511"},
+{"brand":"M2 Machines","name":"1967 Chevrolet Camaro SS/RS 396","series":"Detroit Muscle","year":2017,"scale":"1:64","id":"dc0043","img":"https://static.wikia.nocookie.net/m2machines/images/7/78/Auto-Drivers_17-63.jpg/revision/latest/scale-to-width-down/800?cb=20210427044956"},
+{"brand":"M2 Machines","name":"1958 Chevrolet Apache Tow Truck","series":"Auto-Trucks","year":2019,"scale":"1:64","id":"dc0044","img":"https://static.wikia.nocookie.net/m2machines/images/5/54/Auto-Trucks_12-10.jpg/revision/latest/scale-to-width-down/800?cb=20220215023826"},
+{"brand":"M2 Machines","name":"1953 Chevrolet 3100 Truck","series":"Ground Pounders","year":2016,"scale":"1:64","id":"dc0045","img":"https://static.wikia.nocookie.net/m2machines/images/c/c9/Ground_Pounders_17-06.jpg/revision/latest/scale-to-width-down/800?cb=20210822230524"},
+{"brand":"M2 Machines","name":"1967 Chevrolet Nova SS","series":"Detroit Muscle","year":2018,"scale":"1:64","id":"dc0046","img":"https://static.wikia.nocookie.net/m2machines/images/b/b5/Auto-Drivers_09-21.jpg/revision/latest/scale-to-width-down/800?cb=20210325011352"},
+{"brand":"M2 Machines","name":"1968 Chevrolet Camaro Z/28","series":"Auto-Drivers","year":2018,"scale":"1:64","id":"dc0047","img":"https://static.wikia.nocookie.net/m2machines/images/3/34/Auto-Drivers_18-06.jpg/revision/latest/scale-to-width-down/800?cb=20210525192338"},
+{"brand":"M2 Machines","name":"1970 Mercury Cougar Eliminator","series":"Ground Pounders","year":2018,"scale":"1:64","id":"dc0048","img":"https://static.wikia.nocookie.net/m2machines/images/9/95/Ground_Pounders_14-08.jpg/revision/latest/scale-to-width-down/800?cb=20210822012538"},
+{"brand":"M2 Machines","name":"1957 Dodge COE","series":"Auto-Trucks","year":2014,"scale":"1:64","id":"dc0049","img":"https://static.wikia.nocookie.net/m2machines/images/5/5f/Auto-DreamsMP1_12-14.jpg/revision/latest/scale-to-width-down/800?cb=20210323025038"},
+{"brand":"M2 Machines","name":"1968 Chevrolet Camaro SS 350","series":"Auto-Drivers","year":2019,"scale":"1:64","id":"dc0050","img":"https://static.wikia.nocookie.net/m2machines/images/3/38/Auto-Drivers_17-53.jpg/revision/latest/scale-to-width-down/800?cb=20210425193733"},
+{"brand":"GreenLight","name":"1968 Ford Mustang GT \"Bullitt\"","series":"Hollywood","year":2018,"scale":"1:64","id":"dc0051"},
+{"brand":"GreenLight","name":"1968 Dodge Charger R/T \"Bullitt\"","series":"Hollywood","year":2016,"scale":"1:64","id":"dc0052"},
+{"brand":"GreenLight","name":"1967 Ford Mustang Eleanor \"Gone in 60 Seconds\"","series":"Hollywood","year":2014,"scale":"1:64","id":"dc0053"},
+{"brand":"GreenLight","name":"1976 Ford F-150 Ranger XLT Trailer Special","series":"Hitch & Tow","year":2023,"scale":"1:64","id":"dc0054"},
+{"brand":"GreenLight","name":"1995 Ford Crown Victoria Police Interceptor (Chicago PD)","series":"Hot Pursuit","year":2020,"scale":"1:64","id":"dc0055"},
+{"brand":"GreenLight","name":"1946 Volkswagen Beetle with Roof Rack","series":"Club V-Dub","year":2015,"scale":"1:64","id":"dc0056"},
+{"brand":"GreenLight","name":"1969 Chevrolet Camaro Z/28","series":"Black Bandit","year":2021,"scale":"1:64","id":"dc0057"},
+{"brand":"GreenLight","name":"1968 Chevrolet C-10 Pickup","series":"Hitch & Tow","year":2024,"scale":"1:64","id":"dc0058"},
+{"brand":"GreenLight","name":"1968 Chevrolet Camaro SS 396","series":"Green Machine","year":2023,"scale":"1:64","id":"dc0059"},
+{"brand":"GreenLight","name":"1983 GMC Vandura (The A-Team)","series":"Hollywood","year":2021,"scale":"1:43","id":"dc0060"},
+{"brand":"GreenLight","name":"1990 Chevrolet K5 Blazer (NYPD)","series":"Hitch & Tow","year":2023,"scale":"1:64","id":"dc0061"},
+{"brand":"GreenLight","name":"1969 Volkswagen Type 2 Panel Van","series":"Club V-Dub","year":2021,"scale":"1:64","id":"dc0062"},
+{"brand":"GreenLight","name":"1972 Volkswagen Type 2 Panel Van","series":"Club V-Dub","year":2019,"scale":"1:64","id":"dc0063"},
+{"brand":"GreenLight","name":"1967 Ford Custom \"Sunshine Cabs\" Taxi (Bullitt)","series":"Hollywood","year":2016,"scale":"1:64","id":"dc0064"},
+{"brand":"GreenLight","name":"1987 Chevrolet M1008","series":"Hitch & Tow","year":2023,"scale":"1:64","id":"dc0065"},
+{"brand":"Mini GT","name":"LB\u2605WORKS Nissan GT-R (R35) Matte Grey (MGT00003)","series":"Mini GT 1:64","year":2018,"scale":"1:64","id":"dc0066"},
+{"brand":"Mini GT","name":"Toyota Supra (JZA80) Renaissance Red (MGT00046)","series":"Mini GT 1:64","year":2019,"scale":"1:64","id":"dc0067","img":"https://static.wikia.nocookie.net/minigt/images/7/78/MGT00046.jpg/revision/latest/scale-to-width-down/800?cb=20201004064428"},
+{"brand":"Mini GT","name":"Honda NSX GT3 #30 2018 24 Hours of Spa (MGT00051)","series":"Mini GT 1:64","year":2019,"scale":"1:64","id":"dc0068","img":"https://static.wikia.nocookie.net/minigt/images/d/d4/MGT00051.jpg/revision/latest/scale-to-width-down/800?cb=20201004055825"},
+{"brand":"Mini GT","name":"Honda Civic Type R (FK8) Aegean Blue Modulo Edition (MGT00017)","series":"Mini GT 1:64","year":2018,"scale":"1:64","id":"dc0069"},
+{"brand":"Mini GT","name":"Land Rover Defender 110 1989 Camel Trophy Winner (MGT00108-R)","series":"Mini GT 1:64","year":2020,"scale":"1:64","id":"dc0070"},
+{"brand":"Mini GT","name":"Pandem Toyota GR Supra V1.0 Silver (MGT00175)","series":"Mini GT 1:64","year":2021,"scale":"1:64","id":"dc0071"},
+{"brand":"Mini GT","name":"HKS Toyota GR Supra (A90) 2020 Tokyo Auto Salon (MGT00350)","series":"Mini GT 1:64","year":2021,"scale":"1:64","id":"dc0072"},
+{"brand":"Mini GT","name":"Ford GT Liquid Blue (MGT00249)","series":"Mini GT 1:64","year":2021,"scale":"1:64","id":"dc0073","img":"https://static.wikia.nocookie.net/minigt/images/9/9a/MGT00249.jpg/revision/latest/scale-to-width-down/800?cb=20211012055400"},
+{"brand":"Mini GT","name":"Honda NSX GT3 EVO22 #55 ARTA 2022 Super GT Series (MGT00485)","series":"Mini GT 1:64","year":2023,"scale":"1:64","id":"dc0074"},
+{"brand":"Mini GT","name":"Land Rover Defender 110 1991 Safari Rally Martini Racing Support Vehicle (MGT00558)","series":"Mini GT 1:64","year":2023,"scale":"1:64","id":"dc0075"},
+{"brand":"Mini GT","name":"Honda Civic Type R Championship White 2023 (MGT00530)","series":"Mini GT 1:64","year":2023,"scale":"1:64","id":"dc0076"},
+{"brand":"Mini GT","name":"Honda Civic Type R 2023 Honda Thanks Day Vietnam (MGT00626)","series":"Mini GT 1:64","year":2023,"scale":"1:64","id":"dc0077"},
+{"brand":"Mini GT","name":"BMW M4 GT3 #96 2022 IMSA Daytona 24 Hrs (MGT00462)","series":"Mini GT 1:64","year":2023,"scale":"1:64","id":"dc0078"},
+{"brand":"Mini GT","name":"Porsche 911(992) GT3 RS Weissach RingTaxi.com (MGT01178)","series":"Mini GT 1:64","year":2025,"scale":"1:64","id":"dc0079"},
+{"brand":"Mini GT","name":"Nissan Skyline GT-R (R34) V-Spec II N\u00fcr Millenium Jade (MGT01003)","series":"Mini GT 1:64","year":2025,"scale":"1:64","id":"dc0080","img":"https://static.wikia.nocookie.net/minigt/images/5/5c/MGT1003_A.jpg/revision/latest?cb=20260826073242"},
+{"brand":"Mini GT","name":"Nissan GT-R Nismo 2024 Brilliant White Pearl (MGT01045)","series":"Mini GT 1:64","year":2025,"scale":"1:64","id":"dc0081"},
+{"brand":"Mini GT","name":"BMW M4 Competition (G82) Portimao Blue (MGT00845)","series":"Mini GT 1:64","year":2024,"scale":"1:64","id":"dc0082"},
+{"brand":"Mini GT","name":"Porsche 911 GT3 R #27 HubAuto Racing 2023 FIA GT World Cup 70th Macau Grand Prix (MGT00793)","series":"Mini GT 1:64","year":2024,"scale":"1:64","id":"dc0083"},
+{"brand":"Tomica","name":"No.40 Honda Civic Type R","series":"Tomica","year":2021,"scale":"1:64","id":"dc0084","img":"https://static.wikia.nocookie.net/tomica6057/images/9/95/40hondacivictyper.jpg/revision/latest?cb=20201211123334"},
+{"brand":"Tomica","name":"No.23 Nissan GT-R","series":"Tomica","year":2023,"scale":"1:62","id":"dc0085","img":"https://static.wikia.nocookie.net/tomica6057/images/0/03/23nissangtr.jpg/revision/latest/scale-to-width-down/800?cb=20190315130312"},
+{"brand":"Tomica","name":"No.86 Toyota GR 86","series":"Tomica","year":2021,"scale":"1:60","id":"dc0086","img":"https://static.wikia.nocookie.net/tomica6057/images/2/2e/86toyotagr86.jpg/revision/latest?cb=20210910020501"},
+{"brand":"Tomica","name":"No.78 Honda Civic Type R (FL5)","series":"Tomica","year":2022,"scale":"1:64","id":"dc0087","img":"https://static.wikia.nocookie.net/tomica6057/images/8/8a/78HondaCivicTypeRspecial.jpeg/revision/latest/scale-to-width-down/800?cb=20221225185856"},
+{"brand":"Tomica","name":"No.43 Honda NSX","series":"Tomica","year":2016,"scale":"1:62","id":"dc0088","img":"https://static.wikia.nocookie.net/tomica6057/images/c/c0/43hondansx.jpg/revision/latest/scale-to-width-down/800?cb=20190321150750"},
+{"brand":"Tomica","name":"LV-N151b Nissan Skyline GT-R Autech Version 40th Anniversary 1998","series":"Tomica Limited Vintage Neo","year":2022,"scale":"1:64","id":"dc0089","img":"https://static.wikia.nocookie.net/tomica6057/images/5/54/LVN151bbox.jpg/revision/latest/scale-to-width-down/800?cb=20210812133718"},
+{"brand":"Tomica","name":"LV-N151c Nissan Skyline GT-R Otec Version 40th Anniversary (White) 1998","series":"Tomica Limited Vintage Neo","year":2022,"scale":"1:64","id":"dc0090","img":"https://static.wikia.nocookie.net/tomica6057/images/9/92/LVN151abox.jpg/revision/latest/scale-to-width-down/800?cb=20211109162457"},
+{"brand":"Tomica","name":"LV-N308a Nissan Skyline GT-R V-Spec Purple 1995","series":"Tomica Limited Vintage Neo","year":2024,"scale":"1:64","id":"dc0091","img":"https://static.wikia.nocookie.net/tomica6057/images/4/47/LVN308a.jpeg/revision/latest?cb=20230914080850"},
+{"brand":"Tomica","name":"LV-N316c Nissan GT-R Premium Edition T-Spec 2024 (White)","series":"Tomica Limited Vintage Neo","year":2024,"scale":"1:64","id":"dc0092","img":"https://static.wikia.nocookie.net/tomica6057/images/4/4d/LVN316c.jpeg/revision/latest?cb=20240912070537"},
+{"brand":"Tomica","name":"No.03 The Fast and the Furious Supra","series":"Tomica Premium Unlimited","year":2023,"scale":"1:64","id":"dc0093","img":"https://static.wikia.nocookie.net/tomica6057/images/7/7d/Unl_Supra_1.png/revision/latest?cb=20250927151135"},
+{"brand":"Tomica","name":"No.08 The Fast and the Furious BNR34 Skyline GT-R","series":"Tomica Premium Unlimited","year":2022,"scale":"1:64","id":"dc0094","img":"https://static.wikia.nocookie.net/tomica6057/images/a/ab/Unlimited_08_GTR_1.png/revision/latest/scale-to-width-down/800?cb=20250927031314"},
+{"brand":"Tomica","name":"No.01 The Fast and the Furious RX-7","series":"Tomica Premium Unlimited","year":2021,"scale":"1:64","id":"dc0095","img":"https://static.wikia.nocookie.net/tomica6057/images/1/15/TPU01WildSpeedRX7.jpg/revision/latest/scale-to-width-down/800?cb=20210929151400"},
+{"brand":"Tomica","name":"No.36 Honda NSX-R","series":"Tomica Premium","year":2022,"scale":"1:60","id":"dc0096","img":"https://static.wikia.nocookie.net/tomica6057/images/5/5c/36hondansxr.jpg/revision/latest?cb=20220210231013"},
+{"brand":"Tomica","name":"No.04 Mazda RX-7 FD3S RE Amemiya Specification","series":"Tomica Premium","year":2015,"scale":"1:64","id":"dc0097","img":"https://static.wikia.nocookie.net/tomica6057/images/0/0e/Premiummazdarx7fd35reamemiyaspecification.jpg/revision/latest?cb=20190925014039"},
+{"brand":"Tomica","name":"No.67 Mitsubishi Lancer Evolution X","series":"Tomica","year":2008,"scale":"1:61","id":"dc0098","img":"https://static.wikia.nocookie.net/tomica6057/images/e/e7/43rdmitsubishilancerevolutionbox.jpg/revision/latest/scale-to-width-down/800?cb=20190525111357"},
+{"brand":"Auto World","name":"1969 Mercury Cougar Eliminator","series":"Auto World Pony Power","year":2025,"scale":"1:64","id":"dc0099"},
+{"brand":"Auto World","name":"1983 Chevrolet Camaro Z28","series":"Auto World Pony Power","year":2025,"scale":"1:64","id":"dc0100"},
+{"brand":"Auto World","name":"1963 Chevrolet II Nova 400 Wagon","series":"Auto World Vintage Muscle","year":2025,"scale":"1:64","id":"dc0101"},
+{"brand":"Auto World","name":"1965 Ford GT40","series":"Auto World Vintage Muscle","year":2025,"scale":"1:64","id":"dc0102"},
+{"brand":"Auto World","name":"1967 Chevrolet Chevelle SS","series":"Auto World Vintage Muscle","year":2025,"scale":"1:64","id":"dc0103"},
+{"brand":"Auto World","name":"1965 Chevrolet Impala SS 396","series":"Auto World Vintage Muscle","year":2025,"scale":"1:64","id":"dc0104"},
+{"brand":"Auto World","name":"1961 Dodge Dart Phoenix","series":"Auto World Vintage Muscle","year":2025,"scale":"1:64","id":"dc0105"},
+{"brand":"Auto World","name":"1991 Eagle Talon TSi","series":"Auto World Modern Muscle","year":2025,"scale":"1:64","id":"dc0106"},
+{"brand":"Auto World","name":"1971 Ford Mustang Boss 351","series":"Auto World 1:64","year":2024,"scale":"1:64","id":"dc0107"},
+{"brand":"Auto World","name":"2010 Chevrolet Camaro RS","series":"Auto World Modern Muscle","year":2023,"scale":"1:64","id":"dc0108"},
+{"brand":"Auto World","name":"1965 Ford Mustang","series":"Thunderjet Ultra-G (slot car)","year":2021,"scale":"1:64 (HO slot car)","id":"dc0109"},
+{"brand":"Auto World","name":"1970 Ford Mustang Boss 429","series":"Thunderjet Ultra-G (slot car)","year":2026,"scale":"1:64 (HO slot car)","id":"dc0110"},
+{"brand":"Auto World","name":"1963 Buick Riviera","series":"Thunderjet Ultra-G (slot car)","year":2025,"scale":"1:64 (HO slot car)","id":"dc0111"},
+{"brand":"Auto World","name":"1967 Chevrolet Corvette","series":"Thunderjet Ultra-G (slot car)","year":2025,"scale":"1:64 (HO slot car)","id":"dc0112"},
+{"brand":"Auto World","name":"1964 Dodge 330","series":"Thunderjet Ultra-G iWheels (slot car)","year":2025,"scale":"1:64 (HO slot car)","id":"dc0113"},
+{"brand":"Auto World","name":"1969 Chevrolet Camaro","series":"Xtraction Ultra-G (slot car)","year":2025,"scale":"1:64 (HO slot car)","id":"dc0114"},
+{"brand":"Auto World","name":"1970 Dodge Challenger","series":"Xtraction Ultra-G (slot car)","year":2022,"scale":"1:64 (HO slot car)","id":"dc0115"},
+{"brand":"Kaido House","name":"Datsun 510 Pro Street OG Green","series":"Kaido House KHMG001","year":2021,"scale":"1:64","id":"dc0116","img":"https://static.wikia.nocookie.net/minigt/images/c/c1/KHMG001.jpg/revision/latest?cb=20211109012430"},
+{"brand":"Kaido House","name":"Datsun KAIDO 510 Wagon Blue","series":"Kaido House KHMG011","year":2022,"scale":"1:64","id":"dc0117","img":"https://static.wikia.nocookie.net/minigt/images/e/e4/KHMG011_a.jpg/revision/latest/scale-to-width-down/800?cb=20211227225351"},
+{"brand":"Kaido House","name":"Datsun KAIDO 510 Wagon Hanami V1","series":"Kaido House KHMG012","year":2022,"scale":"1:64","id":"dc0118"},
+{"brand":"Kaido House","name":"Datsun KAIDO 510 Wagon Fire V1","series":"Kaido House KHMG020","year":2023,"scale":"1:64","id":"dc0119"},
+{"brand":"Kaido House","name":"Datsun KAIDO Fairlady Z Dark Red","series":"Kaido House KHMG023","year":2022,"scale":"1:64","id":"dc0120"},
+{"brand":"Kaido House","name":"Datsun KAIDO 510 Wagon BRE V1","series":"Kaido House KHMG026","year":2022,"scale":"1:64","id":"dc0121"},
+{"brand":"Kaido House","name":"Datsun KAIDO Fairlady Z Kaido GT V1","series":"Kaido House KHMG029","year":2023,"scale":"1:64","id":"dc0122","img":"https://static.wikia.nocookie.net/minigt/images/4/4c/Kaido_House_Wave1.jpg/revision/latest/scale-to-width-down/800?cb=20210406072807"},
+{"brand":"Kaido House","name":"Datsun 510 Pro Street ADVAN","series":"Kaido House KHMG032","year":2022,"scale":"1:64","id":"dc0123"},
+{"brand":"Kaido House","name":"Nissan Skyline GT-R (R34) Kaido Works Purple","series":"Kaido House KHMG048","year":2023,"scale":"1:64","id":"dc0124"},
+{"brand":"Kaido House","name":"Chevrolet Silverado KAIDO V1","series":"Kaido House KHMG066","year":2023,"scale":"1:64","id":"dc0125","img":"https://static.wikia.nocookie.net/minigt/images/4/4c/Kaido_House_Wave1.jpg/revision/latest/scale-to-width-down/800?cb=20210406072807"},
+{"brand":"Kaido House","name":"Nissan Skyline GT-R (R33) Kaido Works V1","series":"Kaido House KHMG072","year":2023,"scale":"1:64","id":"dc0126"},
+{"brand":"Kaido House","name":"Honda NSX Evasive V1","series":"Kaido House KHMG094","year":2024,"scale":"1:64","id":"dc0127","img":"https://static.wikia.nocookie.net/minigt/images/4/40/MGT992_A.jpg/revision/latest?cb=20260824192340"},
+{"brand":"Kaido House","name":"Honda NSX Kaido Works V1","series":"Kaido House KHMG108","year":2024,"scale":"1:64","id":"dc0128","img":"https://static.wikia.nocookie.net/minigt/images/4/40/MGT992_A.jpg/revision/latest?cb=20260824192340"},
+{"brand":"Kaido House","name":"Nissan Skyline GT-R (R33) Greddy V1","series":"Kaido House KHMG113","year":2024,"scale":"1:64","id":"dc0129"},
+{"brand":"Kaido House","name":"Datsun KAIDO 510 Wagon Hanami V3","series":"Kaido House KHMG114","year":2024,"scale":"1:64","id":"dc0130"},
+{"brand":"Kaido House","name":"Honda NSX Kaido Racing V1","series":"Kaido House KHMG119","year":2024,"scale":"1:64","id":"dc0131","img":"https://static.wikia.nocookie.net/minigt/images/4/40/MGT992_A.jpg/revision/latest?cb=20260824192340"},
+{"brand":"Kaido House","name":"Datsun 510 4X4 Wagon Kaido Offroad V1","series":"Kaido House KHMG121","year":2024,"scale":"1:64","id":"dc0132"},
+{"brand":"Kaido House","name":"Honda Civic (EF) Kaido Works V1","series":"Kaido House KHMG126","year":2024,"scale":"1:64","id":"dc0133"},
+{"brand":"Kaido House","name":"Nissan Skyline GT-R (R34) Kaido Works Shinjuku V1","series":"Kaido House KHMG143","year":2025,"scale":"1:64","id":"dc0134"},
+{"brand":"Kaido House","name":"Nissan Skyline 2000GT-R (KPGC10) Kaido Works V1","series":"Kaido House KHMG165","year":2025,"scale":"1:64","id":"dc0135"},
+{"brand":"Kaido House","name":"Nissan Skyline 2000GT-R (KPGC10) Kaido Street V1","series":"Kaido House KHMG175","year":2025,"scale":"1:64","id":"dc0136"},
+{"brand":"Kaido House","name":"Toyota AE86 Sprinter Trueno Kaido Street V1","series":"Kaido House KHMG180","year":2025,"scale":"1:64","id":"dc0137"},
+{"brand":"Kaido House","name":"Datsun KAIDO 510 Wagon Kaido OG Flo Yellow","series":"Kaido House KHMG164","year":2025,"scale":"1:64","id":"dc0138"}
 ];
