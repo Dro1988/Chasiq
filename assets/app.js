@@ -4,7 +4,7 @@
 
 /* Bump on every user-facing release — shown in More → About so we can tell
    which version a phone is actually running. */
-const APP_BUILD = 'v19';
+const APP_BUILD = 'v20';
 
 /* Offline-first: cache the app shell so it loads with no connection. */
 if ('serviceWorker' in navigator) {
@@ -196,7 +196,7 @@ function thumbHTML(c, emoji){
 }
 
 /* ============================== tabs ============================== */
-const TABS = ['catalog','collection','wishlist','stats','history','more'];
+const TABS = ['catalog','collection','wishlist','stats','market','more'];
 function go(tab, arg){
   S.tab = tab;
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('active', b.dataset.tab===tab));
@@ -205,6 +205,7 @@ function go(tab, arg){
   else if(tab==='collection') renderCollection();
   else if(tab==='wishlist') renderWishlist();
   else if(tab==='stats') renderStats();
+  else if(tab==='market') renderMarket();
   else if(tab==='history') renderHistory();
   else if(tab==='histbrand') renderHistoryDetail(arg);
   else if(tab==='catdetail') renderCatDetail(arg);
@@ -627,6 +628,138 @@ async function renderWishlist(){
     if(row){
       if(confirm('Remove from wishlist?')){ await del('wishlist', row.dataset.w); renderWishlist(); }
     }
+  });
+}
+
+/* ============================== marketplace ==============================
+   Phase 1 (local): listings are created from the user's own Garage and
+   stored on-device. Collector accounts + membership (sign-up, monthly fee)
+   will open listings to all users later — no fake listings, ever. */
+const LIST_KEY = 'dcListingsV1';
+const getListings = ()=>{ try{ return JSON.parse(localStorage.getItem(LIST_KEY))||[]; }catch(e){ return []; } };
+const saveListings = l => { try{ localStorage.setItem(LIST_KEY, JSON.stringify(l)); }catch(e){ toast('Storage full — listing not saved'); } };
+const MK_CONDS = ['Mint in package','Loose — mint','Loose — good','Loose — played with','Project / damaged'];
+let MK = { brand:'All', mode:'browse', gid:null, q:'' };
+
+function mkThumbHTML(l){
+  if(l.photo) return `<img class="g-thumb" src="${l.photo}" alt="">`;
+  return thumbHTML({img:l.img||''}, '🚗');
+}
+function mkCardHTML(l){
+  return `<div class="g-item" data-mk="${l.lid}">${mkThumbHTML(l)}
+    <div class="g-info"><div class="n">${esc(l.name)}</div>
+      <div class="m">${esc(l.brand)} · ${esc(l.series||'')} · ${esc(l.year||'')}</div>
+      <div class="m mut">${esc(l.cond)}${l.qty>1?` · ×${l.qty}`:''}${l.note?` · ${esc(l.note)}`:''}</div>
+      <div class="m"><b>$${(+l.price||0).toFixed(2)}</b> <span class="badge">Your listing</span></div></div>
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <button class="btn pri sm" data-mk-sold="${l.lid}">Mark sold</button>
+      <button class="btn ghost sm" data-mk-del="${l.lid}">Remove</button>
+    </div></div>`;
+}
+async function renderMarket(){
+  const v = $('#view');
+  if(MK.mode==='pick') return renderMarketPick();
+  if(MK.mode==='form') return renderMarketForm();
+  const listings = getListings();
+  const brs = brands();
+  const counts = {}; listings.forEach(l=>counts[l.brand]=(counts[l.brand]||0)+1);
+  const shown = MK.brand==='All' ? listings : listings.filter(l=>l.brand===MK.brand);
+  const sections = (MK.brand==='All' ? brs : [MK.brand])
+    .map(b=>({b, items: shown.filter(l=>l.brand===b)})).filter(s=>s.items.length);
+  v.innerHTML = `
+    <div class="sec-title">🏷️ Marketplace</div>
+    <div class="notice">Buy & sell with other collectors, organised by manufacturer. Collector accounts and membership open the marketplace to everyone — that arrives later. Listings you create now are saved on this device and ready.</div>
+    <button class="btn pri block" id="mk-sell">＋ Sell an item from your Garage</button>
+    <div style="height:10px"></div>
+    <div class="chip-row">
+      <button class="chip ${MK.brand==='All'?'on':''}" data-mkb="All">All (${listings.length})</button>
+      ${brs.map(b=>`<button class="chip ${MK.brand===b?'on':''}" data-mkb="${esc(b)}">${esc(b)} (${counts[b]||0})</button>`).join('')}
+    </div>
+    <div id="mk-list">${sections.map(s=>`<div class="sec-title">${esc(s.b)} (${s.items.length})</div>${s.items.map(mkCardHTML).join('')}`).join('')
+      || '<div class="notice">No listings here yet. Tap <b>Sell an item</b> to post the first one — listings from other collectors will appear here once membership accounts launch.</div>'}</div>`;
+  v.querySelectorAll('img[data-src]').forEach(i=>imgIO && imgIO.observe(i));
+  $('#mk-sell').addEventListener('click', ()=>{ MK.mode='pick'; renderMarket(); });
+  v.querySelectorAll('[data-mkb]').forEach(b=>b.addEventListener('click', ()=>{ MK.brand=b.dataset.mkb; renderMarket(); }));
+  $('#mk-list').addEventListener('click', async e=>{
+    const sold = e.target.closest('[data-mk-sold]');
+    if(sold){ e.stopPropagation();
+      const l = getListings().find(x=>x.lid===sold.dataset.mkSold); if(!l) return;
+      if(!confirm(`Mark "${l.name}" as sold for $${(+l.price||0).toFixed(2)}?`)) return;
+      saveListings(getListings().filter(x=>x.lid!==l.lid));
+      if(l.gid!=null){
+        const it = (await all('collection')).find(i=>i.id===l.gid);
+        if(it){ const left = (+it.qty||1) - (+l.qty||1);
+          if(left>0){ it.qty = left; await put('collection', it); } else { await del('collection', it.id); } }
+      }
+      toast('Sold 🎉 Garage updated'); renderMarket(); return; }
+    const delB = e.target.closest('[data-mk-del]');
+    if(delB){ e.stopPropagation();
+      if(confirm('Remove this listing?')){ saveListings(getListings().filter(x=>x.lid!==delB.dataset.mkDel)); renderMarket(); } return; }
+    const row = e.target.closest('[data-mk]');
+    if(row){ const l = getListings().find(x=>x.lid===row.dataset.mk); if(l && l.cid) go('catdetail', l.cid); }
+  });
+}
+async function renderMarketPick(){
+  const v = $('#view');
+  const items = (await all('collection')).slice().sort((a,b)=>(b.addedAt||'').localeCompare(a.addedAt||''));
+  const q = (MK.q||'').toLowerCase();
+  const shown = q ? items.filter(i=>`${i.name} ${i.brand} ${i.series} ${i.year}`.toLowerCase().includes(q)) : items;
+  v.innerHTML = `
+    <button class="btn ghost sm" id="mk-back">← Marketplace</button>
+    <div class="sec-title">Sell an item — pick from your Garage</div>
+    <input id="mk-q" class="inp" type="search" placeholder="Search your garage…" value="${esc(MK.q||'')}">
+    <div style="height:8px"></div>
+    <div id="mk-pick">${shown.map(it=>{
+      const c = it.cid ? catById(it.cid) : null;
+      const thumb = (it.photos&&it.photos[0]) ? `<img class="g-thumb" src="${it.photos[0]}" alt="">` : thumbHTML(c||{img:''}, '🚗');
+      return `<div class="g-item" data-pick="${it.id}">${thumb}
+        <div class="g-info"><div class="n">${esc(it.name||'Car')}</div>
+        <div class="m">${esc(it.brand||'')} · ${esc(it.series||'')} · ${esc(it.year||'')}</div>
+        <div class="m mut">In garage ×${+it.qty||1}</div></div><div class="mut">›</div></div>`;
+    }).join('') || '<div class="notice">Your garage is empty — add cars from the Catalog first, then list them here.</div>'}</div>`;
+  v.querySelectorAll('img[data-src]').forEach(i=>imgIO && imgIO.observe(i));
+  $('#mk-back').addEventListener('click', ()=>{ MK.mode='browse'; renderMarket(); });
+  const qi = $('#mk-q');
+  qi.addEventListener('input', ()=>{ MK.q = qi.value; clearTimeout(qi._t); qi._t = setTimeout(renderMarketPick, 220); });
+  $('#mk-pick').addEventListener('click', e=>{
+    const row = e.target.closest('[data-pick]'); if(!row) return;
+    MK.gid = +row.dataset.pick; MK.mode='form'; renderMarket();
+  });
+}
+async function renderMarketForm(){
+  const v = $('#view');
+  const it = (await all('collection')).find(i=>i.id===MK.gid);
+  if(!it){ MK.mode='pick'; return renderMarket(); }
+  const c = it.cid ? catById(it.cid) : null;
+  const thumb = (it.photos&&it.photos[0]) ? `<img class="g-thumb" src="${it.photos[0]}" alt="">` : thumbHTML(c||{img:''}, '🚗');
+  v.innerHTML = `
+    <button class="btn ghost sm" id="mk-back2">← Pick another car</button>
+    <div class="sec-title">List for sale</div>
+    <div class="g-item">${thumb}<div class="g-info"><div class="n">${esc(it.name||'Car')}</div>
+      <div class="m">${esc(it.brand||'')} · ${esc(it.series||'')} · ${esc(it.year||'')}</div></div></div>
+    <div class="form">
+      <label>Price (USD)<input id="mk-price" class="inp" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00"></label>
+      <label>Condition<select id="mk-cond" class="inp">${MK_CONDS.map(x=>`<option>${x}</option>`).join('')}</select></label>
+      <label>Quantity<input id="mk-qty" class="inp" type="number" min="1" max="${+it.qty||1}" step="1" value="1"></label>
+      <label>Note (optional)<input id="mk-note" class="inp" type="text" maxlength="80" placeholder="e.g. card has a soft corner"></label>
+      <button class="btn pri block" id="mk-create">Create listing</button>
+      <div class="small mut">Saved on this device for now — it goes live to other collectors when membership accounts launch.</div>
+    </div>`;
+  v.querySelectorAll('img[data-src]').forEach(i=>imgIO && imgIO.observe(i));
+  $('#mk-back2').addEventListener('click', ()=>{ MK.mode='pick'; renderMarket(); });
+  $('#mk-create').addEventListener('click', ()=>{
+    const price = parseFloat($('#mk-price').value);
+    if(isNaN(price) || price<0){ toast('Enter a price first'); return; }
+    const qty = Math.max(1, Math.min(+it.qty||1, parseInt($('#mk-qty').value)||1));
+    const photo = (it.photos&&it.photos[0] && it.photos[0].length<400000) ? it.photos[0] : '';
+    const l = { lid:'L'+Date.now().toString(36), gid: it.id, cid: it.cid||'',
+      name: it.name||(c&&c.name)||'Car', brand: it.brand||(c&&c.brand)||'Other',
+      series: it.series||(c&&c.series)||'', year: it.year||(c&&c.year)||'',
+      color: (c&&c.color)||'', img: (c&&c.img)||'', photo,
+      price, cond: $('#mk-cond').value, qty, note: $('#mk-note').value.trim(), ts: Date.now() };
+    const allL = getListings(); allL.unshift(l); saveListings(allL);
+    MK.mode='browse'; MK.brand = l.brand; MK.q='';
+    toast('Listed for sale 🏷️'); renderMarket();
   });
 }
 
