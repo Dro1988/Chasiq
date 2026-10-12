@@ -4,7 +4,7 @@
 
 /* Bump on every user-facing release — shown in More → About so we can tell
    which version a phone is actually running. */
-const APP_BUILD = 'v20';
+const APP_BUILD = 'v21';
 
 /* Offline-first: cache the app shell so it loads with no connection. */
 if ('serviceWorker' in navigator) {
@@ -257,8 +257,14 @@ function renderCatalog(){
         <div class="cbrand">${esc(c.brand)}</div>
         ${catImgHTML(c)}
         <div class="cname">${esc(c.name)}</div>
-        <div class="cmeta">${esc(c.series)} · ${esc(c.year)}${c.color?` · ${esc(c.color)}`:''}${c.col_no?` · <b>#${esc(c.col_no)}</b>`:''}${c.sku?` · <b>${esc(c.sku)}</b>`:''}${c.debut && c.debut!=c.year ? ' · debut '+esc(c.debut) : ''}</div>
-        <div class="cscale">${esc(c.scale)}</div>
+        <div class="cmeta">${esc(c.series)}${c.debut && c.debut!=c.year ? ' · debut '+esc(c.debut) : ''}</div>
+        <div class="cpills">
+          ${c.year?`<span class="pill">${esc(c.year)}</span>`:''}
+          ${c.color?`<span class="pill">${esc(c.color)}</span>`:''}
+          ${c.col_no?`<span class="pill acc">#${esc(c.col_no)}</span>`:''}
+          ${c.sku?`<span class="pill mono">${esc(c.sku)}</span>`:''}
+        </div>
+        ${c.upc?`<div class="cscale">UPC ${esc(c.upc)}</div>`:''}
         <div class="crow">
           <button class="btn pri sm" data-add="${c.id}">+ Garage</button>
           <button class="btn sec sm" data-wish="${c.id}">☆ Wish</button>
@@ -323,7 +329,7 @@ async function renderCatDetail(cid){
     <button class="btn ghost sm" data-go="catalog">← Catalog</button>
     <div style="height:10px"></div>
     ${catImgHTML(c, true)}
-    <h2 style="font-size:20px;margin:10px 0 4px">${esc(c.name)}</h2>
+    <h2 style="font-size:27px;line-height:1.12;margin:12px 0 4px">${esc(c.name)}</h2>
     <div><span class="badge brand">${esc(c.brand)}</span></div>
     <div class="mut small" style="margin-top:6px">${esc(c.series)} · ${c.year||'—'} · ${esc(c.scale)}${c.debut && c.debut!=c.year ? ' · debut '+esc(c.debut) : ''}</div>
     ${(c.sku||c.col_no||c.color||c.base||c.wheels||c.tampo||c.window||c.interior||c.notes||c.country)?`
