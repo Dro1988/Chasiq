@@ -5,7 +5,7 @@
 
 /* Bump on every user-facing release — shown in More → About so we can tell
    which version a phone is actually running. */
-const APP_BUILD = 'v22';
+const APP_BUILD = 'v22.1';
 
 /* Offline-first: cache the app shell so it loads with no connection. */
 if ('serviceWorker' in navigator) {
@@ -228,7 +228,7 @@ function renderCatalog(){
   const f = S.f, br = brands();
   const v = $('#view');
   v.innerHTML = `
-    <div class="notice">📚 <b>${catalog().length.toLocaleString()} castings</b> across ${br.length} brands — sourced from collector wikis, growing every release. Tap 📚 History for the stories behind the brands.</div>
+    <div class="notice">📚 <b>${catalog().length.toLocaleString()} castings</b> across ${br.length} brands — sourced from collector wikis, growing every release. Tap a car for its full story — or browse the 🏷️ Market to buy and sell with other collectors.</div>
     <input id="f-q" class="search" placeholder="🔍 Search casting, series…" value="${esc(f.q)}">
     <div class="chips" id="f-brands">
       <button class="chip ${!f.brand?'on':''}" data-b="">All brands</button>
