@@ -1,10 +1,11 @@
-/* Chasiq — local-first collection tracker. No login, no server. All data in IndexedDB. */
+/* Chasiq — local-first collection tracker with optional cloud accounts (v22+).
+   Data lives in IndexedDB; signing in syncs it to chasiq-api and unlocks the live Marketplace. */
 (function(){
 'use strict';
 
 /* Bump on every user-facing release — shown in More → About so we can tell
    which version a phone is actually running. */
-const APP_BUILD = 'v21';
+const APP_BUILD = 'v22';
 
 /* Offline-first: cache the app shell so it loads with no connection. */
 if ('serviceWorker' in navigator) {
@@ -215,7 +216,7 @@ function go(tab, arg){
 document.addEventListener('DOMContentLoaded', ()=>{
   document.querySelectorAll('.nav-btn').forEach(b=>b.addEventListener('click', ()=>go(b.dataset.tab)));
   $('#hdr-scan').addEventListener('click', openScanner);
-  openDB().then(()=>go('catalog')).catch(()=>{ $('#view').innerHTML='<div class="notice">IndexedDB is unavailable in this browser — the app cannot store your collection.</div>'; });
+  openDB().then(()=>{ go('catalog'); refreshMe().then(()=>{ if(ME) syncNow(true); }); }).catch(()=>{ $('#view').innerHTML='<div class="notice">IndexedDB is unavailable in this browser — the app cannot store your collection.</div>'; });
 });
 document.addEventListener('click', e=>{
   const t = e.target.closest('[data-go]');
@@ -637,6 +638,116 @@ async function renderWishlist(){
   });
 }
 
+/* ============================== account & cloud ============================== */
+const API = 'https://chasiq-api.onrender.com';
+let ME = null;              // public user object when signed in
+let SYNCING = false;
+const getToken = ()=> localStorage.getItem('dcToken') || '';
+async function api(path, method, body){
+  const r = await fetch(API + path, { method: method || 'GET',
+    headers: { 'Content-Type': 'application/json', ...(getToken() ? { Authorization: 'Bearer ' + getToken() } : {}) },
+    body: body ? JSON.stringify(body) : undefined });
+  const j = await r.json().catch(()=>({}));
+  if(!r.ok) throw new Error(j.detail || ('HTTP ' + r.status));
+  return j;
+}
+async function refreshMe(){
+  if(!getToken()){ ME = null; return null; }
+  try{ ME = (await api('/me')).user; }
+  catch(e){ ME = null; localStorage.removeItem('dcToken'); }
+  return ME;
+}
+async function collectLocal(){ return { collection: await all('collection'), wishlist: await all('wishlist') }; }
+function clearStore(store){ return new Promise((res, rej)=>{ const r = tx(store, 'readwrite').clear(); r.onsuccess = ()=>res(); r.onerror = ()=>rej(r.error); }); }
+async function applyCloud(d){
+  SYNCING = true;
+  try{
+    await clearStore('collection'); for(const it of (d.collection || [])) await _put('collection', it);
+    await clearStore('wishlist'); for(const w of (d.wishlist || [])) await _put('wishlist', w);
+  } finally { SYNCING = false; }
+}
+/* v1 merge: union by local record id, local copy wins. Built for a primary
+   single device; true multi-device conflict resolution comes later. */
+async function syncNow(silent){
+  if(!ME) return false;
+  try{
+    const remote = await api('/me/data');
+    const local = await collectLocal();
+    if(!remote.data){
+      await api('/me/data', 'PUT', { data: local });
+      if(!silent) toast('Garage backed up to the cloud ☁️');
+      return true;
+    }
+    const byId = new Map(); (remote.data.collection || []).forEach(it=>byId.set(it.id, it)); (local.collection || []).forEach(it=>byId.set(it.id, it));
+    const wBy = new Map(); (remote.data.wishlist || []).forEach(w=>wBy.set(w.cid, w)); (local.wishlist || []).forEach(w=>wBy.set(w.cid, w));
+    const merged = { collection: [...byId.values()], wishlist: [...wBy.values()] };
+    await applyCloud(merged);
+    await api('/me/data', 'PUT', { data: merged });
+    if(!silent) toast('Synced ☁️');
+    return true;
+  }catch(err){ if(!silent) toast(err.message || 'Sync failed'); return false; }
+}
+let syncTimer = null;
+function scheduleSync(){ if(!ME || SYNCING) return; clearTimeout(syncTimer); syncTimer = setTimeout(()=>syncNow(true), 2500); }
+const _put = put, _del = del;
+put = function(store, val){ const p = _put(store, val); if(store === 'collection' || store === 'wishlist') p.then(()=>scheduleSync(), ()=>{}); return p; };
+del = function(store, key){ const p = _del(store, key); if(store === 'collection' || store === 'wishlist') p.then(()=>scheduleSync(), ()=>{}); return p; };
+
+function accountHTML(){
+  if(ME){
+    const planName = ME.plan === 'admin' ? 'Admin' : ME.plan === 'premium' ? 'Premium' : 'Free';
+    return `<div class="sec-title">👤 Account</div>
+    <div class="form">
+      <div class="kv"><span class="k">Signed in as</span><b>${esc(ME.name || ME.email)}</b></div>
+      <div class="kv"><span class="k">Email</span><span>${esc(ME.email)}</span></div>
+      <div class="kv"><span class="k">Plan</span><span class="badge ${ME.plan === 'free' ? 'soon' : 'live'}">${planName}</span></div>
+      <div class="kv"><span class="k">Cloud sync</span><span>${ME.plan === 'free' ? 'Up to ' + ME.limits.garage + ' garage cars' : 'Unlimited'}</span></div>
+      <div class="kv"><span class="k">Selling</span><span>${ME.plan === 'admin' ? 'Enabled — fee-free (admin)' : ME.limits.canSell ? 'Enabled' : 'Paid plan feature'}</span></div>
+      ${ME.plan === 'admin' ? '<div class="small mut" style="margin-top:6px">Admin account: no plan fees, no sales fees, unlimited everything.</div>' : ''}
+      ${ME.plan === 'free' ? '<div class="small mut" style="margin-top:6px">The $0.99/mo plan (unlimited sync + selling) opens with the store launch.</div>' : ''}
+      <div class="row2" style="margin-top:10px">
+        <button class="btn sec" data-acct="sync">☁️ Sync now</button>
+        <button class="btn ghost" data-acct="signout">Sign out</button>
+      </div>
+      <div class="small mut" id="acct-status" style="margin-top:8px"></div>
+    </div>`;
+  }
+  return `<div class="sec-title">👤 Account</div>
+  <div class="form">
+    <div class="small mut" style="margin-bottom:8px">Sign in to sync your garage to the cloud and buy &amp; sell in the Marketplace. New here? Create an account — it's free.</div>
+    <div class="frow"><label>Display name (shown when you sell)</label><input id="acct-name" class="inp" type="text" autocomplete="name" placeholder="e.g. Dixie Diecast"></div>
+    <div class="frow"><label>Email</label><input id="acct-email" class="inp" type="email" autocomplete="email" placeholder="you@example.com"></div>
+    <div class="frow"><label>Password</label><input id="acct-pass" class="inp" type="password" autocomplete="current-password" placeholder="6+ characters"></div>
+    <div class="row2">
+      <button class="btn pri" data-acct="signin">Sign in</button>
+      <button class="btn sec" data-acct="register">Create account</button>
+    </div>
+    <div class="small mut" id="acct-status" style="margin-top:8px"></div>
+  </div>`;
+}
+document.addEventListener('click', async e=>{
+  const b = e.target.closest('[data-acct]'); if(!b) return;
+  const status = m => { const s = $('#acct-status'); if(s) s.textContent = m; };
+  try{
+    if(b.dataset.acct === 'signout'){
+      localStorage.removeItem('dcToken'); ME = null; toast('Signed out');
+      if(S.tab === 'more') renderMore(); if(S.tab === 'market') renderMarket();
+      return;
+    }
+    if(b.dataset.acct === 'sync'){ status('Syncing…'); const ok = await syncNow(false); status(ok ? 'Synced ✓' : 'Sync did not complete'); return; }
+    const email = ($('#acct-email') || {}).value || '', password = ($('#acct-pass') || {}).value || '';
+    if(b.dataset.acct === 'signin' || b.dataset.acct === 'register'){
+      status('One moment…');
+      const j = await api(b.dataset.acct === 'signin' ? '/auth/login' : '/auth/register', 'POST',
+        { email, password, name: ($('#acct-name') || {}).value || '' });
+      localStorage.setItem('dcToken', j.token); ME = j.user;
+      toast(b.dataset.acct === 'signin' ? 'Welcome back 👋' : 'Account created 🎉');
+      await syncNow(true);
+      if(S.tab === 'more') renderMore(); if(S.tab === 'market') renderMarket();
+    }
+  }catch(err){ status(err.message || 'Something went wrong'); toast(err.message || 'Error'); }
+});
+
 /* ============================== marketplace ==============================
    Phase 1 (local): listings are created from the user's own Garage and
    stored on-device. Collector accounts + membership (sign-up, monthly fee)
@@ -663,9 +774,10 @@ function mkCardHTML(l){
     </div></div>`;
 }
 async function renderMarket(){
-  const v = $('#view');
   if(MK.mode==='pick') return renderMarketPick();
   if(MK.mode==='form') return renderMarketForm();
+  if(ME) return renderMarketCloud();
+  const v = $('#view');
   const listings = getListings();
   const brs = brands();
   const counts = {}; listings.forEach(l=>counts[l.brand]=(counts[l.brand]||0)+1);
@@ -674,7 +786,7 @@ async function renderMarket(){
     .map(b=>({b, items: shown.filter(l=>l.brand===b)})).filter(s=>s.items.length);
   v.innerHTML = `
     <div class="sec-title">🏷️ Marketplace</div>
-    <div class="notice">Buy & sell with other collectors, organised by manufacturer. Collector accounts and membership open the marketplace to everyone — that arrives later. Listings you create now are saved on this device and ready.</div>
+    <div class="notice">Buy & sell with other collectors, organised by manufacturer. <b>Sign in from the More tab</b> to see live listings from everyone — listings you create while signed out are saved on this device only.</div>
     <button class="btn pri block" id="mk-sell">＋ Sell an item from your Garage</button>
     <div style="height:10px"></div>
     <div class="chip-row">
@@ -703,6 +815,74 @@ async function renderMarket(){
       if(confirm('Remove this listing?')){ saveListings(getListings().filter(x=>x.lid!==delB.dataset.mkDel)); renderMarket(); } return; }
     const row = e.target.closest('[data-mk]');
     if(row){ const l = getListings().find(x=>x.lid===row.dataset.mk); if(l && l.cid) go('catdetail', l.cid); }
+  });
+}
+function mkCloudCardHTML(l){
+  const mine = l.seller_id === ME.id;
+  return `<div class="g-item" data-mk="${l.lid}">${thumbHTML({img:l.img||''}, '🚗')}
+    <div class="g-info"><div class="n">${esc(l.name)}</div>
+      <div class="m">${esc(l.brand)} · ${esc(l.series||'')} · ${esc(l.year||'')}</div>
+      <div class="m mut">${esc(l.cond||'')}${l.qty>1?` · ×${l.qty}`:''}${l.note?` · ${esc(l.note)}`:''}</div>
+      <div class="m"><b>$${(+l.price||0).toFixed(2)}</b> <span class="mut">from ${esc(l.seller_name||'a collector')}</span></div></div>
+    ${mine?`<button class="btn ghost sm" data-mk-del="${l.lid}">Remove</button>`:`<button class="btn pri sm" data-mk-buy="${l.lid}">Buy</button>`}
+  </div>`;
+}
+function orderRowHTML(o){
+  return `<div class="g-item"><div class="g-info"><div class="n">${esc(o.listing_name||'Listing')}</div>
+    <div class="m">${o.side==='sale'?'You sold':'You bought'} · $${(+o.price||0).toFixed(2)}${o.side==='sale'&&+o.fee>0?` · fee $${(+o.fee).toFixed(2)}`:''} · ${esc(o.status)}</div></div>
+    ${o.side==='sale'&&o.status==='reserved'?`<button class="btn pri sm" data-ord-complete="${o.id}">Complete sale</button>`:''}</div>`;
+}
+async function renderMarketCloud(){
+  const v = $('#view');
+  v.innerHTML = `<div class="sec-title">🏷️ Marketplace</div><div class="notice">Loading listings…</div>`;
+  let listings = [], orders = {bought:[], sold:[]};
+  try{ listings = (await api('/listings')).listings || []; }
+  catch(e){ v.innerHTML = `<div class="sec-title">🏷️ Marketplace</div><div class="notice">Couldn't reach the marketplace: ${esc(e.message)}</div>`; return; }
+  try{ orders = await api('/me/orders'); }catch(e){}
+  const brs = [...new Set([...brands(), ...listings.map(l=>l.brand)])].sort();
+  const counts = {}; listings.forEach(l=>counts[l.brand]=(counts[l.brand]||0)+1);
+  const shown = MK.brand==='All' ? listings : listings.filter(l=>l.brand===MK.brand);
+  const sections = (MK.brand==='All' ? brs : [MK.brand]).map(b=>({b, items: shown.filter(l=>l.brand===b)})).filter(s=>s.items.length);
+  const myOrders = [...(orders.sold||[]).map(o=>({...o, side:'sale'})), ...(orders.bought||[]).map(o=>({...o, side:'purchase'}))];
+  v.innerHTML = `
+    <div class="sec-title">🏷️ Marketplace</div>
+    <div class="notice">Live listings from Chasiq collectors, organised by manufacturer. ${ME.limits.canSell ? 'You can sell' + (ME.plan==='admin' ? ' — admin accounts pay no sales fees.' : ' — a small fee applies to completed sales.') : 'Selling is part of the paid plan — free accounts can buy.'}</div>
+    <button class="btn pri block" id="mk-sell">＋ Sell an item from your Garage</button>
+    <div style="height:10px"></div>
+    <div class="chip-row">
+      <button class="chip ${MK.brand==='All'?'on':''}" data-mkb="All">All (${listings.length})</button>
+      ${brs.map(b=>`<button class="chip ${MK.brand===b?'on':''}" data-mkb="${esc(b)}">${esc(b)} (${counts[b]||0})</button>`).join('')}
+    </div>
+    <div id="mk-list">${sections.map(s=>`<div class="sec-title">${esc(s.b)} (${s.items.length})</div>${s.items.map(mkCloudCardHTML).join('')}`).join('')
+      || '<div class="notice">No live listings yet — be the first to sell something. Listings appear here for every signed-in collector.</div>'}</div>
+    ${myOrders.length?`<div class="sec-title">Your orders</div><div id="mk-orders">${myOrders.map(orderRowHTML).join('')}</div>`:''}`;
+  v.querySelectorAll('img[data-src]').forEach(i=>imgIO && imgIO.observe(i));
+  $('#mk-sell').addEventListener('click', ()=>{
+    if(!ME.limits.canSell){ toast('Selling unlocks with the paid plan — free accounts can buy'); return; }
+    MK.mode='pick'; renderMarket();
+  });
+  v.querySelectorAll('[data-mkb]').forEach(b=>b.addEventListener('click', ()=>{ MK.brand=b.dataset.mkb; renderMarket(); }));
+  $('#mk-list').addEventListener('click', async e=>{
+    const buy = e.target.closest('[data-mk-buy]');
+    if(buy){ e.stopPropagation();
+      const l = listings.find(x=>x.lid===buy.dataset.mkBuy); if(!l) return;
+      if(!confirm(`Buy "${l.name}" for $${(+l.price||0).toFixed(2)} from ${l.seller_name}? Payment & shipping are arranged with the seller.`)) return;
+      try{ const j = await api('/listings/' + l.lid + '/buy', 'POST', {}); toast('Reserved 🎉 ' + (j.note||'')); }
+      catch(err){ toast(err.message||'Buy failed'); }
+      renderMarket(); return; }
+    const delB = e.target.closest('[data-mk-del]');
+    if(delB){ e.stopPropagation();
+      if(confirm('Remove this listing?')){ try{ await api('/listings/' + delB.dataset.mkDel, 'DELETE'); }catch(err){ toast(err.message||'Remove failed'); } renderMarket(); } return; }
+    const row = e.target.closest('[data-mk]');
+    if(row){ const l = listings.find(x=>x.lid===row.dataset.mk); if(l && l.cid) go('catdetail', l.cid); }
+  });
+  const ordBox = $('#mk-orders');
+  if(ordBox) ordBox.addEventListener('click', async e=>{
+    const c = e.target.closest('[data-ord-complete]'); if(!c) return;
+    try{ const j = await api('/orders/' + c.dataset.ordComplete + '/complete', 'POST', {});
+      toast(+j.fee>0 ? `Sale complete — platform fee $${(+j.fee).toFixed(2)} recorded` : 'Sale complete 🎉'); }
+    catch(err){ toast(err.message||'Could not complete'); }
+    renderMarket();
   });
 }
 async function renderMarketPick(){
@@ -753,7 +933,7 @@ async function renderMarketForm(){
     </div>`;
   v.querySelectorAll('img[data-src]').forEach(i=>imgIO && imgIO.observe(i));
   $('#mk-back2').addEventListener('click', ()=>{ MK.mode='pick'; renderMarket(); });
-  $('#mk-create').addEventListener('click', ()=>{
+  $('#mk-create').addEventListener('click', async ()=>{
     const price = parseFloat($('#mk-price').value);
     if(isNaN(price) || price<0){ toast('Enter a price first'); return; }
     const qty = Math.max(1, Math.min(+it.qty||1, parseInt($('#mk-qty').value)||1));
@@ -763,9 +943,15 @@ async function renderMarketForm(){
       series: it.series||(c&&c.series)||'', year: it.year||(c&&c.year)||'',
       color: (c&&c.color)||'', img: (c&&c.img)||'', photo,
       price, cond: $('#mk-cond').value, qty, note: $('#mk-note').value.trim(), ts: Date.now() };
-    const allL = getListings(); allL.unshift(l); saveListings(allL);
     MK.mode='browse'; MK.brand = l.brand; MK.q='';
-    toast('Listed for sale 🏷️'); renderMarket();
+    if(ME){
+      try{ await api('/listings', 'POST', { listing: l }); toast('Listed for sale 🏷️ — live for all collectors'); }
+      catch(e){ toast(e.message||'Could not list'); }
+    } else {
+      const allL = getListings(); allL.unshift(l); saveListings(allL);
+      toast('Listed for sale 🏷️');
+    }
+    renderMarket();
   });
 }
 
@@ -823,6 +1009,7 @@ const CSV_COLS = ['name','brand','series','year','scale','quantity','condition',
 function renderMore(){
   const v = $('#view');
   v.innerHTML = `
+    ${accountHTML()}
     <div class="sec-title">📥 Import / 📤 Export</div>
     <div class="form">
       <div class="frow"><label>Import from CSV (Excel → Save as CSV)</label>

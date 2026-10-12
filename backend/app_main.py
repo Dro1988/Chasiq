@@ -240,8 +240,16 @@ def buy_listing(lid: str, u=Depends(current_user)):
 
 @app.get("/me/orders")
 def my_orders(u=Depends(current_user)):
-    bought = qall(f"SELECT * FROM orders WHERE buyer_id={PH} ORDER BY created_at DESC", (u["id"],))
-    sold = qall(f"SELECT * FROM orders WHERE seller_id={PH} ORDER BY created_at DESC", (u["id"],))
+    def enrich(rows):
+        for o in rows:
+            l = q1(f"SELECT data FROM listings WHERE id={PH}", (o["listing_id"],))
+            if l:
+                d = json.loads(l["data"])
+                o["listing_name"] = d.get("name", "")
+                o["listing_brand"] = d.get("brand", "")
+        return rows
+    bought = enrich(qall(f"SELECT * FROM orders WHERE buyer_id={PH} ORDER BY created_at DESC", (u["id"],)))
+    sold = enrich(qall(f"SELECT * FROM orders WHERE seller_id={PH} ORDER BY created_at DESC", (u["id"],)))
     return {"bought": bought, "sold": sold}
 
 @app.post("/orders/{oid}/complete")
