@@ -5,10 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Chasiq — Multi-Brand Die-Cast Collection Tracker</title>
 <meta name="description" content="Chasiq (cha-seek): track your die-cast collection across Hot Wheels, Matchbox, M2, GreenLight, Mini GT, Tomica, Auto World and Kaido House. 100% on-device, no account needed.">
-<meta property="og:title" content="Chasiq — Multi-Brand Die-Cast Collection Tracker">
-<meta property="og:description" content="Track your die-cast collection across Hot Wheels, Matchbox, M2, GreenLight, Mini GT, Tomica, Auto World and Kaido House. 100% on-device, no account needed.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://chasiq.onrender.com/">
 <meta name="theme-color" content="#0d1117">
 <link rel="stylesheet" href="./assets/styles.css">
 </head>
@@ -35,58 +31,6 @@
 
 <div id="modal-root"></div>
 <div id="toast-root"></div>
-
-<!-- Chasiq footer: static blog link + collector-guides email signup (no JS framework deps) -->
-<style>
-.chq-foot{max-width:720px;margin:34px auto 0;padding:22px 16px 30px;text-align:center;border-top:1px solid var(--line)}
-.chq-foot .chq-links{display:flex;justify-content:center;gap:18px;margin-bottom:18px;font-size:14px;font-weight:600}
-.chq-foot .chq-links a{color:var(--mut)}
-.chq-foot .chq-links a:hover{color:var(--acc)}
-.chq-signup{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px;max-width:480px;margin:0 auto}
-.chq-signup h3{margin:0 0 4px;font-size:16px}
-.chq-signup p{margin:0 0 12px;font-size:13px;color:var(--mut)}
-.chq-signup .row{display:flex;gap:8px}
-.chq-signup input{flex:1;min-width:0;padding:10px 12px;font-size:14px;border-radius:10px;background:var(--bg2);border:1px solid var(--line);color:var(--txt)}
-.chq-signup input::placeholder{color:var(--mut2)}
-.chq-signup button{background:linear-gradient(90deg,var(--acc),var(--acc2));color:#1a1206;font-weight:800;padding:10px 16px;border-radius:10px;border:0;cursor:pointer;font-size:14px;white-space:nowrap}
-.chq-signup .note{font-size:12px;margin:8px 0 0;min-height:16px;color:var(--ok)}
-@media(max-width:520px){.chq-signup .row{flex-direction:column}}
-</style>
-<footer class="chq-foot">
-<div class="chq-links">
-<a href="/blog/">📚 Collector Guides</a>
-<a href="/brands/hot-wheels.html">Catalog by brand</a>
-</div>
-<div class="chq-signup">
-<h3>Get collector guides</h3>
-<p>Organizing tips, cataloging systems, hunt strategies — straight to your inbox.</p>
-<form id="chq-foot-signup" novalidate>
-<div class="row">
-<input type="email" name="email" placeholder="Email address" autocomplete="email" aria-label="Email address" required>
-<button type="submit">Sign up</button>
-</div>
-<p class="note" id="chq-foot-msg" aria-live="polite"></p>
-</form>
-</div>
-</footer>
-<script>
-(function(){
-var f=document.getElementById('chq-foot-signup');if(!f)return;
-f.addEventListener('submit',async function(e){
-e.preventDefault();
-var msg=document.getElementById('chq-foot-msg');
-var email=(new FormData(f).get('email')||'').toString().trim();
-if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){msg.style.color='#ff5a5a';msg.textContent='Please enter a valid email address.';return;}
-msg.style.color='#9aa7bb';msg.textContent='Signing you up…';
-try{
-var r=await fetch('https://formsubmit.co/ajax/dandrsalesllc@gmail.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({email:email,_subject:'Chasiq blog signup'})});
-var d=await r.json();
-if(r.ok&&(d.success==='true'||d.success===true)){msg.style.color='#3ddc84';msg.textContent='Thanks — you\u2019re on the list!';f.querySelector('input').value='';}
-else{throw new Error('x');}
-}catch(err){msg.style.color='#ff5a5a';msg.textContent='Something went wrong — try again in a moment.';}
-});
-})();
-</script>
 
 <script src="./assets/catalog.js"></script>
 <script src="./assets/catalog-c1.js"></script>
@@ -291,6 +235,76 @@ else{throw new Error('x');}
 <script src="./assets/hwr-c117.js"></script>
 <script src="./assets/hwr-c118.js"></script>
 <script src="./assets/hwr-c119.js"></script>
+<script src="./assets/hwr-c120.js"></script>
+<script src="./assets/hwr-c121.js"></script>
+<script src="./assets/hwr-c122.js"></script>
+<script src="./assets/hwr-c123.js"></script>
+<script src="./assets/hwr-c124.js"></script>
+<script src="./assets/hwr-c125.js"></script>
+<script src="./assets/hwr-c126.js"></script>
+<script src="./assets/hwr-c127.js"></script>
+<script src="./assets/hwr-c128.js"></script>
+<script src="./assets/hwr-c129.js"></script>
+<script src="./assets/hwr-c130.js"></script>
+<script src="./assets/hwr-c131.js"></script>
+<script src="./assets/hwr-c132.js"></script>
+<script src="./assets/hwr-c133.js"></script>
+<script src="./assets/hwr-c134.js"></script>
+<script src="./assets/hwr-c135.js"></script>
+<script src="./assets/hwr-c136.js"></script>
+<script src="./assets/hwr-c137.js"></script>
+<script src="./assets/hwr-c138.js"></script>
+<script src="./assets/hwr-c139.js"></script>
+<script src="./assets/hwr-c140.js"></script>
+<script src="./assets/hwr-c141.js"></script>
+<script src="./assets/hwr-c142.js"></script>
+<script src="./assets/hwr-c143.js"></script>
+<script src="./assets/hwr-c144.js"></script>
+<script src="./assets/hwr-c145.js"></script>
+<script src="./assets/hwr-c146.js"></script>
+<script src="./assets/hwr-c147.js"></script>
+<script src="./assets/hwr-c148.js"></script>
+<script src="./assets/hwr-c149.js"></script>
+<script src="./assets/hwr-c150.js"></script>
+<script src="./assets/hwr-c151.js"></script>
+<script src="./assets/hwr-c152.js"></script>
+<script src="./assets/hwr-c153.js"></script>
+<script src="./assets/hwr-c154.js"></script>
+<script src="./assets/hwr-c155.js"></script>
+<script src="./assets/hwr-c156.js"></script>
+<script src="./assets/hwr-c157.js"></script>
+<script src="./assets/hwr-c158.js"></script>
+<script src="./assets/hwr-c159.js"></script>
+<script src="./assets/hwr-c160.js"></script>
+<script src="./assets/hwr-c161.js"></script>
+<script src="./assets/hwr-c162.js"></script>
+<script src="./assets/hwr-c163.js"></script>
+<script src="./assets/hwr-c164.js"></script>
+<script src="./assets/hwr-c165.js"></script>
+<script src="./assets/hwr-c166.js"></script>
+<script src="./assets/hwr-c167.js"></script>
+<script src="./assets/hwr-c168.js"></script>
+<script src="./assets/hwr-c169.js"></script>
+<script src="./assets/hwr-c170.js"></script>
+<script src="./assets/hwr-c171.js"></script>
+<script src="./assets/hwr-c172.js"></script>
+<script src="./assets/hwr-c173.js"></script>
+<script src="./assets/hwr-c174.js"></script>
+<script src="./assets/hwr-c175.js"></script>
+<script src="./assets/hwr-c176.js"></script>
+<script src="./assets/hwr-c177.js"></script>
+<script src="./assets/hwr-c178.js"></script>
+<script src="./assets/hwr-c179.js"></script>
+<script src="./assets/hwr-c180.js"></script>
+<script src="./assets/hwr-c181.js"></script>
+<script src="./assets/hwr-c182.js"></script>
+<script src="./assets/hwr-c183.js"></script>
+<script src="./assets/hwr-c184.js"></script>
+<script src="./assets/hwr-c185.js"></script>
+<script src="./assets/hwr-c186.js"></script>
+<script src="./assets/hwr-c187.js"></script>
+<script src="./assets/hwr-c188.js"></script>
+<script src="./assets/hwr-c189.js"></script>
 <script src="./assets/history.js"></script>
 <script src="./assets/app.js"></script>
 </body>
