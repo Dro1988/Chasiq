@@ -4,7 +4,7 @@
 
 /* Bump on every user-facing release — shown in More → About so we can tell
    which version a phone is actually running. */
-const APP_BUILD = 'v17';
+const APP_BUILD = 'v18';
 
 /* Offline-first: cache the app shell so it loads with no connection. */
 if ('serviceWorker' in navigator) {
@@ -351,9 +351,9 @@ async function renderCatDetail(cid){
       :'<div class="mut">No history notes yet for this brand.</div>'}
       <div class="small mut" style="margin-top:8px">${c.imgKind==='casting'?'Catalog photo: this casting (release-specific photo still being sourced). ':'Catalog photo: community wiki. '}Your own garage photos always take precedence in the Garage tab.</div>
     </div>
-    ${mates.length?`<div class="sec-title">More from ${esc(c.series)} (${matesAll.length})</div>
+    ${mates.length?`<div class="sec-title">Other variations (${matesAll.length})</div>
     <div class="mate-strip">${mates.map(m=>`
-      <div class="mate" data-cat="${m.id}">${catImgHTML(m)}<div class="mn">${esc(m.name)}</div></div>`).join('')}</div>`:''}
+      <div class="mate" data-cat="${m.id}">${catImgHTML(m)}<div class="mn">${esc([m.year, m.color].filter(Boolean).join(' · ') || m.name)}</div></div>`).join('')}</div>`:''}
     <div style="height:24px"></div>`;
   $('#cd-add').addEventListener('click', async ()=>{ await addToCollection(cid); renderCatDetail(cid); });
   $('#cd-wish').addEventListener('click', async ()=>{
