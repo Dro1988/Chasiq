@@ -1,0 +1,4 @@
+fastapi
+uvicorn
+pyjwt
+psycopg2-binary
