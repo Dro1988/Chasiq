@@ -4,7 +4,7 @@
 
 /* Bump on every user-facing release — shown in More → About so we can tell
    which version a phone is actually running. */
-const APP_BUILD = 'v18';
+const APP_BUILD = 'v19';
 
 /* Offline-first: cache the app shell so it loads with no connection. */
 if ('serviceWorker' in navigator) {
@@ -325,16 +325,20 @@ async function renderCatDetail(cid){
     <h2 style="font-size:20px;margin:10px 0 4px">${esc(c.name)}</h2>
     <div><span class="badge brand">${esc(c.brand)}</span></div>
     <div class="mut small" style="margin-top:6px">${esc(c.series)} · ${c.year||'—'} · ${esc(c.scale)}${c.debut && c.debut!=c.year ? ' · debut '+esc(c.debut) : ''}</div>
-    ${(c.sku||c.col_no||c.color||c.base||c.wheels||c.tampo||c.window||c.interior||c.notes)?`
+    ${(c.sku||c.col_no||c.color||c.base||c.wheels||c.tampo||c.window||c.interior||c.notes||c.country)?`
     <div class="spec-grid">
-      ${c.sku?`<div class="spec"><span>SKU</span><b>${esc(c.sku)}</b></div>`:''}
-      ${c.col_no?`<div class="spec"><span>Series #</span><b>${esc(c.col_no)}</b></div>`:''}
+      ${c.year?`<div class="spec"><span>Release Year</span><b>${esc(c.year)}</b></div>`:''}
+      ${c.sku?`<div class="spec"><span>SKU / Toy #</span><b>${esc(c.sku)}</b></div>`:''}
+      ${c.col_no?`<div class="spec"><span>Series Index</span><b>${esc(c.col_no)}</b></div>`:''}
       ${c.wiki_series?`<div class="spec"><span>Series</span><b>${esc(c.wiki_series)}</b></div>`:''}
-      ${c.color?`<div class="spec"><span>Color</span><b>${esc(c.color)}</b></div>`:''}
-      ${c.base?`<div class="spec"><span>Base</span><b>${esc(c.base)}</b></div>`:''}
-      ${c.window?`<div class="spec"><span>Windows</span><b>${esc(c.window)}</b></div>`:''}
-      ${c.interior?`<div class="spec"><span>Interior</span><b>${esc(c.interior)}</b></div>`:''}
-      ${c.wheels?`<div class="spec"><span>Wheels</span><b>${esc(c.wheels)}</b></div>`:''}
+      ${c.color?`<div class="spec"><span>Body Color</span><b>${esc(c.color)}</b></div>`:''}
+      ${c.baseColor?`<div class="spec"><span>Base Color</span><b>${esc(c.baseColor)}</b></div>`:''}
+      ${c.baseMaterial?`<div class="spec"><span>Base Material</span><b>${esc(c.baseMaterial)}</b></div>`:''}
+      ${(!c.baseColor && c.base)?`<div class="spec"><span>Base</span><b>${esc(c.base)}</b></div>`:''}
+      ${c.window?`<div class="spec"><span>Window Color</span><b>${esc(c.window)}</b></div>`:''}
+      ${c.interior?`<div class="spec"><span>Interior Color</span><b>${esc(c.interior)}</b></div>`:''}
+      ${c.wheels?`<div class="spec"><span>Wheel Type</span><b>${esc(c.wheels)}</b></div>`:''}
+      ${c.country?`<div class="spec"><span>Country of Origin</span><b>${esc(c.country)}</b></div>`:''}
       ${c.tampo?`<div class="spec wide"><span>Tampo</span><b>${esc(c.tampo)}</b></div>`:''}
       ${c.notes?`<div class="spec wide"><span>Variation notes</span><b>${esc(c.notes)}</b></div>`:''}
     </div>`:''}
