@@ -4,7 +4,7 @@
 
 /* Bump on every user-facing release — shown in More → About so we can tell
    which version a phone is actually running. */
-const APP_BUILD = 'v16';
+const APP_BUILD = 'v17';
 
 /* Offline-first: cache the app shell so it loads with no connection. */
 if ('serviceWorker' in navigator) {
@@ -256,7 +256,7 @@ function renderCatalog(){
         <div class="cbrand">${esc(c.brand)}</div>
         ${catImgHTML(c)}
         <div class="cname">${esc(c.name)}</div>
-        <div class="cmeta">${esc(c.series)} · ${esc(c.year)}${c.col_no?` · <b>#${esc(c.col_no)}</b>`:''}${c.sku?` · <b>${esc(c.sku)}</b>`:''}${c.debut && c.debut!=c.year ? ' · debut '+esc(c.debut) : ''}</div>
+        <div class="cmeta">${esc(c.series)} · ${esc(c.year)}${c.color?` · ${esc(c.color)}`:''}${c.col_no?` · <b>#${esc(c.col_no)}</b>`:''}${c.sku?` · <b>${esc(c.sku)}</b>`:''}${c.debut && c.debut!=c.year ? ' · debut '+esc(c.debut) : ''}</div>
         <div class="cscale">${esc(c.scale)}</div>
         <div class="crow">
           <button class="btn pri sm" data-add="${c.id}">+ Garage</button>
@@ -325,7 +325,7 @@ async function renderCatDetail(cid){
     <h2 style="font-size:20px;margin:10px 0 4px">${esc(c.name)}</h2>
     <div><span class="badge brand">${esc(c.brand)}</span></div>
     <div class="mut small" style="margin-top:6px">${esc(c.series)} · ${c.year||'—'} · ${esc(c.scale)}${c.debut && c.debut!=c.year ? ' · debut '+esc(c.debut) : ''}</div>
-    ${(c.sku||c.col_no||c.color||c.base||c.wheels||c.tampo||c.window||c.interior)?`
+    ${(c.sku||c.col_no||c.color||c.base||c.wheels||c.tampo||c.window||c.interior||c.notes)?`
     <div class="spec-grid">
       ${c.sku?`<div class="spec"><span>SKU</span><b>${esc(c.sku)}</b></div>`:''}
       ${c.col_no?`<div class="spec"><span>Series #</span><b>${esc(c.col_no)}</b></div>`:''}
@@ -336,6 +336,7 @@ async function renderCatDetail(cid){
       ${c.interior?`<div class="spec"><span>Interior</span><b>${esc(c.interior)}</b></div>`:''}
       ${c.wheels?`<div class="spec"><span>Wheels</span><b>${esc(c.wheels)}</b></div>`:''}
       ${c.tampo?`<div class="spec wide"><span>Tampo</span><b>${esc(c.tampo)}</b></div>`:''}
+      ${c.notes?`<div class="spec wide"><span>Variation notes</span><b>${esc(c.notes)}</b></div>`:''}
     </div>`:''}
     ${owned?`<div class="notice" style="margin-top:10px">🏠 In your garage × ${owned}</div>`:''}
     <div class="row2" style="margin-top:10px">
