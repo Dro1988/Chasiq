@@ -5,7 +5,7 @@
 
 /* Bump on every user-facing release — shown in More → About so we can tell
    which version a phone is actually running. */
-const APP_BUILD = 'v22.1';
+const APP_BUILD = 'v22.2';
 
 /* Offline-first: cache the app shell so it loads with no connection. */
 if ('serviceWorker' in navigator) {
@@ -1131,7 +1131,7 @@ function renderMore(){
     else { clearVisionKey(); vstat.innerHTML = '⚪ No key saved — photo ID will ask you to add one.'; toast('Key cleared'); }
   });
   $('#m-vkeydel').addEventListener('click', ()=>{ clearVisionKey(); $('#m-vkey').value=''; vstat.innerHTML = '⚪ No key saved — photo ID will ask you to add one.'; toast('Key cleared'); });
-  $('#m-appbuild').textContent = APP_BUILD;
+  { const sh = (navigator.userAgent.match(/ChasiqShell\/([0-9.]+)/) || [])[1]; $('#m-appbuild').textContent = APP_BUILD + (sh ? ' · Android shell v' + sh : ''); }
   const testOne = (url, ms)=>new Promise(res=>{
     const im = new Image(); let done = false;
     const fin = v=>{ if(!done){ done = true; res(v); } };
