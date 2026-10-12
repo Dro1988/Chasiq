@@ -5,7 +5,7 @@
 
 /* Bump on every user-facing release — shown in More → About so we can tell
    which version a phone is actually running. */
-const APP_BUILD = 'v22.2';
+const APP_BUILD = 'v22.3';
 
 /* Offline-first: cache the app shell so it loads with no connection. */
 if ('serviceWorker' in navigator) {
@@ -1041,10 +1041,10 @@ function renderMore(){
     <div class="sec-title">ℹ️ About</div>
     <div class="form">
       <div class="sec-title" style="margin-top:0">Live today ✅</div>
-      ${['Multi-brand starter catalog ('+catalog().length+' verified castings, 8 brands)','Browse, search & filter by brand, series, year','My Garage: quantity, condition, price, dates, notes, photos','UPC barcode scanner for carded cars','✨ AI photo ID for loose cars (needs your free Google AI Studio key — More → AI visual ID)','Wishlist + series completion tracking','Stats dashboard','CSV import & JSON backup — everything stays on your device'].map(t=>`<div class="about-li"><span class="e">✅</span><span>${t}</span></div>`).join('')}
+      ${['Multi-brand catalog ('+catalog().length+' verified castings, 9 brands) — every release & variation, with its own photo','My Garage: quantity, condition, price, dates, notes, photos','UPC barcode scanner + ✨ AI photo ID for loose cars','Wishlist, series completion & stats','Account + cloud sync, and the 🏷️ Marketplace to buy & sell','CSV import & JSON backup'].map(t=>`<div class="about-li"><span class="e">✅</span><span>${t}</span></div>`).join('')}
       <div class="sec-title">Coming soon 🔜</div>
-      ${['Live market values from sold listings','Trade matching with nearby collectors','Hunt mode: release calendar + sighting alerts','Cloud sync across devices'].map(t=>`<div class="about-li"><span class="e">🔜</span><span>${t}</span></div>`).join('')}
-      <div class="small mut" style="margin-top:8px">Chasiq <b id="m-appbuild"></b> · 100% local-first · no account · no tracking. Your collection never leaves this device.</div>
+      ${['Live market values from sold listings','Trade matching with nearby collectors','Hunt mode: release calendar + sighting alerts'].map(t=>`<div class="about-li"><span class="e">🔜</span><span>${t}</span></div>`).join('')}
+      <div class="small mut" style="margin-top:8px">Chasiq <b id="m-appbuild"></b> · local-first: your collection lives on this device and syncs to your account only when you sign in.</div>
       <div class="small mut" style="margin-top:8px">📚 Catalog data &amp; photos: the collector wikis — <a href="https://hotwheels.fandom.com" target="_blank" rel="noopener">Hot Wheels Wiki</a>, <a href="https://matchbox.fandom.com" target="_blank" rel="noopener">Matchbox Wiki</a>, <a href="https://m2machines.fandom.com" target="_blank" rel="noopener">M2 Machines Wiki</a>, <a href="https://greenlight.fandom.com" target="_blank" rel="noopener">GreenLight Wiki</a>, <a href="https://minigt.fandom.com" target="_blank" rel="noopener">Mini GT Wiki</a>, <a href="https://tomica.fandom.com" target="_blank" rel="noopener">Tomica Wiki</a> — used under <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA</a>. Thanks to every contributor who photographed and documented these cars.</div>
       <div class="frow" style="margin-top:8px"><label>🖼 Photo diagnostics</label>
         <div class="small mut" style="margin:6px 0" id="m-imgdiag">Tap a button to test whether catalog photos can load on this device.</div>
