@@ -12,7 +12,7 @@
   --r:18px;
 }
 *{box-sizing:border-box; -webkit-tap-highlight-color:transparent}
-html,body{margin:0;padding:0}
+html,body{margin:0;padding:0; overflow-x:clip}
 body{
   background:var(--bg); color:var(--txt);
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
@@ -80,7 +80,8 @@ button{font-family:inherit}
 }
 .chip.on{background:linear-gradient(135deg,#ffb03a,var(--acc2)); border-color:transparent; color:var(--onacc)}
 .row2{display:flex; gap:8px}
-.row2 select{flex:1; padding:11px; border-radius:12px; background:var(--card);
+.row2>*{min-width:0}
+.row2 select{flex:1; min-width:0; max-width:100%; padding:11px; border-radius:12px; background:var(--card);
   border:1px solid var(--line2); color:var(--txt); font-size:14px}
 .count-line{font-size:12px; color:var(--mut2); margin:8px 2px}
 
@@ -95,8 +96,9 @@ button{font-family:inherit}
 .pill.mono{font-family:ui-monospace,Menlo,Consolas,monospace; letter-spacing:.4px}
 
 /* ---------- cards ---------- */
-.grid{display:grid; grid-template-columns:1fr 1fr; gap:12px}
-@media(min-width:560px){.grid{grid-template-columns:1fr 1fr 1fr}}
+.grid{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px}
+.grid>*{min-width:0}
+@media(min-width:560px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .card{
   background:var(--card); border:1px solid var(--line); border-radius:var(--r);
   padding:10px; display:flex; flex-direction:column; gap:7px; cursor:pointer;
