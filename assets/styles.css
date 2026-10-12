@@ -260,3 +260,87 @@ button{font-family:inherit}
 .mate .cimg{aspect-ratio:4/3; border-radius:9px; margin:0}
 .mate .cimg-ph{font-size:24px}
 .mate .mn{font-size:12px; font-weight:700; margin-top:6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+
+/* ============================================================
+   WEBSITE MODE — real browsers get a website; the Android app
+   (html.mode-app) keeps the app experience, untouched above.
+   Mode is set pre-paint by the boot script in index.html.
+   ============================================================ */
+.site-nav,.site-footer{display:none}
+
+html.mode-web body{padding-bottom:0}
+html.mode-web .app-header{position:static; padding:18px 30px}
+html.mode-web .brand-mark{width:48px;height:48px;font-size:28px;border-radius:14px}
+html.mode-web .brand-text h1{font-size:26px}
+html.mode-web .tagline{font-size:11px}
+html.mode-web .icon-btn{font-size:15px; padding:10px 16px}
+html.mode-web .icon-btn::after{content:" Scan"; font-weight:700; font-size:13px}
+html.mode-web .bottom-nav{display:none}
+
+html.mode-web .site-nav{
+  display:block; position:sticky; top:0; z-index:49;
+  background:rgba(11,12,14,.92); backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+}
+html.mode-web .site-nav-in{
+  max-width:1280px; margin:0 auto; padding:0 30px;
+  display:flex; gap:2px; align-items:center; overflow-x:auto; scrollbar-width:none;
+}
+html.mode-web .site-nav-in::-webkit-scrollbar{display:none}
+html.mode-web .sn-btn{
+  background:none; border:none; border-bottom:2px solid transparent;
+  color:var(--mut); font-size:15px; font-weight:700; padding:15px 14px;
+  cursor:pointer; white-space:nowrap; font-family:inherit;
+}
+html.mode-web .sn-btn:hover{color:var(--txt)}
+html.mode-web .sn-btn.active{color:var(--acc); border-bottom-color:var(--acc)}
+html.mode-web .sn-app{
+  margin-left:auto; white-space:nowrap; text-decoration:none;
+  background:linear-gradient(135deg,#ffb03a,var(--acc2)); color:var(--onacc);
+  font-weight:800; font-size:13px; padding:9px 16px; border-radius:999px;
+}
+
+html.mode-web .view{max-width:1280px; padding:28px 30px 48px}
+html.mode-web .grid{grid-template-columns:repeat(auto-fill,minmax(195px,1fr)); gap:16px}
+html.mode-web .card{padding:12px; transition:border-color .15s ease, transform .15s ease}
+html.mode-web .card:hover{border-color:rgba(255,158,27,.55); transform:translateY(-2px)}
+html.mode-web .search{max-width:640px}
+html.mode-web .spec-grid{grid-template-columns:repeat(auto-fill,minmax(175px,1fr))}
+html.mode-web .stat-tiles{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+html.mode-web .form{max-width:760px}
+html.mode-web .g-item{padding:12px 10px}
+html.mode-web .g-item:hover{border-color:var(--line2)}
+html.mode-web .mate{flex-basis:170px}
+html.mode-web .btn:hover{filter:brightness(1.08)}
+html.mode-web .chip:hover{color:var(--txt); border-color:var(--mut2)}
+
+/* car detail: photo left, facts right */
+html.mode-web .cd-top{
+  display:grid; grid-template-columns:minmax(0,11fr) minmax(0,10fr);
+  gap:32px; align-items:start;
+}
+html.mode-web .cd-top .cimg.big{position:sticky; top:78px}
+html.mode-web .cd-main h2{margin-top:0 !important; font-size:34px !important}
+html.mode-web .cd-main .spec-grid{grid-template-columns:1fr 1fr}
+
+html.mode-web .site-footer{display:block; border-top:1px solid var(--line); background:var(--bg2)}
+html.mode-web .sf-in{
+  max-width:1280px; margin:0 auto; padding:30px;
+  display:flex; gap:22px 44px; flex-wrap:wrap; align-items:flex-start;
+}
+html.mode-web .sf-brand{display:flex; gap:11px; align-items:center}
+html.mode-web .sf-name{font-weight:900; font-size:18px}
+html.mode-web .sf-links{display:flex; gap:20px; padding-top:12px}
+html.mode-web .sf-links a{color:var(--mut); text-decoration:none; font-weight:700; font-size:14px}
+html.mode-web .sf-links a:hover{color:var(--acc)}
+html.mode-web .sf-note{flex:1 1 340px; line-height:1.55}
+
+@media (max-width:900px){
+  html.mode-web .cd-top{grid-template-columns:1fr}
+  html.mode-web .cd-top .cimg.big{position:static}
+  html.mode-web .view{padding:20px 16px 36px}
+  html.mode-web .grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
+  html.mode-web .app-header{padding:14px 16px}
+  html.mode-web .site-nav-in{padding:0 10px}
+  html.mode-web .sn-app{display:none}
+}

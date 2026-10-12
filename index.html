@@ -1,13 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0XP3W1NQQ3"></script>
-<script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-0XP3W1NQQ3');</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Chasiq — Multi-Brand Die-Cast Collection Tracker</title>
 <meta name="description" content="Chasiq (cha-seek): track your die-cast collection across Hot Wheels, Matchbox, M2, GreenLight, Mini GT, Tomica, Auto World and Kaido House. 100% on-device, no account needed.">
 <meta name="theme-color" content="#0b0c0e">
+<script>
+/* Chasiq runs in two shells: the Android app (ChasiqShell UA) keeps the app
+   experience; real browsers get the website experience. Decided pre-paint. */
+(function(){
+  var shell = /ChasiqShell\//.test(navigator.userAgent);
+  window.__CHASIQ_SHELL__ = shell;
+  document.documentElement.classList.add(shell ? 'mode-app' : 'mode-web');
+  if(!shell){
+    var vp = document.querySelector('meta[name="viewport"]');
+    if(vp) vp.setAttribute('content', 'width=device-width, initial-scale=1.0, viewport-fit=cover');
+  }
+})();
+</script>
 <link rel="stylesheet" href="./assets/styles.css">
 </head>
 <body>
@@ -20,6 +31,19 @@
   <button id="hdr-scan" class="icon-btn" title="Scan barcode" aria-label="Scan barcode">📷</button>
 </header>
 
+
+<nav class="site-nav" id="site-nav" aria-label="Site">
+  <div class="site-nav-in">
+    <button data-tab="catalog" class="nav-btn sn-btn active">Catalog</button>
+    <button data-tab="collection" class="nav-btn sn-btn">Garage</button>
+    <button data-tab="wishlist" class="nav-btn sn-btn">Wishlist</button>
+    <button data-tab="stats" class="nav-btn sn-btn">Stats</button>
+    <button data-tab="market" class="nav-btn sn-btn">Market</button>
+    <button data-tab="more" class="nav-btn sn-btn">More</button>
+    <a class="sn-app" href="./install/">📱 Get the Android app</a>
+  </div>
+</nav>
+
 <main id="view" class="view"></main>
 
 <nav class="bottom-nav" id="bottom-nav">
@@ -30,6 +54,30 @@
   <button data-tab="market" class="nav-btn"><span class="nav-ico">🏷️</span><span>Market</span></button>
   <button data-tab="more" class="nav-btn"><span class="nav-ico">⚙️</span><span>More</span></button>
 </nav>
+
+
+<footer class="site-footer">
+  <div class="sf-in">
+    <div class="sf-brand">
+      <div class="brand-mark">C</div>
+      <div>
+        <div class="sf-name">Chasiq</div>
+        <div class="mut small">every brand. one garage.</div>
+      </div>
+    </div>
+    <div class="sf-links">
+      <a href="./install/">Get the app</a>
+      <a href="./blog/">Blog</a>
+      <a href="./brands/">Brands</a>
+    </div>
+    <div class="sf-note mut small">
+      Track your die-cast collection across Hot Wheels, Matchbox, M2 Machines, GreenLight,
+      Mini GT, Tomica, Auto World and Kaido House. Catalog data and photos come from the
+      collector wikis (CC BY-SA). Chasiq is an independent tracker and is not affiliated
+      with Mattel or any manufacturer. © 2026 Chasiq.
+    </div>
+  </div>
+</footer>
 
 <div id="modal-root"></div>
 <div id="toast-root"></div>

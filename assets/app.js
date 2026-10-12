@@ -5,7 +5,7 @@
 
 /* Bump on every user-facing release — shown in More → About so we can tell
    which version a phone is actually running. */
-const APP_BUILD = 'v22.7';
+const APP_BUILD = 'v23.0';
 
 /* Offline-first: cache the app shell so it loads with no connection.
    Updates must land in ONE open, not two: check for a new worker on every
@@ -341,7 +341,8 @@ async function renderCatDetail(cid){
   v.innerHTML = `
     <button class="btn ghost sm" data-go="catalog">← Catalog</button>
     <div style="height:10px"></div>
-    ${catImgHTML(c, true)}
+    <div class="cd-top">${catImgHTML(c, true)}
+    <div class="cd-main">
     <h2 style="font-size:27px;line-height:1.12;margin:12px 0 4px">${esc(c.name)}</h2>
     <div><span class="badge brand">${esc(c.brand)}</span></div>
     <div class="mut small" style="margin-top:6px">${esc(c.series)} · ${c.year||'—'} · ${esc(c.scale)}${c.debut && c.debut!=c.year ? ' · debut '+esc(c.debut) : ''}</div>
@@ -367,6 +368,7 @@ async function renderCatDetail(cid){
       <button class="btn pri" id="cd-add" style="flex:1">+ Garage</button>
       <button class="btn sec" id="cd-wish" style="flex:1">${wished?'★ Wished':'☆ Wish'}</button>
     </div>
+    </div></div>
     <div class="sec-title">About this casting</div>
     <div class="form small" style="line-height:1.55">
       ${c.debut?`<div style="margin-bottom:8px">🎂 <b>Debut:</b> first released in ${esc(c.debut)}.</div>`:''}
