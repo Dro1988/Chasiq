@@ -5,12 +5,24 @@
 
 /* Bump on every user-facing release — shown in More → About so we can tell
    which version a phone is actually running. */
-const APP_BUILD = 'v22.4';
+const APP_BUILD = 'v22.5';
 
-/* Offline-first: cache the app shell so it loads with no connection. */
+/* Offline-first: cache the app shell so it loads with no connection.
+   Updates must land in ONE open, not two: check for a new worker on every
+   load, and when a new worker takes control reload once so the page never
+   sits on stale CSS/JS (the catalog-width bug looked 'unfixed' for exactly
+   this reason — the phone was still running the previous cached build). */
 if ('serviceWorker' in navigator) {
+  let reloadedForUpdate = false;
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (reloadedForUpdate) return;
+    reloadedForUpdate = true;
+    location.reload();
+  });
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js').catch(()=>{});
+    navigator.serviceWorker.register('./sw.js')
+      .then(reg => { reg.update().catch(()=>{}); })
+      .catch(()=>{});
   });
 }
 
