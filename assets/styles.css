@@ -278,7 +278,7 @@ html.mode-web .icon-btn::after{content:" Scan"; font-weight:700; font-size:13px}
 html.mode-web .bottom-nav{display:none}
 
 html.mode-web .site-nav{
-  display:block; position:sticky; top:0; z-index:49;
+  display:block !important; position:sticky; top:0; z-index:49;
   background:rgba(11,12,14,.92); backdrop-filter:blur(12px);
   border-bottom:1px solid var(--line);
 }
@@ -323,7 +323,7 @@ html.mode-web .cd-top .cimg.big{position:sticky; top:78px}
 html.mode-web .cd-main h2{margin-top:0 !important; font-size:34px !important}
 html.mode-web .cd-main .spec-grid{grid-template-columns:1fr 1fr}
 
-html.mode-web .site-footer{display:block; border-top:1px solid var(--line); background:var(--bg2)}
+html.mode-web .site-footer{display:block !important; border-top:1px solid var(--line); background:var(--bg2)}
 html.mode-web .sf-in{
   max-width:1280px; margin:0 auto; padding:30px;
   display:flex; gap:22px 44px; flex-wrap:wrap; align-items:flex-start;

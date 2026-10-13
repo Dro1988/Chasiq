@@ -17,6 +17,13 @@
     var vp = document.querySelector('meta[name="viewport"]');
     if(vp) vp.setAttribute('content', 'width=device-width, initial-scale=1.0, viewport-fit=cover');
   }
+  else {
+    /* App mode: the website chrome must never appear, even if a stale
+       stylesheet is cached. Remove it from the DOM once parsed. */
+    document.addEventListener('DOMContentLoaded', function(){
+      document.querySelectorAll('.site-nav,.site-footer').forEach(function(el){ el.remove(); });
+    });
+  }
 })();
 </script>
 <link rel="stylesheet" href="./assets/styles.css">
@@ -32,7 +39,7 @@
 </header>
 
 
-<nav class="site-nav" id="site-nav" aria-label="Site">
+<nav class="site-nav" id="site-nav" aria-label="Site" style="display:none">
   <div class="site-nav-in">
     <button data-tab="catalog" class="nav-btn sn-btn active">Catalog</button>
     <button data-tab="collection" class="nav-btn sn-btn">Garage</button>
@@ -56,7 +63,7 @@
 </nav>
 
 
-<footer class="site-footer">
+<footer class="site-footer" style="display:none">
   <div class="sf-in">
     <div class="sf-brand">
       <div class="brand-mark">C</div>
