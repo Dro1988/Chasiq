@@ -5,7 +5,7 @@
 
 /* Bump on every user-facing release — shown in More → About so we can tell
    which version a phone is actually running. */
-const APP_BUILD = 'v23.3';
+const APP_BUILD = 'v23.4';
 
 /* Offline-first: cache the app shell so it loads with no connection.
    Updates must land in ONE open, not two: check for a new worker on every
@@ -208,9 +208,29 @@ function thumbHTML(c, emoji){
   return `<div class="g-thumb ph">${emoji||'🚗'}</div>`;
 }
 
+/* ============================== in-app history ==============================
+   Every go() becomes a real history entry, so the Android back button (and
+   the browser back button) steps back through screens via popstate instead
+   of leaving the app. NAV_LAST dedupes: popstate sets it to the landed
+   screen, so the go() it triggers does not push a fresh entry. */
+let NAV_LAST = '';
+function navTrack(tab, arg){
+  const key = tab + '|' + (arg == null ? '' : arg);
+  if(key === NAV_LAST) return;
+  NAV_LAST = key;
+  try{ history.pushState({t: tab, a: (arg == null ? null : arg)}, ''); }catch(e){}
+}
+window.addEventListener('popstate', e=>{
+  if(document.querySelector('.modal-veil')) closeModal();
+  const st = e.state;
+  NAV_LAST = (st && st.t) ? st.t + '|' + (st.a == null ? '' : st.a) : 'catalog|';
+  go((st && st.t) ? st.t : 'catalog', st ? st.a : null);
+});
+
 /* ============================== tabs ============================== */
 const TABS = ['catalog','collection','wishlist','stats','market','more'];
 function go(tab, arg){
+  navTrack(tab, arg);
   S.tab = tab;
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('active', b.dataset.tab===tab));
   window.scrollTo(0,0);
@@ -228,6 +248,7 @@ function go(tab, arg){
 document.addEventListener('DOMContentLoaded', ()=>{
   document.querySelectorAll('.nav-btn').forEach(b=>b.addEventListener('click', ()=>go(b.dataset.tab)));
   $('#hdr-scan').addEventListener('click', openScanner);
+  try{ history.replaceState({t:'catalog', a:null}, ''); NAV_LAST = 'catalog|'; }catch(e){}
   openDB().then(()=>{ go('catalog'); refreshMe().then(()=>{ if(ME) syncNow(true); }); }).catch(()=>{ $('#view').innerHTML='<div class="notice">IndexedDB is unavailable in this browser — the app cannot store your collection.</div>'; });
 });
 document.addEventListener('click', e=>{
