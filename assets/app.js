@@ -5,7 +5,7 @@
 
 /* Bump on every user-facing release — shown in More → About so we can tell
    which version a phone is actually running. */
-const APP_BUILD = 'v23.1';
+const APP_BUILD = 'v23.2';
 
 /* Offline-first: cache the app shell so it loads with no connection.
    Updates must land in ONE open, not two: check for a new worker on every
